@@ -190,7 +190,7 @@ const Index = () => {
       >
         Skill Afrika serves as a catalyst for youth development and national growth by providing 
         valuable skills and opportunities to young Africans, empowering them to contribute 
-        positively to their communities and the continent's future.
+        positively to their communities and the continents future.
       </MissionDescription>
       <ProgressBar>
         <Progress
