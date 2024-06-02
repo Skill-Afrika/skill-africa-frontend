@@ -180,7 +180,7 @@ const Index = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 2.0, duration: 1.5 }}
         >
-          {timerComponents.length ? timerComponents : <span>Time's up!</span>}
+          {timerComponents.length ? timerComponents : <span>Its Here!</span>}
         </Countdown>
       )}
       <MissionDescription
