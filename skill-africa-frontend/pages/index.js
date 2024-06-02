@@ -187,10 +187,10 @@ const calculateTimeLeft = () => {
 
   if (difference > 0) {
     timeLeft = {
-      days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-      hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-      minutes: Math.floor((difference / 1000 / 60) % 60),
-      seconds: Math.floor((difference / 1000) % 60),
+      days: Math.floor(difference / (6000 * 60 * 60 * 24)),
+      hours: Math.floor((difference / (6000 * 60 * 60)) % 24),
+      minutes: Math.floor((difference / 6000 / 60) % 60),
+      seconds: Math.floor((difference / 6000) % 60),
     };
   }
 
@@ -278,7 +278,7 @@ const Index = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 2.0, duration: 1.5 }}
             >
-              {timerComponents.length ? timerComponents : <span>Time's up!</span>}
+              {timerComponents.length ? timerComponents : <span>Time&apos;s up!</span>}
             </Countdown>
           )}
           <MissionDescription
@@ -288,7 +288,7 @@ const Index = () => {
           >
             Skill Afrika serves as a catalyst for youth development and national growth by providing 
             valuable skills and opportunities to young Africans, empowering them to contribute 
-            positively to their communities and the continent's future.
+            positively to their communities and the continent&apos;s future.
           </MissionDescription>
           <ProgressBar>
             <Progress
