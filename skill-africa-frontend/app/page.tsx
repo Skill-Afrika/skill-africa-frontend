@@ -1,27 +1,32 @@
-"use client"; // Add this directive at the top
+// components/ComingSoon.js
+import React from 'react';
+import styles from './ComingSoon.module.css';
 
-// skill-africa-frontend/pages/under-construction.js
-import { useEffect, useState } from 'react';
-import styles from '../styles/UnderConstruction.module.css';  // Correctly import the CSS module
+const ComingSoon = () => {
+  return (
+    <div className={styles.container}>
+      <h1 className={styles.title}>Skill Afrika</h1>
+      <p className={styles.subtitle}>Empowering Youth, Igniting Growth</p>
+      <div className={styles.content}>
+        <p className={styles.description}>
+          Exciting things are happening behind the scenes! Skill Afrika is crafting
+          a platform that will serve as a catalyst for youth development and national growth.
+          Stay tuned as we prepare to launch something extraordinary.
+        </p>
+        <p className={styles.cta}>Sign up for updates:</p>
+        <form className={styles.form}>
+          <input
+            type="email"
+            placeholder="Enter your email"
+            className={styles.input}
+          />
+          <button type="submit" className={styles.button}>
+            Subscribe
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+};
 
-export default function UnderConstruction() {
-    const [message, setMessage] = useState('Loading...');
-
-    useEffect(() => {
-        fetch('http://localhost:8000/api/under-construction/')
-            .then(response => response.json())
-            .then(data => setMessage(data.message))
-            .catch(error => setMessage('Error fetching data'));
-    }, []);
-
-    return (
-        <div className={styles.container}>
-            <div className={styles.animation}>
-                {/* Simple under construction animation */}
-                <div className={styles.crane}></div>
-                <div className={styles.building}></div>
-            </div>
-            <h1>{message}</h1>
-        </div>
-    );
-}
+export default ComingSoon;
