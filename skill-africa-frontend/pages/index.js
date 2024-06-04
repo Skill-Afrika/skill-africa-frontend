@@ -3,13 +3,7 @@ import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import { ParallaxProvider, Parallax } from 'react-scroll-parallax';
 import { useRouter } from 'next/router'
-
-
-
-
-
-
-
+import Link from 'next/link';
 const Container = styled.div`
   position: relative;
   height: 100vh;
@@ -329,6 +323,10 @@ const Index = () => {
           >
             Stay Tuned
           </Button>
+
+          <Link href="/landing" passHref legacyBehavior>
+            <a className="bg-blue-600 text-white px-4 py-2 rounded">Go to Skill Afrika</a>
+          </Link>
           
         </ContentContainer>
       </Container>
