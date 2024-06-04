@@ -3,6 +3,21 @@ import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import { ParallaxProvider, Parallax } from 'react-scroll-parallax';
 
+
+const LoadingScreen = styled.div`
+  position: fixed; /* Change from absolute to fixed */
+  top: 0;
+  left: 0;
+  width: 100vw; /* Change from 100% to 100vw */
+  height: 100vh; /* Change from 100% to 100vh */
+  background-color: #000; /* Change to a distinct color, e.g., black */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+`;
+
+
 const Container = styled.div`
   position: relative;
   height: 100vh;
@@ -200,15 +215,22 @@ const calculateTimeLeft = () => {
 const Index = () => {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
   const [isClient, setIsClient] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setIsClient(true);
     const timer = setInterval(() => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);
-
+  
+    // Hide the loading screen after a short delay
+    setTimeout(() => {
+      setLoading(false);
+    }, 500); // Adjust the delay as needed
+  
     return () => clearInterval(timer);
   }, []);
+  
 
   const timerComponents = [];
 
@@ -303,9 +325,9 @@ const Index = () => {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 3.0, duration: 1.5 }}
-            onClick={() => alert('Thank you for your interest!')}
+            onClick={() => alert('Thank you will be in touch')}
           >
-            Get Notified
+            stay tuned
           </Button>
         </ContentContainer>
       </Container>
