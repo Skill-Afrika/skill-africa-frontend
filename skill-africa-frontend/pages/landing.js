@@ -83,7 +83,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }} 
               transition={{ duration: 1, delay: 0.5 }}
             >
-              Providing valuable skills and opportunities to young Africans, empowering them to contribute positively to their communities and the continent's future.
+              Providing valuable skills and opportunities to young Africans, empowering them to contribute positively to their communities and the continent&apos;s future.
             </motion.p>
             <motion.a 
               href="#services" 
@@ -113,7 +113,7 @@ export default function Home() {
               <div className="container mx-auto text-center px-4">
                 <h2 className="text-3xl font-bold mb-8">About Us</h2>
                 <p className="text-lg mb-4">Skill Afrika serves as a catalyst for youth development and national growth by providing valuable skills and opportunities to young Africans.</p>
-                <p className="text-lg">Our mission is to empower the youth to contribute positively to their communities and the continent's future.</p>
+                <p className="text-lg">Our mission is to empower the youth to contribute positively to their communities and the continent&apos;s future.</p>
               </div>
             </motion.section>
           )}
@@ -185,7 +185,7 @@ export default function Home() {
                     <p className="text-lg font-bold">- zainab salihu</p>
                   </div>
                   <div className="p-8 bg-gray-900 rounded shadow-lg">
-                    <p className="text-lg mb-4">"I can't thank Skill Afrika enough for their job placement assistance. They connected me with an amazing opportunity that aligns perfectly with my skills and interests."</p>
+                    <p className="text-lg mb-4">"I can&apos;t thank Skill Afrika enough for their job placement assistance. They connected me with an amazing opportunity that aligns perfectly with my skills and interests."</p>
                     <p className="text-lg font-bold">- abraham john</p>
                   </div>
                 </div>
