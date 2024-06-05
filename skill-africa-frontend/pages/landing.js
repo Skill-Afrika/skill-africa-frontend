@@ -329,9 +329,9 @@ export default function Home() {
     <div>
       <h2 className="text-xl font-bold mb-4">Contact Us</h2>
       <ul className="text-sm space-y-2">
-        <li>Email: <a href="mailto:contact@skillafrika.com" className="hover:underline">contact@skillafrika.com</a></li>
-        <li>Phone: <a href="tel:+1234567890" className="hover:underline">+123 456 7890</a></li>
-        <li>Address: 123 Skill Afrika St, Nairobi, Kenya</li>
+        <li>Email: <a href="mailto:admin@skillafrika.com" className="hover:underline">admin@skillafrika.com</a></li>
+        <li>Phone: <a href="tel:+234 *** *** ***" className="hover:underline">+234 90 ** **</a></li>
+        <li>Address: Abuja Nigeria </li>
       </ul>
     </div>
 
