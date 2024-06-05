@@ -127,7 +127,7 @@ export default function Home() {
       animate={{ opacity: 1, y: 0 }} 
       transition={{ duration: 1, delay: 0.5 }}
     >
-      Providing valuable skills and opportunities to young Africans, empowering them to contribute positively to their communities and the continent's future.
+      Providing valuable skills and opportunities to young Africans, empowering them to contribute positively to their communities and the continent&apos;s future.
     </motion.p>
     
     <div className="mt-2 md:mt-4 flex flex-col md:flex-row justify-center">
@@ -292,7 +292,7 @@ export default function Home() {
     <div>
       <h2 className="text-xl font-bold mb-4">About Skill Afrika</h2>
       <p className="text-sm">
-        Skill Afrika is dedicated to empowering young Africans with valuable skills and opportunities, enabling them to contribute positively to their communities and the continent's future.
+        Skill Afrika is dedicated to empowering young Africans with valuable skills and opportunities, enabling them to contribute positively to their communities and the continent&apos;s future.
       </p>
     </div>
 
