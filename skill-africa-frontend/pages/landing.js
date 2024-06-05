@@ -181,11 +181,11 @@ export default function Home() {
                 <h2 className="text-3xl font-bold mb-8">Testimonials</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="p-8 bg-gray-900 rounded shadow-lg">
-                    <p className="text-lg mb-4">"Skill Afrika transformed my life! Their mentorship program helped me land my dream job and provided me with the skills I needed to excel in my career."</p>
+                    <p className="text-lg mb-4">&quot;Skill Afrika transformed my life! Their mentorship program helped me land my dream job and provided me with the skills I needed to excel in my career.&quot;</p>
                     <p className="text-lg font-bold">- zainab salihu</p>
                   </div>
                   <div className="p-8 bg-gray-900 rounded shadow-lg">
-                    <p className="text-lg mb-4">"I can&apos;t thank Skill Afrika enough for their job placement assistance. They connected me with an amazing opportunity that aligns perfectly with my skills and interests."</p>
+                    <p className="text-lg mb-4">&quot;I can&apos;t thank Skill Afrika enough for their job placement assistance. They connected me with an amazing opportunity that aligns perfectly with my skills and interests.&quot;</p>
                     <p className="text-lg font-bold">- abraham john</p>
                   </div>
                 </div>
