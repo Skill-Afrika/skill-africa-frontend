@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { InView } from 'react-intersection-observer';
+
+
 import Head from 'next/head';
 import { useState } from 'react';
 
