@@ -1,17 +1,20 @@
-import { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { InView } from 'react-intersection-observer';
-
-
 import Head from 'next/head';
-import { useState } from 'react';
-
 
 export default function Home() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [loading, setLoading] = useState(true); // Add loading state
   const controls = useAnimation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  useEffect(() => {
+    // Simulate loading delay for demonstration purposes
+    const timer = setTimeout(() => setLoading(false), 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     controls.start('visible');
@@ -19,11 +22,24 @@ export default function Home() {
 
   return (
     <div>
-      <Head>
-        <title>Skill Afrika</title>
-        <meta name="description" content="Empowering young Africans with skills and opportunities" />
-        <link rel="icon" href="/vercel.svg" />
-      </Head>
+      {/* Loading animation */}
+      {loading && (
+        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-900 bg-opacity-75 z-50">
+          <motion.div
+            className="rounded-full border-t-4 border-blue-500 h-16 w-16 animate-spin"
+            style={{ borderTopColor: '#3498db' }}
+          ></motion.div>
+        </div>
+      )}
+
+      {/* Your actual content */}
+      {!loading && (
+        <>
+          <Head>
+            <title>Skill Afrika</title>
+            <meta name="description" content="Empowering young Africans with skills and opportunities" />
+            <link rel="icon" href="/vercel.svg" />
+          </Head>
 
       <main className="bg-gray-900 min-h-screen text-gray-100">
       {/**
@@ -347,6 +363,8 @@ export default function Home() {
 </footer>
 
       </main>
+      </>
+      )}
     </div>
-  );        
+  );
 }
