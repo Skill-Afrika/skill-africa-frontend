@@ -50,7 +50,7 @@ To set up the project locally, follow these steps:
 you can find out contibuting in the company docs
 ## Contact
 
-For any inquiries or assistance, please contact [Your Name] at [skillafrika@gmail.com].
+For any inquiries or assistance, please contact at [skillafrika@gmail.com].
 
 
 
