@@ -26,13 +26,28 @@ To set up the project locally, follow these steps:
 
 
 3. Install dependencies using npm or yarn:
-
-~ npm install
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+```
 
 
 4. Run the development server:
 
-~ npm run dev
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
 
 
@@ -51,8 +66,3 @@ you can find out contibuting in the company docs
 ## Contact
 
 For any inquiries or assistance, please contact at [skillafrika@gmail.com].
-
-
-
-
-

@@ -1,8 +1,9 @@
+'use client';
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import { ParallaxProvider, Parallax } from 'react-scroll-parallax';
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link';
 const Container = styled.div`
   position: relative;
@@ -200,7 +201,7 @@ const calculateTimeLeft = () => {
   return timeLeft;
 };
 
-const Index = () => {
+const Home = () => {
   const router = useRouter();
 
   const goToLandingPage = () => {
@@ -334,4 +335,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Home;
