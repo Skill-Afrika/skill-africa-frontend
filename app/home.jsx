@@ -5,6 +5,10 @@ import { useEffect, useState } from 'react';
 import { ParallaxProvider, Parallax } from 'react-scroll-parallax';
 import { useRouter } from 'next/navigation'
 import Link from 'next/link';
+
+import { useSession } from "next-auth/react"
+
+
 const Container = styled.div`
   position: relative;
   height: 100vh;
@@ -202,7 +206,11 @@ const calculateTimeLeft = () => {
 };
 
 const Home = () => {
-  const router = useRouter();
+//   const router = useRouter();
+//   const { data: session, status } = useSession()
+// console.log(session)
+// console.log(status)
+
 
   const goToLandingPage = () => {
     router.push('/landing');
@@ -250,7 +258,7 @@ const Home = () => {
   return (
     <ParallaxProvider>
       <Container>
-        <Parallax y={[-30, 30]} tagOuter="figure">
+        <Parallax y={[-30, 30]} tagouter="figure">
           <SVGContainer>
             <svg
               width="100%"
