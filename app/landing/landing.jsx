@@ -4,12 +4,43 @@ import { motion, useAnimation } from "framer-motion";
 import { InView } from "react-intersection-observer";
 import Head from "next/head";
 
+
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import AfroStyles from "./freelancers";
+
+
+
 export default function Home() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true); // Add loading state
   const controls = useAnimation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    autoplay: true,
+    autoplaySpeed: 1000,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
+  };
+  
   useEffect(() => {
     // Simulate loading delay for demonstration purposes
     const timer = setTimeout(() => setLoading(false), 2000);
@@ -43,14 +74,13 @@ export default function Home() {
              * Clicking on the hamburger menu icon toggles the display of the navigation links.
              * On small screens, the navigation links are hidden by default and shown in a dropdown menu when the hamburger menu icon is clicked.
              */}
-
-            <header className="bg-gray-800 text-white py-4 sticky top-0 z-50 shadow-md">
+            <header className="bg-white text-black py-4 sticky top-0 z-50 shadow-md">
               <div className="container mx-auto flex justify-between items-center px-4">
                 <h1 className="text-xl md:text-2xl font-bold">Skill Afrika</h1>
                 <div className="md:hidden">
                   <button
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
-                    className="text-white focus:outline-none"
+                    className="text-black focus:outline-none"
                   >
                     <svg
                       className="w-6 h-6"
@@ -70,47 +100,51 @@ export default function Home() {
                 </div>
                 <nav className="hidden md:flex space-x-4">
                   <a
-                    href="#about"
-                    className="bg-blue-600 px-4 py-2 rounded hover:bg-blue-500 transition-all duration-300"
+                    href="#find-freelancers"
+                    className="px-4 py-2 rounded hover:bg-gray-200 transition-all duration-300"
                   >
-                    About
+                    Find Freelancers
                   </a>
                   <a
-                    href="#services"
-                    className="bg-blue-600 px-4 py-2 rounded hover:bg-blue-500 transition-all duration-300"
+                    href="#events"
+                    className="px-4 py-2 rounded hover:bg-gray-200 transition-all duration-300"
                   >
-                    Services
+                    Events
                   </a>
                   <a
-                    href="#testimonials"
-                    className="bg-blue-600 px-4 py-2 rounded hover:bg-blue-500 transition-all duration-300"
+                    href="#blogs"
+                    className="px-4 py-2 rounded hover:bg-gray-200 transition-all duration-300"
                   >
-                    Testimonials
+                    Blogs
                   </a>
                   <a
-                    href="#contact"
-                    className="bg-blue-600 px-4 py-2 rounded hover:bg-blue-500 transition-all duration-300"
+                    href="#jobs"
+                    className="px-4 py-2 rounded hover:bg-gray-200 transition-all duration-300"
                   >
-                    Contact
+                    Jobs
+                  </a>
+                  <a
+                    href="#about-us"
+                    className="px-4 py-2 rounded hover:bg-gray-200 transition-all duration-300"
+                  >
+                    About Us
                   </a>
                   {isAuthenticated ? (
-                    <a href="/dashboard" className="hover:text-gray-400">
+                    <a href="/dashboard" className="hover:text-gray-500">
                       Dashboard
                     </a>
                   ) : (
                     <>
-                      {/* Animated Login Button */}
                       <motion.a
                         href="/login"
-                        className="bg-blue-600 px-4 py-2 rounded hover:bg-blue-500 transition-all duration-300"
+                        className="px-4 py-2 rounded hover:bg-gray-200 transition-all duration-300"
                         whileHover={{ scale: 1.1 }}
                       >
                         Login
                       </motion.a>
-                      {/* Animated Sign Up Button */}
                       <motion.a
                         href="/signup"
-                        className="bg-blue-600 px-4 py-2 rounded hover:bg-blue-500 transition-all duration-300"
+                        className="px-4 py-2 rounded-full bg-black text-white hover:bg-gray-800 transition-all duration-300"
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
                       >
@@ -120,52 +154,56 @@ export default function Home() {
                   )}
                 </nav>
                 {isMenuOpen && (
-                  <div className="md:hidden absolute top-full left-0 right-0 bg-gray-800">
+                  <div className="md:hidden absolute top-full left-0 right-0 bg-white text-black">
                     <a
-                      href="#about"
-                      className="block py-2 px-4 hover:bg-gray-700"
+                      href="#find-freelancers"
+                      className="block py-2 px-4 hover:bg-gray-200"
                     >
-                      About
+                      Find Freelancers
                     </a>
                     <a
-                      href="#services"
-                      className="block py-2 px-4 hover:bg-gray-700"
+                      href="#events"
+                      className="block py-2 px-4 hover:bg-gray-200"
                     >
-                      Services
+                      Events
                     </a>
                     <a
-                      href="#testimonials"
-                      className="block py-2 px-4 hover:bg-gray-700"
+                      href="#blogs"
+                      className="block py-2 px-4 hover:bg-gray-200"
                     >
-                      Testimonials
+                      Blogs
                     </a>
                     <a
-                      href="#contact"
-                      className="block py-2 px-4 hover:bg-gray-700"
+                      href="#jobs"
+                      className="block py-2 px-4 hover:bg-gray-200"
                     >
-                      Contact
+                      Jobs
+                    </a>
+                    <a
+                      href="#about-us"
+                      className="block py-2 px-4 hover:bg-gray-200"
+                    >
+                      About Us
                     </a>
                     {isAuthenticated ? (
                       <a
                         href="/dashboard"
-                        className="block py-2 px-4 hover:bg-gray-700"
+                        className="block py-2 px-4 hover:bg-gray-200"
                       >
                         Dashboard
                       </a>
                     ) : (
                       <>
-                        {/* Animated Login Button */}
                         <motion.a
                           href="/login"
-                          className="block py-2 px-4 hover:bg-gray-700"
+                          className="block py-2 px-4 hover:bg-gray-200"
                           whileHover={{ scale: 1.1 }}
                         >
                           Login
                         </motion.a>
-                        {/* Animated Sign Up Button */}
                         <motion.a
                           href="/signup"
-                          className="block py-2 px-4 bg-blue-600 hover:bg-blue-500 transition-all duration-300"
+                          className="block py-2 px-4 rounded-full bg-black text-white hover:bg-gray-800 transition-all duration-300"
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.9 }}
                         >
@@ -178,57 +216,88 @@ export default function Home() {
               </div>
             </header>
 
-            <section
-              className="bg-cover bg-center flex items-center justify-center"
-              style={{
-                backgroundImage: "url(/hero.jpeg)",
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                height: "90vh",
-              }}
-            >
-              <div className="text-center bg-black bg-opacity-50 p-4 md:p-8 rounded">
-                <motion.h2
-                  className="text-2xl md:text-4xl font-bold mb-2 md:mb-4"
-                  initial={{ opacity: 0, y: -50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1 }}
-                >
-                  Empowering the Future of Africa
-                </motion.h2>
-                <motion.p
-                  className="text-base md:text-xl mb-4 md:mb-8"
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1, delay: 0.5 }}
-                >
-                  Providing valuable skills and opportunities to young Africans,
-                  empowering them to contribute positively to their communities
-                  and the continent&apos;s future.
-                </motion.p>
+            <section className="bg-white flex items-center justify-center py-8 m-0">
+  <motion.div
+    className="bg-gray-200 text-black px-4 py-2 md:px-6 md:py-3 rounded-full text-center"
+    whileHover={{ scale: 1.1 }}
+    whileTap={{ scale: 0.9 }}
+  >
+    Over 10000 creative freelancers in our community
+  </motion.div>
+</section>
 
-                <div className="mt-2 md:mt-4 flex flex-col md:flex-row justify-center">
-                  <motion.a
-                    href="/landing"
-                    className="bg-green-600 px-3 py-2 md:px-4 md:py-2 rounded inline-block hover:bg-green-500 transition-all duration-300 mb-2 md:mb-0 md:mr-2"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                  >
-                    Sign Up as Freelancer
-                  </motion.a>
-                  <motion.a
-                    href="/landing"
-                    className="bg-red-600 px-3 py-2 md:px-4 md:py-2 rounded inline-block hover:bg-red-500 transition-all duration-300 md:ml-2"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                  >
-                    Sign Up as Sponsor
-                  </motion.a>
+
+
+<section
+  className="bg-white flex items-center justify-center m-0"
+  style={{
+    height: "90vh",
+    marginTop: "-10rem", 
+  }}
+>
+  <div className="text-center p-4 md:p-8 rounded">
+
+    <motion.h2
+      className="text-2xl md:text-4xl font-bold mb-2 md:mb-4 text-black"
+      initial={{ opacity: 0, y: -50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1 }}
+    >
+      Empowering the Future of Africa
+    </motion.h2>
+    <motion.p
+      className="text-base md:text-xl mb-4 md:mb-8 text-black"
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1, delay: 0.5 }}
+    >
+      Providing valuable skills and opportunities to young Africans,
+      empowering them to contribute positively to their communities
+      and the continent&apos;s future.
+    </motion.p>
+
+    <div className="mt-2 md:mt-4 flex flex-col md:flex-row justify-center">
+      <motion.a
+        href="/landing"
+        className="bg-black text-white px-6 py-3 md:px-8 md:py-4 rounded-full inline-block hover:bg-black transition-all duration-300"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        style={{ fontSize: "1.1rem" }}
+      >
+        Get Started
+      </motion.a>
+    </div>
+  </div>
+</section>
+<section className="bg-white text-black py-8 overflow-hidden" style={{ marginTop: "-10rem" }}>
+      <div className="text-center mb-8">
+        <h1 className="text-3xl mb-4">Freelancer Showcase</h1>
+        <div className="mx-auto w-full h-[80vh] overflow-hidden">
+          <Slider {...settings}>
+            {AfroStyles.map((item) => (
+              <div key={item.id} className="relative flex justify-center">
+                <div className="flex justify-center relative">
+                  <img className="object-cover w-[250px] h-[250px] rounded-lg" src={item.src} alt={item.alt} />
+                  <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-70 text-white rounded-lg px-2 py-1 flex flex-col items-center max-w-[90%]">
+                    <h2 className="text-sm font-semibold">{item.name}</h2>
+                    <p className="text-xs">{item.occupation}</p>
+                    <div className="mt-1 flex flex-wrap gap-1 justify-center">
+                      {item.skills && Array.isArray(item.skills) && item.skills.map((skill, index) => (
+                        <div key={index} className="bg-transparent border border-white rounded-full px-2 py-1 text-xs">
+                          {skill}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
-            </section>
+            ))}
+          </Slider>
+        </div>
+      </div>
+    </section>
 
-            <InView threshold={0.2}>
+           <InView threshold={0.2}>
               {({ inView, ref }) => (
                 <motion.section
                   ref={ref}

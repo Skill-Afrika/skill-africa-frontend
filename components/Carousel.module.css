@@ -1,0 +1,46 @@
+/* components/Carousel.module.css */
+
+.carouselItem {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+  }
+  
+  .carouselItemInfo {
+    padding: 16px;
+    background: #fff;
+    border: 1px solid #eaeaea;
+  }
+  
+  .carouselItemName {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .carouselItemTitle {
+    font-size: 14px;
+    color: #888;
+  }
+  
+  .carouselItemTags {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+  
+  .carouselItemTag {
+    margin-right: 8px;
+    font-size: 12px;
+    background: #f0f0f0;
+    padding: 4px 8px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
+  
+  .carouselItemMedia img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-top: 16px;
+  }
+  
