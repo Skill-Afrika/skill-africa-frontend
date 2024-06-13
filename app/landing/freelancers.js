@@ -3,7 +3,7 @@ const AfroStyles = [
     id: 1,
     name: "John Doe",
     occupation: "Product Designer",
-    skills: ["UI/UX Design", "Prototyping", "User Research"],
+    skills: ["UI/UX", "User Research"],
     alt: "First Image",
     src: "https://images.unsplash.com/photo-1528991435120-e73e05a58897?auto=format&fit=crop&q=80&w=2787&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -27,7 +27,7 @@ const AfroStyles = [
     id: 4,
     name: "Emily Davis",
     occupation: "Graphic Designer",
-    skills: ["Illustration", "Branding", "Photoshop"],
+    skills: [ "Branding", "Photoshop"],
     alt: "Fourth Image",
     src: "https://images.unsplash.com/flagged/photo-1578907015404-bd0176fb3108?auto=format&fit=crop&q=60&w=800&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjh8fEFmcmljYW4lMjBmYXNoaW9ufGVufDB8fDB8fHww",
   },
@@ -35,7 +35,7 @@ const AfroStyles = [
     id: 5,
     name: "Chris Brown",
     occupation: "Digital Marketer",
-    skills: ["Social Media", "PPC", "Email Marketing"],
+    skills: [ "PPC", "Email Marketing"],
     alt: "Fifth Image",
     src: "https://images.unsplash.com/photo-1584530193960-b4eb6c87081c?auto=format&fit=crop&q=80&w=2824&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -51,9 +51,41 @@ const AfroStyles = [
     id: 7,
     name: "David Lee",
     occupation: "Data Scientist",
-    skills: ["Python", "Machine Learning", "Data Analysis"],
+    skills: ["Python", "ML/AI",],
     alt: "Seventh Image",
     src: "https://images.unsplash.com/photo-1530884698386-d42ad3199b1f?auto=format&fit=crop&q=80&w=2787&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+];
+
+
+
+
+
+
+const testimonials = [
+  {
+    name: "John Doe",
+    role: "Freelancer",
+    image: "",
+    testimonial: "Skill Afrika has completely transformed my freelancing career. The training programs are top-notch and the community is incredibly supportive."
+  },
+  {
+    name: "Jane Smith",
+    role: "Sponsor",
+    image: "",
+    testimonial: "As a sponsor, I've seen firsthand the impact Skill Afrika has on young talent. It's a privilege to be part of such an empowering initiative."
+  },
+  {
+    name: "Sam Johnson",
+    role: "Freelancer",
+    image: "",
+    testimonial: "I've gained so much knowledge and experience through Skill Afrika. It's the best platform for African freelancers."
+  },
+  {
+    name: "Emily Davis",
+    role: "Sponsor",
+    image: "",
+    testimonial: "Supporting Skill Afrika has been a rewarding experience. The positive changes it brings to the freelance community are remarkable."
   },
 ];
 
