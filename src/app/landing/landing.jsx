@@ -258,51 +258,6 @@ export default function Home() {
             </div>
           </div>
           </section>
-
-          <motion.section
-      className="py-16 bg-white text-black"
-      initial="hidden"
-      animate="visible"
-      variants={{
-        visible: { opacity: 1, y: 0 },
-        hidden: { opacity: 0, y: 50 },
-      }}
-      transition={{ duration: 1 }}
-    >
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-8">Showcase of Afro Styles</h2>
-        <Slider {...settings}>
-          {AfroStyles.map((item) => (
-            <div key={item.id} className="px-2">
-              <motion.div
-                className="relative overflow-hidden"
-                whileHover={{ scale: 1.05 }}
-              >
-                {item.src && (
-                  <img
-                    className="w-full h-[250px] md:h-[300px] object-cover rounded-lg"
-                    src={item.src}
-                    alt={item.alt}
-                  />
-                )}
-                <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-4 rounded-b-lg">
-                  <h3 className="text-xl font-bold">{item.name}</h3>
-                  <p className="text-sm">{item.occupation}</p>
-                  <div className="flex flex-wrap justify-center gap-2 mt-2">
-                    {item.skills.map((skill, index) => (
-                      <span key={index} className="bg-transparent border border-white px-3 py-1 rounded-full text-sm text-white">
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-          ))}
-        </Slider>
-      </div>
-    </motion.section>
-
           
           <InView threshold={0.2}>
       {({ inView, ref }) => (
