@@ -209,62 +209,54 @@ export default function Home() {
               </div>
             </header>
 
-        <section className="bg-white flex items-center justify-center py-8 m-0">
-          <motion.div
-            className="bg-orange-500 text-black px-4 py-2 md:px-4 md:py-2 rounded-full text-center"
-          >
-            Over 10000 creative freelancers in our community
-          </motion.div>
-          </section>
-
-
-          <section
-          className="bg-white flex items-center justify-center m-0"
-          style={{
-            height: "90vh",
-            marginTop: "-10rem", 
-          }}
-          >
-          <div className="text-center p-4 md:p-8 rounded">
-
-            <motion.h2
-              className="text-2xl md:text-4xl font-bold mb-2 md:mb-4 text-black"
-              initial={{ opacity: 0, y: -50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1 }}
-              
-            >
-              Empowering the Future of Africa
-            </motion.h2>
-            <motion.p
-              className="text-base md:text-xl mb-4 md:mb-8 text-black"
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.5 }}
-              style={{ fontSize: "20px" }}
-            > Providing valuable skills and opportunities to young Africans.
-            
-            </motion.p>
-            <div className="mt-2 md:mt-4 flex flex-col md:flex-row justify-center">
-              <motion.a
-                href="/landing"
-                className="bg-black text-white px-5 py-2.5 md:px-6 md:py-3 rounded-full inline-block hover:bg-black transition-all duration-300"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                style={{ fontSize: "1.1rem" }}
+            <section className="bg-white flex flex-col md:flex-row items-center justify-center py-8 px-4 md:px-0 m-0">
+              <motion.div
+                className="bg-orange-500 text-black px-4 py-2 rounded-full text-center"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
               >
-                Get Started
-              </motion.a>
-            </div>
-          </div>
-          </section>
-          
+                Over 10000 creative freelancers in our community
+              </motion.div>
+            </section>
+
+            <section className="bg-white flex items-center justify-center m-0">
+  <div className="text-center p-4 md:p-8 rounded">
+    <motion.h2
+      className="text-3xl md:text-5xl font-bold mb-2 md:mb-4 text-black"
+      initial={{ opacity: 0, y: -50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1 }}
+    >
+      Empowering the Future of Africa
+    </motion.h2>
+    <motion.p
+      className="text-lg md:text-2xl mb-4 md:mb-8 text-black"
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1, delay: 0.5 }}
+    >
+      Providing valuable skills and opportunities to young Africans.
+    </motion.p>
+    <div className="mt-4 flex flex-col md:flex-row justify-center">
+      <motion.a
+        href="/landing"
+        className="bg-black text-white px-4 py-2 rounded-full inline-block hover:bg-black transition-all duration-300 md:px-6 md:py-3 md:mx-4"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+     
+      >
+        Get Started
+      </motion.a>
+    </div>
+  </div>
+</section>
+
           <InView threshold={0.2}>
       {({ inView, ref }) => (
         <motion.section
           ref={ref}
           className="bg-white text-black py-8 overflow-hidden"
-          style={{ marginTop: '-10rem' }}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
           variants={{
@@ -274,7 +266,7 @@ export default function Home() {
           transition={{ duration: 1 }}
         >
           <div className="text-center mb-8">
-            <div className="mx-auto w-full h-[80vh] overflow-hidden">
+            <div className="mx-auto w-full  overflow-hidden">
               <Slider {...settings}>
                 {AfroStyles.map((item) => (
                   <div key={item.id} className="relative mx-0"> 
@@ -313,10 +305,10 @@ export default function Home() {
                     hidden: { opacity: 0, y: 50 },
                   }}
                   transition={{ duration: 1 }}
-                  style={{ marginTop: '-15rem' }}
+               
                 >
                   <div className="text-center px-4">
-                    <h2 className="text-3xl font-bold mb-4">
+                    <h2 className="text-3xl mb-4">
                       Unlocking Potential, Building Dreams:<br />
                       Transforming Lives of Freelancers
                     </h2>
@@ -350,7 +342,7 @@ export default function Home() {
                       </div>
                       {/* Left Column - Image */}
                       <div>
-                        <h2 className="text-4xl font-bold mb-6">Why Join Our Community?</h2>
+                        <h2 className="text-4xl  mb-6">Why Join Our Community?</h2>
                         <ul className="list-disc pl-5 space-y-4 text-lg">
                           <li>Access a network of like-minded African freelancers.</li>
                           <li>Learn new skills from industry experts.</li>
@@ -386,7 +378,7 @@ export default function Home() {
   <div className="flex flex-col md:flex-row items-center text-center md:text-left md:justify-start"> {/* Adjusted alignment */}
     <FaUserFriends className="text-6xl text-gray-700 mr-4" />
     <div>
-      <h2 className="text-3xl font-bold mb-4">
+      <h2 className="text-3xl  mb-4">
         Bridging the Gap, Building Teams:
       </h2>
       <p className="text-lg mb-4">
@@ -424,13 +416,13 @@ export default function Home() {
         <div className="flex flex-col md:w-1/3 items-center md:items-start mb-8 md:mb-0 md:pr-8">
           <div className="flex items-center mb-4">
             {/* Icon */}
-            <FaHandsHelping className="text-4xl text-black mr-4" />
+            
             <div>
               {/* Title */}
               <h2 className="text-2xl font-bold mb-2">We Provide a Range of <br/>Services</h2>
             
               {/* Button */}
-              <a href="#join-community" className="text-white bg-black font-semibold inline-flex items-center px-4 py-2 rounded-full">
+              <a href="#join-community" className="text-white bg-black inline-flex items-center px-4 py-2 rounded-full">
                 Join Our Community
               </a>
             </div>
