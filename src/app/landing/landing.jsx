@@ -57,6 +57,7 @@ export default function Home() {
   }, [controls]);
 
   return (
+    
     <div>
       {/* Loading animation */}
       {loading && (
@@ -257,6 +258,52 @@ export default function Home() {
             </div>
           </div>
           </section>
+
+          <motion.section
+      className="py-16 bg-white text-black"
+      initial="hidden"
+      animate="visible"
+      variants={{
+        visible: { opacity: 1, y: 0 },
+        hidden: { opacity: 0, y: 50 },
+      }}
+      transition={{ duration: 1 }}
+    >
+      <div className="container mx-auto px-4">
+        <h2 className="text-3xl font-bold text-center mb-8">Showcase of Afro Styles</h2>
+        <Slider {...settings}>
+          {AfroStyles.map((item) => (
+            <div key={item.id} className="px-2">
+              <motion.div
+                className="relative overflow-hidden"
+                whileHover={{ scale: 1.05 }}
+              >
+                {item.src && (
+                  <img
+                    className="w-full h-[250px] md:h-[300px] object-cover rounded-lg"
+                    src={item.src}
+                    alt={item.alt}
+                  />
+                )}
+                <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-4 rounded-b-lg">
+                  <h3 className="text-xl font-bold">{item.name}</h3>
+                  <p className="text-sm">{item.occupation}</p>
+                  <div className="flex flex-wrap justify-center gap-2 mt-2">
+                    {item.skills.map((skill, index) => (
+                      <span key={index} className="bg-transparent border border-white px-3 py-1 rounded-full text-sm text-white">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          ))}
+        </Slider>
+      </div>
+    </motion.section>
+
+          
           <InView threshold={0.2}>
       {({ inView, ref }) => (
         <motion.section
@@ -401,6 +448,8 @@ export default function Home() {
       </motion.section>
     )}
   </InView>
+
+
       <InView threshold={0.2}>
       {({ inView, ref }) => (
         <motion.section
@@ -494,43 +543,43 @@ export default function Home() {
 
 
     <InView threshold={0.2}>
-      {({ inView, ref }) => (
-        <motion.section
-          ref={ref}
-          className="py-16 bg-white text-black"
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          variants={{
-            visible: { opacity: 1, y: 0 },
-            hidden: { opacity: 0, y: 50 },
-          }}
-          transition={{ duration: 1 }}
-        >
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-8">Testimonials</h2>
-            <Slider {...settings}>
-              {testimonials.map((testimonial, index) => (
-                <div key={index} className="p-4">
-                  <div className="bg-gray-100 p-6 rounded-lg shadow-lg text-center">
-                    <FaUserCircle className="text-6xl text-gray-700 mx-auto mb-4" />
-                    {testimonial.image && (
-                      <img
-                        className="w-16 h-16 rounded-full mx-auto mb-4"
-                        src={testimonial.image}
-                        alt={testimonial.name}
-                      />
-                    )}
-                    <h3 className="text-xl font-bold mb-2">{testimonial.name}</h3>
-                    <p className="text-sm text-gray-600 mb-4">{testimonial.role}</p>
-                    <p className="text-md">{testimonial.testimonial}</p>
-                  </div>
-                </div>
-              ))}
-            </Slider>
-          </div>
-        </motion.section>
-      )}
-    </InView>
+  {({ inView, ref }) => (
+    <motion.section
+      ref={ref}
+      className="py-16 bg-white text-black overflow-hidden"
+      initial="hidden"
+      animate={inView ? "visible" : "hidden"}
+      variants={{
+        visible: { opacity: 1, y: 0 },
+        hidden: { opacity: 0, y: 50 },
+      }}
+      transition={{ duration: 1 }}
+    >
+      <div className="container mx-auto px-4 overflow-hidden">
+        <h2 className="text-3xl font-bold text-center mb-8">Testimonials</h2>
+        <Slider {...settings}>
+          {testimonials.map((testimonial, index) => (
+            <div key={index} className="p-4">
+              <div className="bg-gray-100 p-6 rounded-lg shadow-lg text-center">
+                <FaUserCircle className="text-6xl text-gray-700 mx-auto mb-4" />
+                {testimonial.image && (
+                  <img
+                    className="w-16 h-16 rounded-full mx-auto mb-4"
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                  />
+                )}
+                <h3 className="text-xl font-bold mb-2">{testimonial.name}</h3>
+                <p className="text-sm text-gray-600 mb-4">{testimonial.role}</p>
+                <p className="text-md">{testimonial.testimonial}</p>
+              </div>
+            </div>
+          ))}
+        </Slider>
+      </div>
+    </motion.section>
+  )}
+</InView>
 
     <InView threshold={0.2}>
       {({ inView, ref }) => (
@@ -546,7 +595,7 @@ export default function Home() {
           transition={{ duration: 1 }}
         >
           <div className="container mx-auto px-4">
-            <div className="shadow-lg rounded-lg bg-orange-400 p-8 flex flex-col justify-center items-center" style={{ height: '400px' }}>
+            <div className="shadow-lg rounded-lg bg-orange-500 p-8 flex flex-col justify-center items-center" style={{ height: '400px' }}>
               <h2 className="text-3xl font-bold mb-6 text-white">Connect with Freelancers Just Like You</h2>
               <a href="#join-community" className="bg-black text-white font-semibold py-3 px-6 rounded-full inline-block">
                 Join Our Community
@@ -557,31 +606,39 @@ export default function Home() {
       )}
     </InView>
             
-            {/* Newsletter Signup Section */}
-            <section className="py-16 bg-gray-700">
-              <div className="container mx-auto text-center px-4">
-                <h2 className="text-3xl font-bold mb-8">Stay Updated</h2>
-                <p className="mb-8">
-                  Subscribe to our newsletter to receive the latest news and
-                  updates from Skill Afrika.
-                </p>
-                <form className="max-w-md mx-auto">
-                  <input
-                    type="email"
-                    className="w-full p-2 rounded bg-gray-800 border border-gray-700 text-white"
-                    placeholder="Enter your email"
-                  />
-                  <button
-                    type="submit"
-                    className="mt-4 w-full bg-blue-600 px-4 py-2 rounded hover:bg-blue-500 transition-all duration-300"
-                  >
-                    Subscribe
-                  </button>
-                </form>
-              </div>
-            </section>
+    <InView threshold={0.2}>
+  {({ inView, ref }) => (
+    <motion.section
+      ref={ref}
+      className="bg-white text-black py-16"
+      initial="hidden"
+      animate={inView ? "visible" : "hidden"}
+      variants={{
+        visible: { opacity: 1, y: 0 },
+        hidden: { opacity: 0, y: 50 },
+      }}
+      transition={{ duration: 1 }}
+    >
+      <div className="container mx-auto px-4 flex justify-center">
+        <div className="shadow-lg rounded-lg bg-orange-500 p-12 flex flex-col justify-center items-center" style={{ maxWidth: "1000px", width: "90%" }}>
+          <h2 className="text-2xl md:text-3xl font-bold mb-6 text-white text-center">Subscribe to Our Newsletter</h2>
+          <div className="w-full md:w-auto flex flex-col md:flex-row items-center bg-white rounded-full overflow-hidden">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className="bg-transparent py-3 md:py-4 px-6 md:px-8 text-black outline-none w-full md:w-auto mb-4 md:mb-0"
+            />
+            <button className="bg-black text-white font-semibold py-3 md:py-4 px-6 md:px-8 rounded-full md:ml-2">
+              Subscribe Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </motion.section>
+  )}
+</InView>
 
-            <footer className="bg-gray-800 text-white py-8">
+            <footer  className="bg-gradient-to-r from-black to-orange-500 text-white py-6">
               <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left">
                 {/* About Section */}
                 <div>
