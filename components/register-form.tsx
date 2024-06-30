@@ -1,7 +1,7 @@
 "use client";
 
 import { Input } from "@/components/ui/input";
-import { apiRegister } from "@/lib/api/auth-api";
+import { apiRegister } from "@/lib/services/api/auth-api";
 import fetchClient from "@/lib/fetch-client";
 import { signIn } from "next-auth/react";
 
