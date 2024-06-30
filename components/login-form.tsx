@@ -5,17 +5,17 @@ import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 
 export default function LoginForm() {
-  const searchParams = useSearchParams();
-  const error = searchParams.get("error");
+  // const searchParams = useSearchParams();
+  // const error = searchParams.get("error");
 
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: any) {
     event.preventDefault();
 
-    const formData = new FormData(event.currentTarget);
-    const credentials = Object.fromEntries(formData);
-    const callbackUrl = searchParams.get("callbackUrl") || "/";
+    // const formData = new FormData(event.currentTarget);
+    // const credentials = Object.fromEntries(formData);
+    // const callbackUrl = searchParams.get("callbackUrl") || "/";
 
-    signIn("credentials", { ...credentials, callbackUrl });
+    // signIn("credentials", { ...credentials, callbackUrl });
   }
 
   return (
@@ -40,7 +40,6 @@ export default function LoginForm() {
         <button type="submit">Login</button>
       </form>
 
-      <FormError error={error} />
     </>
   );
 }
