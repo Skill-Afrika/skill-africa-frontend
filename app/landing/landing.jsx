@@ -339,7 +339,7 @@ export default function Home() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                       {/* Right Column - Text */}
                       <div className="flex justify-center">
-                        <Image className="object-cover w-[400px] h-[400px] rounded-lg shadow-lg" src="https://images.unsplash.com/photo-1528991435120-e73e05a58897?auto=format&fit=crop&q=80&w=2787&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Community member" />
+                        <img className="object-cover w-[400px] h-[400px] rounded-lg shadow-lg" src="https://images.unsplash.com/photo-1528991435120-e73e05a58897?auto=format&fit=crop&q=80&w=2787&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Community member" />
                       </div>
                       {/* Left Column - Image */}
                       <div>
