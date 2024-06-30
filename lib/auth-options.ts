@@ -26,6 +26,10 @@ export const authOptions: NextAuthOptions = {
       id: "login-credentials",
       name: "Login Credentials",
       credentials: {
+        username: {
+          label: "Username",
+          type: "username",
+        },
         email: {
           label: "Email",
           type: "email",
@@ -41,13 +45,16 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         const parsedCredentials = z
-          .object({ email: z.string().email(), password: z.string() })
+          .object({ email: z.string().email(), username: z.string(), password: z.string() })
           .safeParse(credentials);
         if (parsedCredentials.success) {
           try {
             const creds = parsedCredentials.data;
+            console.log(creds)
             return await apiAuthorize(creds!);
           } catch (error) {
+            console.log(error)
+
             if (error instanceof Response) {
               return null;
             }
@@ -79,15 +86,17 @@ export const authOptions: NextAuthOptions = {
         // return { ...token, ...user };
       }
       const { exp: accessTokenExpires } = jwt.decode(token.accessToken);
-      // if (!accessTokenExpires) {
-      //   return token;
-      // }
+      if (!accessTokenExpires) {
+        throw new Error("Access token does not have an expiration time.");
+      }
 
       const currentUnixTimestamp = Math.floor(Date.now() / 1000);
       const accessTokenHasExpired = currentUnixTimestamp > accessTokenExpires;
 
       if (accessTokenHasExpired) {
-        token =  await refreshAccessToken(token);
+        const refreshedAccessToken =  await refreshAccessToken(token.refresh);
+        token.accessToken = refreshedAccessToken.accessToken;
+        token.accessTokenExpires = refreshedAccessToken.exp
         const user = await fetchApiUser(token);
         token.user = user
       }
@@ -98,7 +107,7 @@ export const authOptions: NextAuthOptions = {
         throw new Error("Refresh token has expired");
       }
 
-      session.accessToken = token.accessToken;
+      session.access = token.accessToken;
       session.user = token.user
       // session.user. = token.email || "";
 
@@ -112,20 +121,17 @@ export const authOptions: NextAuthOptions = {
   },
 };
 
-async function refreshAccessToken(token: JWT) {
+async function refreshAccessToken(token: string) {
   try {
-    const refreshedAccessToken: { access_token: string } =
+    const refreshedAccessToken: { access: string } =
       await fetchRefreshAccessToken(token);
-    const { exp } = jwt.decode(refreshedAccessToken.access_token);
+    const { exp } = jwt.decode(refreshedAccessToken.access);
     return {
-      ...token,
-      accessToken: refreshedAccessToken.access_token,
+      accessToken: refreshedAccessToken.access,
       exp,
     };
   } catch (error) {
-    return {
-      ...token,
-      error: "RefreshAccessTokenError",
-    };
+    console.error("Error refreshing access token:", error);
+    throw new Error("RefreshAccessTokenError");
   }
 }

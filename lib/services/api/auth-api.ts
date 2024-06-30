@@ -6,56 +6,37 @@ import client from "./client";
 import server from "./server";
 import { AxiosResponse } from "axios";
 import { ROUTES } from "@/lib/const";
+import { log } from "console";
 
 
 
-const useServerByDefault = false;
 
 interface Credentials {
   email: String;
   password: String;
 }
 
-export async function apiLogin(credentials: Credentials, useServer = useServerByDefault) {
-  let response: AxiosResponse;
-  if (useServer) {
-    response = await server.post(ROUTES.login, credentials);
-  } else {
-    response = await client.post(ROUTES.login, credentials);
-  }
+export async function apiLogin(credentials: Credentials,) {
+  const response = await client.post(ROUTES.login, credentials);
   const data: { user: User; token: string } = response.data;
   return { data, response };
 }
 
-export async function apiRegister(data: any, useServer = useServerByDefault) {
-  let response: AxiosResponse;
-  if (useServer) {
-    response = await server.post(ROUTES.freelancerRegister, data);
-  } else {
-    response = await client.post(ROUTES.freelancerRegister, data);
-  }
+export async function apiRegister(data: any,) {
+ 
+  const response = await client.post(ROUTES.freelancerRegister, data);
   const resdata: { user: User; token: string } = response.data;
   return { resdata, response };
 }
 
-export async function apiSignOut(token: JWT, useServer = useServerByDefault) {
-  let response: AxiosResponse;
-  if (useServer) {
-    response = await server.post(ROUTES.logout);
-  } else {
-    response = await client.post(ROUTES.logout);
-  }
+export async function apiSignOut(token: JWT,) {
+  const  response=await client.post(ROUTES.logout);
   return await response.data;
 }
 
-export async function fetchApiUser(token: JWT, useServer = useServerByDefault) {
-  let response: AxiosResponse;
-  if (useServer) {
-    response = await server.post(ROUTES.authUser);
-  } else {
-    response = await client.post(ROUTES.authUser);
-  }
-  return await response.data;
+export async function fetchApiUser(token: JWT,) {
+  const response = await client.post(ROUTES.authUser);
+  return response.data;
 }
 
 export async function apiAuthorize(credentials: Credentials) {
@@ -66,14 +47,9 @@ export async function apiAuthorize(credentials: Credentials) {
   return { ...res.data.user, accessToken: res.data?.token };
 }
 
-export async function fetchRefreshAccessToken(token: JWT, useServer = useServerByDefault) {
-  let response: AxiosResponse;
-  if (useServer) {
-    response = await server.post(ROUTES.authUser);
-  } else {
-    response = await client.post(ROUTES.authUser);
-  }
-  const refreshedAccessToken: { access_token: string } = await response.data;
+export async function fetchRefreshAccessToken(token: string) {
+  let response= await client.post(ROUTES.tokenRefresh, { refresh: token  });
+  const refreshedAccessToken: { access: string } = await response.data;
   return refreshedAccessToken;
   
 
