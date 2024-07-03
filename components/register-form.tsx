@@ -44,6 +44,7 @@ export default function RegisterForm() {
   });
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
+      form.setError('root', { message: 'dsd' })
       await apiRegister(values);
       const { email, password, username } = values;
       signIn("credentials", { email, password, username });
