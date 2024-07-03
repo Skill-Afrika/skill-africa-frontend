@@ -13,7 +13,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 
 export const authOptions: NextAuthOptions = {
   pages: {
-    // signIn: "/login",
+      signIn: '/login'
   },
   session: {
     strategy: "jwt",
@@ -70,14 +70,18 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async jwt({ token, user, trigger, session }) {
+      //when trying to update the session
+      //The useSession() hook exposes a update(data?: any): Promise<Session | null> method that can be used to update the session, without reloading the page.
+      //e.g  update(user) or update({type:manual})
       if (trigger === "update") {
         if (session.type === "MANUAL") {
-          const user = await fetchApiUser(token);
+          const user = await fetchApiUser(token); 
           token.user = user
           // return token;
           // return { ...token, ...user };
+        }else{
+          token.user = session.user //??
         }
-        token.user = session.user
         // return token;
         // return { ...token, ...session };
       }
@@ -97,7 +101,7 @@ export const authOptions: NextAuthOptions = {
         const refreshedAccessToken =  await refreshAccessToken(token.refresh);
         token.accessToken = refreshedAccessToken.accessToken;
         token.accessTokenExpires = refreshedAccessToken.exp
-        const user = await fetchApiUser(token);
+        const user = await fetchApiUser(token); //might not be needed
         token.user = user
       }
       return token;

@@ -1,56 +1,132 @@
 "use client";
 
 import { Input } from "@/components/ui/input";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { apiRegister } from "@/lib/services/api/auth-api";
 import { signIn } from "next-auth/react";
-import { useSearchParams } from "next/navigation";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+import { useForm } from "react-hook-form";
+import { useFormStatus } from "react-dom";
 
-export default function LoginForm() {
-  // const searchParams = useSearchParams();
-  // const error = searchParams.get("error");
+import {
+  FormField,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormDescription,
+  FormMessage,
+  Form,
+} from "./ui/form";
 
-  async function handleSubmit(event: any) {
-    event.preventDefault();
+const formSchema = z.object({
+  username: z.string().min(2, {
+    message: "Username must be at least 2 characters.",
+  }),
+  email: z.string().email(),
+  password: z.string().min(3),
+});
+type FormSchemaType = z.infer<typeof formSchema>;
+type FormFieldType = keyof FormSchemaType;
 
-    // const formData = new FormData(event.currentTarget);
-    // const credentials = Object.fromEntries(formData);
-    // const callbackUrl = searchParams.get("callbackUrl") || "/";
-
-    // signIn("credentials", { ...credentials, callbackUrl });
+export default function RegisterForm() {
+  const { pending } = useFormStatus();
+  const form = useForm<FormSchemaType>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      username: "",
+      email: "",
+      password: "",
+    },
+  });
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      // await apiRegister(values);
+      const res = await signIn("credentials", {
+        redirect: false,
+        email: values.email,
+        password: values.password,
+      });
+    } catch (error: any) {
+      console.log(error.response)
+      if (error.response && error.response.data) {
+        const serverErrors = error.response.data; // assuming errors are in this format
+        (Object.keys(serverErrors) as FormFieldType[]).forEach((key) => {
+          form.setError(key, { message: serverErrors[key].join(' ') });
+        });
+      }
   }
 
+    // console.log(values);
+  }
+
+
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="email">Email</label>
-        <Input
-          id="email"
-          name="email"
-          type="email"
-          defaultValue="john@avocado-media.nl"
-        />
+    <div className="flex justify-center items-center h-screen">
+      <div className="bg-background p-8 rounded-lg shadow-md w-full max-w-md">
+        <h1 className="text-3xl font-bold mb-6 text-center">Login</h1>
+        <Form {...form}>
+          <form action="" method="POST" onSubmit={form.handleSubmit(onSubmit)}>
+            <FormField
+              control={form.control}
+              name="username"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Username</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Enter your username" {...field} />
+                  </FormControl>
+                  <FormDescription>
+                    This is your public display name.
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="Enter your Email"
+                      {...field}
+                      type="email"
+                    />
+                  </FormControl>
 
-        <label htmlFor="password">Password</label>
-        <Input
-          id="password"
-          name="password"
-          type="password"
-          defaultValue="password"
-        />
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-        <button type="submit">Login</button>
-      </form>
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Password</FormLabel>
+                  <FormControl>
+                    <Input placeholder="***" {...field} type="password" />
+                  </FormControl>
 
-    </>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            
+
+            <Button type="submit" className="w-full mt-4" disabled={pending}>
+              Login
+            </Button>
+          </form>
+        </Form>
+      </div>
+    </div>
   );
 }
 
-function FormError({ error }: { error: string | null }) {
-  if (!error) return null;
-
-  const errorMessages: { [key: string]: string } = {
-    CredentialsSignin: "Invalid credentials",
-    Default: "Default Error Message",
-  };
-
-  return <p>{errorMessages[error]}</p>;
-}
