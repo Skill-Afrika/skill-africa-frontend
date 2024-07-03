@@ -11,6 +11,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import AfroStyles from "./freelancers";
 import testimonials from "./freelancers";
+import Image from "next/image";
 
 
 export default function Home() {
