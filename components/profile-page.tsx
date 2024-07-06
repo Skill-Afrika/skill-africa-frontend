@@ -2,10 +2,10 @@
 
 import ProfileInfo from "@/components/profile-info";
 import Head from "next/head";
-import { ROUTES } from "@/lib/const";
-import server from "@/lib/services/api/server";
-import { User } from "next-auth";
-import { signOut, useSession } from "next-auth/react";
+// import { ROUTES } from "@/lib/const";
+// import server from "@/lib/services/api/server";
+// import { User } from "next-auth";
+import { signOut } from "next-auth/react";
 
 const ProfilePage = () => {
   //   const session = await getServerSession(authOptions);
@@ -15,9 +15,6 @@ const ProfilePage = () => {
   //   }
   //   const user = (await server.get<User>(ROUTES.authUser)).data;
 
-  const session = useSession();
-
-  console.log(session);
 
   // Example function to handle logout
   //   const handleLogout = () => {
@@ -39,7 +36,7 @@ const ProfilePage = () => {
         <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
           {/* Profile Information */}
           <div className='col-span-1 md:col-span-2'>
-            {/* <ProfileInfo user={user} /> */}
+            <ProfileInfo  />
           </div>
 
           {/* Profile Tabs */}

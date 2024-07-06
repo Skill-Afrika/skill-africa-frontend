@@ -10,6 +10,10 @@ declare module "next-auth" {
     user: {
       access: string;
       refresh: string;
+      user: {
+        username: string;
+        email: string;
+      };
     } & DefaultSession["user"];
   }
 

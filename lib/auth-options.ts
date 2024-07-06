@@ -53,9 +53,6 @@ export const authOptions: NextAuthOptions = {
             return user;
           } catch (error: any) {
             const err = error.response?.data;
-
-            // console.log(err);
-
             throw new Error(err?.non_field_errors);
           }
         }
