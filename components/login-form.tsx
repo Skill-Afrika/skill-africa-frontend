@@ -21,9 +21,9 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const formSchema = z.object({
-  username: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
+  // username: z.string().min(2, {
+  //   message: "Username must be at least 2 characters.",
+  // }),
   email: z.string().email(),
   password: z.string().min(3),
 });
@@ -38,7 +38,7 @@ export default function LoginForm() {
   const form = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
+      // username: "",
       email: "",
       password: "",
     },
@@ -48,18 +48,17 @@ export default function LoginForm() {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      // await apiRegister(values);
       setLoading(true);
-      const res = await signIn("login-credentials", {
+      const res = await signIn("login", {
         redirect: false,
-        username: values.username, // include username
+        // username: values.username, 
         email: values.email,
         password: values.password,
       });
 
       if (res?.ok) {
         router.replace("/profile");
-        // setLoading(false);
+        setLoading(false);
       }
 
       console.log(res);
@@ -80,8 +79,7 @@ export default function LoginForm() {
     // console.log(values);
   }
 
-  // const session = useSession();
-  // console.log(session);
+ 
 
   return (
     <div className='flex justify-center items-center h-screen'>
@@ -89,7 +87,7 @@ export default function LoginForm() {
         <h1 className='text-3xl font-bold mb-6 text-center'>Login</h1>
         <Form {...form}>
           <form action='' method='POST' onSubmit={form.handleSubmit(onSubmit)}>
-            <FormField
+            {/* <FormField
               control={form.control}
               name='username'
               render={({ field }) => (
@@ -104,7 +102,7 @@ export default function LoginForm() {
                   <FormMessage />
                 </FormItem>
               )}
-            />
+            /> */}
             <FormField
               control={form.control}
               name='email'
