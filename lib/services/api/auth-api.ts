@@ -6,10 +6,8 @@ import client from "./client";
 // import server from "./server";
 // import { AxiosResponse } from "axios";
 import { ROUTES } from "@/lib/const";
-// import { log } from "console";
 
 interface Credentials {
-  username: string; // Add username since it's being authenticated
   email: string;
   password: string;
 }

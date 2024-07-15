@@ -2,7 +2,7 @@ const ROUTES = {
   sponsorsRegister: "",
   adminRegister: "",
   freelancerRegister: "freelancer/register/",
-  login: "auth/login/",
+  login: "users/login/",
   logout: "",
   passwordChange: "",
   passwordReset: "",

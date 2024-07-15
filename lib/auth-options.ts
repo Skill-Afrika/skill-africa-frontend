@@ -15,31 +15,13 @@ import axios from "axios";
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
-      id: "login-credentials",
+      id: "login",
       name: "Login Credentials",
-      credentials: {
-        // This credentials isn't necessary
-        // username: {
-        //   label: "Username",
-        //   type: "username",
-        // },
-        // email: {
-        //   label: "Email",
-        //   type: "email",
-        // },
-        // username: {
-        //   label: "Username",
-        //   placeholder: "user",
-        // },
-        // password: {
-        //   label: "Password",
-        //   type: "password",
-        // },
-      },
+      credentials: {},
       async authorize(credentials) {
         const parsedCredentials = z
           .object({
-            username: z.string(),
+            // username: z.string(),
             email: z.string().email(),
             password: z.string(),
           })
@@ -49,10 +31,11 @@ export const authOptions: NextAuthOptions = {
 
           try {
             const user = await apiLogin(cred);
-            console.log(user);
+            // console.log(user);
             return user;
           } catch (error: any) {
             const err = error.response?.data;
+            // console.log(err)
             throw new Error(err?.non_field_errors);
           }
         }
