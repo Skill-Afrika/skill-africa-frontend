@@ -1,21 +1,10 @@
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
+import { authOptions } from "@/lib/auth-options";
 import LoginForm from "@/components/login-form";
-import Link from "next/link";
 
-export default function Page() {
-  return (
-    <>
-      <h1>Login</h1>
-
-      <LoginForm />
-
-      <ul>
-        <li>
-          <Link href="/register">Register</Link>
-        </li>
-        <li>
-          <Link href="/forgot-password">Forgot password</Link>
-        </li>
-      </ul>
-    </>
-  );
+export default async function Profile() {
+  const session = await getServerSession(authOptions);
+  if (session?.user) redirect("/profile");
+  return <LoginForm />
 }
