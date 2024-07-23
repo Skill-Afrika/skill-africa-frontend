@@ -12,8 +12,7 @@ const client = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
   headers: {
     "Content-Type": "application/json",
-    "accept": "application/json",
-
+    accept: "application/json",
   },
 });
 
@@ -36,7 +35,7 @@ client.interceptors.response.use(
   },
   (error: AxiosError) => {
     if (error.response && error.response.status === 401) {
-      signOut({ callbackUrl: "/auth/login" }); // Redirect to login page after sign out
+      signOut({ callbackUrl: "/users/login/" }); // Redirect to login page after sign out
     }
     return Promise.reject(error);
   }
