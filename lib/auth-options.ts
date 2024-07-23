@@ -4,6 +4,7 @@ import {
   fetchApiUser,
   apiSignOut,
   fetchRefreshAccessToken,
+  apiRegister,
 } from "./services/api/auth-api";
 import { jwt } from "@/lib/utils";
 import type { NextAuthOptions, Session } from "next-auth";
@@ -37,6 +38,34 @@ export const authOptions: NextAuthOptions = {
             const err = error.response?.data;
             // console.log(err)
             throw new Error(err?.non_field_errors);
+          }
+        }
+        return null;
+      },
+    }),
+
+    CredentialsProvider({
+      id: "register",
+      name: "Register Credentials",
+      credentials: {},
+      async authorize(credentials) {
+        const parsedCredentials = z
+          .object({
+            username: z.string(),
+            email: z.string().email(),
+            password: z.string(),
+          })
+          .safeParse(credentials);
+        if (parsedCredentials.success) {
+          const cred = parsedCredentials.data;
+
+          try {
+            const user = await apiRegister(cred);
+            return user;
+          } catch (error: any) {
+            const err = JSON.stringify(error.response?.data);
+            console.log(err);
+            throw new Error(err);
           }
         }
         return null;
