@@ -8,6 +8,7 @@ import client from "./client";
 import { ROUTES } from "@/lib/const";
 
 interface Credentials {
+  username?: string;
   email: string;
   password: string;
 }
@@ -18,10 +19,10 @@ export async function apiLogin(credentials: Credentials) {
   return response.data;
 }
 
-export async function apiRegister(data: any) {
-  const response = await client.post(ROUTES.freelancerRegister, data);
-  const resdata: { user: User; token: string } = response.data;
-  return { resdata, response };
+export async function apiRegister(credentials: Credentials) {
+  const response = await client.post(ROUTES.freelancerRegister, credentials);
+  // const resdata: { user: User; token: string } = response.data;
+  return response.data
 }
 
 export async function apiSignOut(token: JWT) {
