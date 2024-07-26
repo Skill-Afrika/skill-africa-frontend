@@ -20,6 +20,8 @@ import {
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { enqueueSnackbar, SnackbarProvider } from "notistack";
+import { BallTriangle } from "react-loader-spinner";
+import Link from "next/link";
 
 const formSchema = z.object({
   // username: z.string().min(2, {
@@ -125,9 +127,29 @@ export default function LoginForm() {
               <div className='text-red-400 mt-4 text-sm'>{error}</div>
 
               <Button type='submit' className='w-full mt-4' disabled={pending}>
-                {loading ? "Logging in..." : "Log in"}
+                {loading ? (
+                  <BallTriangle
+                    height={30}
+                    width={30}
+                    radius={5}
+                    color='#ffffff'
+                    ariaLabel='ball-triangle-loading'
+                    wrapperStyle={{}}
+                    wrapperClass=''
+                    visible={true}
+                  />
+                ) : (
+                  "Log in"
+                )}
               </Button>
             </form>
+            <div className='text-slate-500 mt-3'>
+              Don't have an account?{" "}
+              <Link href='/register'>
+                {" "}
+                <span className='text-black font-semibold'>Register</span>
+              </Link>
+            </div>
           </Form>
         </div>
       </div>
