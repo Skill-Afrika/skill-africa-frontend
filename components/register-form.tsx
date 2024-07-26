@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import { useFormStatus } from "react-dom";
+import { BallTriangle } from "react-loader-spinner";
 
 import {
   FormField,
@@ -22,6 +23,7 @@ import {
 } from "./ui/form";
 import { useRouter } from "next/navigation";
 import { enqueueSnackbar, SnackbarProvider } from "notistack";
+import Link from "next/link";
 
 const formSchema = z.object({
   username: z.string().min(2, {
@@ -78,19 +80,16 @@ export default function RegisterForm() {
           setLoading(false);
           console.log(err);
           {
-            err?.email?.[0] &&
-              enqueueSnackbar(err.email[0], { variant: "error" });
+            err?.email && enqueueSnackbar(err.email, { variant: "error" });
           }
           {
-            err?.username?.[0] &&
-              enqueueSnackbar(err.username[0], { variant: "error" });
+            err?.username &&
+              enqueueSnackbar(err.username, { variant: "error" });
           }
           {
-            err?.password?.[0] &&
-              enqueueSnackbar(err.password[0], { variant: "error" });
+            err?.password &&
+              enqueueSnackbar(err.password, { variant: "error" });
           }
-
-          
         }
       }
     } catch (error: any) {
@@ -182,16 +181,30 @@ export default function RegisterForm() {
                 )}
               />
 
-              {/* <div className='text-red-500 mt-4 text-sm font-semibold'>
-                {error?.username} <br />
-                {error?.email} <br />
-                {error?.password[0]}
-              </div> */}
-
               <Button type='submit' className='w-full mt-4' disabled={pending}>
-                {loading ? "Registering..." : "Register"}
+                {loading ? (
+                  <BallTriangle
+                    height={30}
+                    width={30}
+                    radius={5}
+                    color='#ffffff'
+                    ariaLabel='ball-triangle-loading'
+                    wrapperStyle={{}}
+                    wrapperClass=''
+                    visible={true}
+                  />
+                ) : (
+                  "Register"
+                )}
               </Button>
             </form>
+            <div className='text-slate-500 mt-3'>
+              Already have an account?{" "}
+              <Link href='/login'>
+                {" "}
+                <span className='text-black font-semibold'>Login</span>
+              </Link>
+            </div>
           </Form>
         </div>
       </div>
