@@ -36,7 +36,6 @@ type FormFieldType = keyof FormSchemaType;
 export default function LoginForm() {
   const { pending } = useFormStatus();
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
 
   const form = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
@@ -123,7 +122,6 @@ export default function LoginForm() {
                   </FormItem>
                 )}
               />
-              <div className='text-red-400 mt-4 text-sm'>{error}</div>
 
               <Button type='submit' className='w-full mt-4' disabled={pending}>
                 {loading ? (
