@@ -1,5 +1,6 @@
 import React from 'react'
-import Landing from './landing'
+import Landing from '../landing2/landing2'
+
 
 
 export async function generateMetadata({ params }) {
@@ -13,6 +14,6 @@ export async function generateMetadata({ params }) {
 
 export default function LandingPage() {
   return (
-    <Landing />
+   <Landing />
   )
 }
