@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const Header = () => {
   return (
     <div
@@ -32,7 +34,7 @@ const Header = () => {
       </ul>
       <ul className="md:flex hidden justify-between text-lg font-normal items-center">
         <li className="text-lg font-normal">
-          <a href="#login">Log in</a>
+          <Link to={"/login"}>Login</Link>
         </li>
         <li
           className="font-semibold px-8 py-3 bg-red-700 text-white rounded-3xl ml-6"
