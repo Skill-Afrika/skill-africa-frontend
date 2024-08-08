@@ -272,7 +272,7 @@ export default function Home() {
                 {AfroStyles.map((item) => (
                   <div key={item.id} className="relative mx-0"> 
                     <div className="flex justify-center relative">
-                      <img className="object-cover w-[250px] h-[250px] rounded-lg" src={item.src} alt={item.alt} />
+                      <Image className="object-cover w-[250px] h-[250px] rounded-lg" src={item.src} alt={item.alt} />
                       <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-70 text-white rounded-lg px-2 py-1 flex flex-col items-center max-w-[90%]">
                         <h2 className="text-sm font-semibold">{item.name}</h2>
                         <p className="text-xs">{item.occupation}</p>
@@ -339,7 +339,7 @@ export default function Home() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                       {/* Right Column - Text */}
                       <div className="flex justify-center">
-                        <img className="object-cover w-[400px] h-[400px] rounded-lg shadow-lg" src="https://images.unsplash.com/photo-1528991435120-e73e05a58897?auto=format&fit=crop&q=80&w=2787&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Community member" />
+                        <Image className="object-cover w-[400px] h-[400px] rounded-lg shadow-lg" src="https://images.unsplash.com/photo-1528991435120-e73e05a58897?auto=format&fit=crop&q=80&w=2787&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Community member" />
                       </div>
                       {/* Left Column - Image */}
                       <div>
@@ -511,7 +511,7 @@ export default function Home() {
               <div className="bg-gray-100 p-6 rounded-lg shadow-lg text-center">
                 <FaUserCircle className="text-6xl text-gray-700 mx-auto mb-4" />
                 {testimonial.image && (
-                  <img
+                  <Image
                     className="w-16 h-16 rounded-full mx-auto mb-4"
                     src={testimonial.image}
                     alt={testimonial.name}

@@ -141,7 +141,7 @@ export default function LoginForm() {
               </Button>
             </form>
             <div className='text-slate-500 mt-3'>
-              Don't have an account?{" "}
+              Don&apos;t have an account?{" "}
               <Link href='/register'>
                 {" "}
                 <span className='text-black font-semibold'>Register</span>
