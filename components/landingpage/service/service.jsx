@@ -1,13 +1,25 @@
+"use client";
+
 import Image from "next/image";
 import img1 from "./Knowledge Transfer.svg";
 import img2 from "./Learning.svg";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 // import img3 from "./Profiles.svg";
 // import img4 from "./Profiles (1).svg";
 // import img5 from "./VIP.svg";
 
 const Service = () => {
+  useEffect(() => {
+    AOS.init();
+  }, []);
   return (
-    <div className="px-10 flex flex-col justify-between">
+    <div
+      className="px-10 flex flex-col justify-between"
+      data-aos="zoom-in-up"
+      data-aos-duration="2000"
+    >
       <div className="w-full flex md:flex-row flex-col md:justify-between justify-center">
         <div className="w-1/3 md:block hidden"></div>
         <div className="flex gap-6 md:w-2/3 w-full">
@@ -25,7 +37,11 @@ const Service = () => {
         </div>
       </div>
       <div className="w-full pt-8 flex md:flex-row flex-col items-center">
-        <div className="flex flex-col md:items-start items-center">
+        <div
+          className="flex flex-col md:items-start items-center"
+          data-aos="zoom-in-right"
+          data-aos-duration="2000"
+        >
           <h1 className="md:text-3xl font-semibold text-xs mb-4 text-center md:text-left">
             We provides the range of services.
           </h1>
@@ -36,7 +52,11 @@ const Service = () => {
             Join Our Community
           </button>
         </div>
-        <div className="grid md:grid-cols-2 grid-cols-1 place-content-between md:ml-6 mr-0 font-normal">
+        <div
+          className="grid md:grid-cols-2 grid-cols-1 place-content-between md:ml-6 mr-0 font-normal"
+          data-aos="zoom-in-left"
+          data-aos-duration="2000"
+        >
           <div
             className="max-w-md max-h-96 flex flex-col justify-between rounded-3xl px-5 py-4 md:mr-6 mr-0 my-8"
             style={{ backgroundColor: "rgba(252, 239, 230, 0.8)" }}

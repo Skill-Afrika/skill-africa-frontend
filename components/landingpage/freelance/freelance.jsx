@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import img1 from "./image 3 (1).svg";
 import img3 from "./image 5 (2).svg";
@@ -5,10 +7,20 @@ import img4 from "./image 3 (2).svg";
 import img5 from "./image 5 (3).svg";
 import img6 from "./image 3 (3).svg";
 import img7 from "./image 5 (4).svg";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 const Freelancer = () => {
+  useEffect(() => {
+    AOS.init();
+  }, []);
   return (
-    <div className="px-16 md:pt-32 pt-12">
+    <div
+      className="px-16 md:pt-32 pt-12"
+      data-aos="zoom-in-up"
+      data-aos-duration="3000"
+    >
       <h1 className="text-center md:text-4xl font-semibold text-xl mb-3">
         Our freelancers and their word.
       </h1>

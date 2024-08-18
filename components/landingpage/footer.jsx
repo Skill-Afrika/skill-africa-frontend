@@ -1,6 +1,19 @@
+"use client";
+
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
+
 const Footer = () => {
+  useEffect(() => {
+    AOS.init();
+  }, []);
   return (
-    <div className="px-16 py-12 text-lg font-normal flex flex-col gap-10 md:gap-12">
+    <div
+      className="px-16 py-12 text-lg font-normal flex flex-col gap-10 md:gap-12"
+      data-aos="zoom-in-up"
+      data-aos-duration="2000"
+    >
       <div className="flex justify-between">
         <div className="flex md:flex-row flex-col justify-between gap-4 md:gap-8">
           <h1>Events</h1>

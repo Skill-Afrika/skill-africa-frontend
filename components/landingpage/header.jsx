@@ -1,8 +1,18 @@
+"use client";
+
 import Link from "next/link";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 const Header = () => {
+  useEffect(() => {
+    AOS.init();
+  }, []);
   return (
     <div
+      data-aos="fade-right"
+      data-aos-duration="1500"
       className="flex justify-between items-center h-32 w-full px-16 border-b border-zinc-200"
       style={{
         backgroundColor: "#FFFFFB",
@@ -34,7 +44,7 @@ const Header = () => {
       </ul>
       <ul className="md:flex hidden justify-between text-lg font-normal items-center">
         <li className="text-lg font-normal">
-          <Link to={"/login"}>Login</Link>
+          <Link href={"/login"}>Login</Link>
         </li>
         <li
           className="font-semibold px-8 py-3 bg-red-700 text-white rounded-3xl ml-6"

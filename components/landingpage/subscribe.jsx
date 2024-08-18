@@ -1,6 +1,19 @@
+"use client";
+
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
+
 const Subscribe = () => {
+  useEffect(() => {
+    AOS.init();
+  }, []);
   return (
-    <div className="w-full flex flex-col pb-16 items-center">
+    <div
+      className="w-full flex flex-col pb-16 items-center"
+      data-aos="zoom-in-left"
+      data-aos-duration="2000"
+    >
       <div
         className="h-40 w-9/12 flex md:flex-row flex-col gap-4 md:gap-8 items-center justify-center px-12 md:px-8 rounded-3xl"
         style={{ backgroundColor: "rgba(243, 108, 5, 0.1333)" }}

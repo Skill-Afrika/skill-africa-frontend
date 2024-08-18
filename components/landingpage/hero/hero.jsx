@@ -1,3 +1,5 @@
+"use client";
+
 import img1 from "./image 2.svg";
 import img2 from "./image 5.svg";
 import img3 from "./image 4.svg";
@@ -5,10 +7,19 @@ import img4 from "./image 3.svg";
 import img5 from "./image 1.svg";
 import img6 from "./Component 2.svg";
 import Image from "next/image";
+import Link from "next/link";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 const Hero = () => {
+  useEffect(() => {
+    AOS.init();
+  }, []);
   return (
     <div
+      data-aos="zoom-in-up"
+      data-aos-duration="1500"
       className="md:pt-24 md:px-16 px-8 pt-12 flex flex-col justify-between items-center gap-6 pb-16 md:pb-4"
       style={{ fontFamily: "Bricolage Grotesque, sans-serif" }}
     >
@@ -30,7 +41,7 @@ const Hero = () => {
         className="md:text-lg text-xs font-semibold md:px-8 md:py-4 px-6 py-3 text-white"
         style={{ backgroundColor: "rgba(220, 95, 0, 1)", borderRadius: "32px" }}
       >
-        Get started
+        <Link href={"/register"}>Get started</Link>
       </button>
       <div className="md:flex gap-2 overflow-hidden hidden md:py-12 py-8">
         <Image src={img1} alt="img1" />
