@@ -29,16 +29,16 @@ const Hero = () => {
       >
         Over 5000 freelancers in our community
       </h1>
-      <h1 className="md:font-medium md:text-7xl text-2xl font-bold text-center">
+      <h1 className="md:font-medium md:text-5xl text-2xl font-bold text-center">
         Empowering the future of Africas
       </h1>
-      <p className="md:text-2xl font-normal text-xs text-center">
+      <p className="md:text-base font-normal text-xs text-center">
         Providing valuable skills and opportunities to young Africas, empowering
         them to contribute positively to their communities and the continent's
         future.
       </p>
       <button
-        className="md:text-lg text-xs font-semibold md:px-8 md:py-4 px-6 py-3 text-white"
+        className="md:text-sm text-xs font-medium md:px-8 md:py-3 px-5 py-2 text-white"
         style={{ backgroundColor: "rgba(220, 95, 0, 1)", borderRadius: "32px" }}
       >
         <Link href={"/register"}>Get started</Link>
