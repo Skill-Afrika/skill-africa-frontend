@@ -23,7 +23,7 @@ const Service = () => {
       <div className="w-full flex md:flex-row flex-col md:justify-between justify-center">
         <div className="w-1/3 md:block hidden"></div>
         <div className="flex gap-6 md:w-2/3 w-full">
-          <Image src={img1} className="md:block hidden" />
+          <Image src={img1} alt="img" className="md:block hidden" />
           <div className="flex flex-col">
             <h1 className="md:text-3xl font-semibold text-sm text-center md:text-left">
               Bridging the gap, building dreams.

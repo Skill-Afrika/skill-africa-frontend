@@ -34,7 +34,7 @@ const Hero = () => {
       </h1>
       <p className="md:text-base font-normal text-xs text-center">
         Providing valuable skills and opportunities to young Africas, empowering
-        them to contribute positively to their communities and the continent's
+        them to contribute positively to their communities and the continents
         future.
       </p>
       <button

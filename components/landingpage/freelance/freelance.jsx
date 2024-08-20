@@ -70,7 +70,7 @@ const Freelancer = () => {
             </div>
           </div>
           <p className="md:text-sm text-xs">
-            Thanks to Skill Afrika; I've scaled my business, found better
+            Thanks to Skill Afrika; I have scaled my business, found better
             clients, and achieved a balanced life. The dedication of this
             platform to helping us grow through courses, training, and job
             opportunities is truly inspiring.
@@ -86,9 +86,9 @@ const Freelancer = () => {
             </div>
           </div>
           <p className="md:text-sm text-xs">
-            I can't lie, Skill Afrika opened my eyes to aspects of tech I was in
-            fact ignorant of and through its free Udemy coupons I have been able
-            to upgrade and advance my knowledge in Excel and acquire
+            I cannot lie, Skill Afrika opened my eyes to aspects of tech I was
+            in fact ignorant of and through its free Udemy coupons I have been
+            able to upgrade and advance my knowledge in Excel and acquire
             certificates too. With love from Ghana
           </p>
         </div>
@@ -105,7 +105,7 @@ const Freelancer = () => {
             Skill Afrika has transformed my professional growth and helped me
             gained knowledge in Tech Skills especially in Data Analytics by
             providing free Udemy Coupons, LinkedIn learning access, encouraged
-            me to fight against "Procrastination".
+            me to fight against Procrastination.
           </p>
         </div>
 
@@ -118,7 +118,7 @@ const Freelancer = () => {
             </div>
           </div>
           <p className="md:text-sm text-xs">
-            I just came across Skill Afrika and I'm locked in fully I now have
+            I just came across Skill Afrika and I am locked in fully I now have
             clarity towards my path in the tech space. Feels good to be amidst
             like minded result oriented people gaining knowledge and
             collaboratively solving problems.
@@ -151,7 +151,7 @@ const Freelancer = () => {
           </div>
           <p className="md:text-sm text-xs">
             The most important for me is beating Procrastination. I have taken
-            my online classes serious and also have free Udemy courses I didn't
+            my online classes serious and also have free Udemy courses I did not
             use a dime to buy. Thank you Skill Africa.
           </p>
         </div>
@@ -166,8 +166,8 @@ const Freelancer = () => {
           </div>
           <p className="md:text-sm text-xs">
             This platform has been a game changer for my life, and in due time,
-            I'll achieve all my goals and be perfect in the skills I am learning
-            currently. Thank you so much.
+            I will achieve all my goals and be perfect in the skills I am
+            learning currently. Thank you so much.
           </p>
         </div>
       </div>
