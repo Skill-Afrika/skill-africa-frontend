@@ -18,7 +18,7 @@ server.interceptors.request.use(
   async (config) => {
     const session = await getServerSession(authOptions);
     if (session) {
-      config.headers.Authorization = `Bearer ${session.access}`;
+      config.headers.Authorization = `Bearer ${session.user.access}`; // modified
     }
     return config;
   },
