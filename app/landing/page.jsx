@@ -1,5 +1,5 @@
 import React from "react";
-import Landing from "../landing2/landing2";
+import Landing from "../landing";
 
 export async function generateMetadata({ params }) {
   return {
