@@ -1,11 +1,5 @@
-import Image from "next/image";
-import Home from "./home";
+import Landing from "./landing";
 
-export default function Index() {
-  return (
-    // <main className="flex min-h-screen flex-col items-center justify-between p-24"> new
-    
-      <Home></Home>
-    // </main>
-  );
+export default function Page() {
+  return <Landing />;
 }
