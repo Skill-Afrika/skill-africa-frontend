@@ -12,16 +12,8 @@
     "@hookform/resolvers": "^3.9.0",
     "@radix-ui/react-label": "^2.1.0",
     "@radix-ui/react-slot": "^1.1.0",
-<<<<<<< HEAD
-    "axios": "^1.7.3",
-=======
-<<<<<<< HEAD
     "aos": "^2.3.4",
-    "axios": "^1.7.2",
-=======
     "axios": "^1.7.3",
->>>>>>> eda489a (build error corrections)
->>>>>>> Main_features
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "framer-motion": "^11.3.22",
