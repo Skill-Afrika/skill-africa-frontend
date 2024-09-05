@@ -7,6 +7,7 @@ import { InView } from 'react-intersection-observer';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import '../app/globals.css';
+import Image from 'next/image.js';
 
 const Carousel = () => {
   const settings = {
@@ -55,7 +56,7 @@ const Carousel = () => {
                 {AfroStyles.map((item) => (
                   <div key={item.id} className="p-4">
                     <div className="relative">
-                      <img
+                      <Image
                         className="object-cover w-full h-[250px] rounded-lg"
                         src={item.src}
                         alt={item.alt}

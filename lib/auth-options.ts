@@ -63,7 +63,7 @@ export const authOptions: NextAuthOptions = {
             const user = await apiRegister(cred);
             return user;
           } catch (error: any) {
-            const err = JSON.stringify(error.response?.data);
+            const err = JSON.stringify(error.response?.data.error);
             console.log(err);
             throw new Error(err);
           }
