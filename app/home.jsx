@@ -328,15 +328,12 @@ const Home = () => {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 3.0, duration: 1.5 }}
-            onClick={goToLandingPage}
+           
           >
             Stay Tuned
           </Button>
 
-          <Link href="/landing" passHref legacyBehavior>
-            <a className="bg-blue-600 text-white px-4 py-2 rounded">Go to Skill Afrika</a>
-          </Link>
-          
+      
         </ContentContainer>
       </Container>
     </ParallaxProvider>
