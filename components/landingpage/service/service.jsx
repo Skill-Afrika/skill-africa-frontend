@@ -16,7 +16,7 @@ const Service = () => {
   }, []);
   return (
     <div
-      className="px-10 flex flex-col justify-between"
+      className="flex flex-col justify-between md:px-16"
       data-aos="zoom-in-up"
       data-aos-duration="2000"
     >
@@ -53,7 +53,7 @@ const Service = () => {
           </button>
         </div>
         <div
-          className="grid md:grid-cols-2 grid-cols-1 place-content-between md:ml-6 mr-0 font-normal"
+          className="grid md:grid-cols-2 grid-cols-1  font-normal"
           data-aos="zoom-in-left"
           data-aos-duration="2000"
         >

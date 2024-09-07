@@ -1,6 +1,6 @@
 "use client";
 
-import img1 from "./image 2.svg";
+import img1 from "./image 2 (1).svg";
 import img2 from "./image 5.svg";
 import img3 from "./image 4.svg";
 import img4 from "./image 3.svg";
@@ -11,11 +11,30 @@ import Link from "next/link";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
+import Splide from "@splidejs/splide";
+import { AutoScroll } from "@splidejs/splide-extension-auto-scroll";
+import "@splidejs/splide/css"; // Import Splide CSS
 
 const Hero = () => {
   useEffect(() => {
     AOS.init();
+
+    const splide = new Splide(".splide", {
+      type: "loop",
+      drag: "free",
+      focus: "center",
+      gap: "1rem",
+      perPage: 3,
+      autoScroll: {
+        speed: 0.5,
+        pauseOnHover: true,
+        pauseOnFocus: false,
+      },
+    });
+
+    splide.mount({ AutoScroll });
   }, []);
+
   return (
     <div
       data-aos="zoom-in-up"
@@ -43,15 +62,88 @@ const Hero = () => {
       >
         <Link href={"/register"}>Get started</Link>
       </button>
-      <div className="md:flex gap-2 overflow-hidden hidden md:py-12 py-8">
-        <Image src={img1} alt="img1" />
-        <Image src={img2} alt="img1" />
-        <Image src={img3} alt="img1" />
-        <Image src={img4} alt="img1" />
-        <Image src={img5} alt="img1" />
+
+      {/* Splide Carousel */}
+      <div className="splide md:flex overflow-hidden hidden md:py-12 py-8">
+        <div className="splide__track">
+          <ul className="splide__list">
+            <li className="splide__slide">
+              <Image
+                src={img1}
+                alt="img1"
+                className="carousel-image"
+                style={{
+                  width: "100%",
+                  height: "25rem",
+                  borderRadius: "1.5rem",
+                  display: "block",
+                  objectFit: "cover",
+                }}
+              />
+            </li>
+            <li className="splide__slide">
+              <Image
+                src={img2}
+                alt="img2"
+                className="carousel-image"
+                style={{
+                  width: "100%",
+                  height: "25rem",
+                  borderRadius: "1.5rem",
+                  display: "block",
+                  objectFit: "cover",
+                }}
+              />
+            </li>
+            <li className="splide__slide">
+              <Image
+                src={img3}
+                alt="img3"
+                className="carousel-image"
+                style={{
+                  width: "100%",
+                  height: "25rem",
+                  borderRadius: "1.5rem",
+                  display: "block",
+                  objectFit: "cover",
+                }}
+              />
+            </li>
+            <li className="splide__slide">
+              <Image
+                src={img4}
+                alt="img4"
+                className="carousel-image"
+                style={{
+                  width: "100%",
+                  height: "25rem",
+                  borderRadius: "1.5rem",
+                  display: "block",
+                  objectFit: "cover",
+                }}
+              />
+            </li>
+            <li className="splide__slide">
+              <Image
+                src={img5}
+                alt="img5"
+                className="carousel-image"
+                style={{
+                  width: "100%",
+                  height: "25rem",
+                  borderRadius: "1.5rem",
+                  display: "block",
+                  objectFit: "cover",
+                }}
+              />
+            </li>
+          </ul>
+        </div>
       </div>
-      <Image src={img6} alt="img1" className="md:hidden flex" />
+
+      <Image src={img6} alt="img6" className="md:hidden flex" />
     </div>
   );
 };
+
 export default Hero;

@@ -10,12 +10,12 @@ const Subscribe = () => {
   }, []);
   return (
     <div
-      className="w-full flex flex-col pb-16 items-center"
+      className="w-full flex flex-col pb-16 items-center px-16"
       data-aos="zoom-in-left"
       data-aos-duration="2000"
     >
       <div
-        className="h-40 w-9/12 flex md:flex-row flex-col gap-4 md:gap-8 items-center justify-center px-12 md:px-8 rounded-3xl"
+        className="h-40 w-full flex md:flex-row flex-col gap-4 md:gap-8 items-center justify-center px-12 md:px-8 rounded-3xl"
         style={{ backgroundColor: "rgba(243, 108, 5, 0.1333)" }}
       >
         <h1 className="md:text-2xl text-sm font-semibold md:w-1/2 w-full">

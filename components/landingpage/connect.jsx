@@ -14,7 +14,7 @@ const Connect = () => {
       data-aos-duration="2000"
     >
       <div
-        className="pt-8 md:pt-14 h-96 mx-8 flex flex-col justify-center items-center gap-4 md:gap-8 mt-16 md:px-12 px-6 rounded-3xl"
+        className="w-full pt-8 md:pt-14 h-96 mx-8 flex flex-col justify-center items-center gap-4 md:gap-8 mt-16 md:px-12 px-6 rounded-3xl"
         style={{ backgroundColor: "rgba(190, 189, 253, 0.5)" }}
       >
         <h1 className="text-center md:text-4xl text-xl font-semibold">

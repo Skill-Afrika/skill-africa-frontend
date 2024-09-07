@@ -2,8 +2,14 @@
 import React, { useState, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { InView } from "react-intersection-observer";
-import { FaArrowRight, FaUserFriends,FaHandsHelping } from 'react-icons/fa';
-import { FaChalkboardTeacher, FaUserTie, FaBriefcase, FaTools,FaUserCircle  } from 'react-icons/fa';
+import { FaArrowRight, FaUserFriends, FaHandsHelping } from "react-icons/fa";
+import {
+  FaChalkboardTeacher,
+  FaUserTie,
+  FaBriefcase,
+  FaTools,
+  FaUserCircle,
+} from "react-icons/fa";
 
 import Head from "next/head";
 import Slider from "react-slick";
@@ -13,14 +19,12 @@ import AfroStyles from "./freelancers";
 import testimonials from "./freelancers";
 import Image from "next/image";
 
-
 export default function Home() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [loading, setLoading] = useState(true); 
+  const [loading, setLoading] = useState(true);
   const controls = useAnimation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  
   const settings = {
     dots: false,
     infinite: true,
@@ -43,9 +47,7 @@ export default function Home() {
       },
     ],
   };
-  
-  
-  
+
   useEffect(() => {
     // Simulate loading delay
     const timer = setTimeout(() => setLoading(false), 2000);
@@ -58,7 +60,6 @@ export default function Home() {
   }, [controls]);
 
   return (
-    
     <div>
       {/* Loading animation */}
       {loading && (
@@ -104,10 +105,18 @@ export default function Home() {
                   </button>
                 </div>
                 <nav className="hidden md:flex space-x-4">
-                  <a href="#find-freelancers"
-                    className="px-4 py-2 rounded hover:bg-gray-200 transition-all duration-300">Find Freelancers</a>
-                  <a href="#events"
-                    className="px-4 py-2 rounded hover:bg-gray-200 transition-all duration-300">Events</a>
+                  <a
+                    href="#find-freelancers"
+                    className="px-4 py-2 rounded hover:bg-gray-200 transition-all duration-300"
+                  >
+                    Find Freelancers
+                  </a>
+                  <a
+                    href="#events"
+                    className="px-4 py-2 rounded hover:bg-gray-200 transition-all duration-300"
+                  >
+                    Events
+                  </a>
                   <a
                     href="#blogs"
                     className="px-4 py-2 rounded hover:bg-gray-200 transition-all duration-300"
@@ -200,7 +209,8 @@ export default function Home() {
                         </motion.a>
                         <motion.a
                           href="/signup"
-                          className="block py-2 px-4 rounded-full bg-black text-white hover:bg-gray-800 transition-all duration-300">
+                          className="block py-2 px-4 rounded-full bg-black text-white hover:bg-gray-800 transition-all duration-300"
+                        >
                           Sign Up
                         </motion.a>
                       </>
@@ -222,79 +232,89 @@ export default function Home() {
             </section>
 
             <section className="bg-white flex items-center justify-center m-0">
-  <div className="text-center p-4 md:p-8 rounded">
-    <motion.h2
-      className="text-3xl md:text-5xl font-bold mb-2 md:mb-4 text-black"
-      initial={{ opacity: 0, y: -50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1 }}
-    >
-      Empowering the Future of Africa
-    </motion.h2>
-    <motion.p
-      className="text-lg md:text-2xl mb-4 md:mb-8 text-black"
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1, delay: 0.5 }}
-    >
-      Providing valuable skills and opportunities to young Africans.
-    </motion.p>
-    <div className="mt-4 flex flex-col md:flex-row justify-center">
-      <motion.a
-        href="/landing"
-        className="bg-black text-white px-4 py-2 rounded-full inline-block hover:bg-black transition-all duration-300 md:px-6 md:py-3 md:mx-4"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-     
-      >
-        Get Started
-      </motion.a>
-    </div>
-  </div>
-</section>
+              <div className="text-center p-4 md:p-8 rounded">
+                <motion.h2
+                  className="text-3xl md:text-5xl font-bold mb-2 md:mb-4 text-black"
+                  initial={{ opacity: 0, y: -50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1 }}
+                >
+                  Empowering the Future of Africa
+                </motion.h2>
+                <motion.p
+                  className="text-lg md:text-2xl mb-4 md:mb-8 text-black"
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1, delay: 0.5 }}
+                >
+                  Providing valuable skills and opportunities to young Africans.
+                </motion.p>
+                <div className="mt-4 flex flex-col md:flex-row justify-center">
+                  <motion.a
+                    href="/landing"
+                    className="bg-black text-white px-4 py-2 rounded-full inline-block hover:bg-black transition-all duration-300 md:px-6 md:py-3 md:mx-4"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    Get Started
+                  </motion.a>
+                </div>
+              </div>
+            </section>
 
-          <InView threshold={0.2}>
-      {({ inView, ref }) => (
-        <motion.section
-          ref={ref}
-          className="bg-white text-black py-8 overflow-hidden"
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          variants={{
-            visible: { opacity: 1, y: 0 },
-            hidden: { opacity: 0, y: 50 },
-          }}
-          transition={{ duration: 1 }}
-        >
-          <div className="text-center mb-8">
-            <div className="mx-auto w-full  overflow-hidden">
-              <Slider {...settings}>
-                {AfroStyles.map((item) => (
-                  <div key={item.id} className="relative mx-0"> 
-                    <div className="flex justify-center relative">
-                      <img className="object-cover w-[250px] h-[250px] rounded-lg" src={item.src} alt={item.alt} />
-                      <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-70 text-white rounded-lg px-2 py-1 flex flex-col items-center max-w-[90%]">
-                        <h2 className="text-sm font-semibold">{item.name}</h2>
-                        <p className="text-xs">{item.occupation}</p>
-                        <div className="mt-1 flex flex-wrap gap-1 justify-center">
-                          {item.skills && Array.isArray(item.skills) && item.skills.map((skill, index) => (
-                            <div key={index} className="bg-transparent border border-white rounded-full px-2 py-1 text-xs">
-                              {skill}
+            <InView threshold={0.2}>
+              {({ inView, ref }) => (
+                <motion.section
+                  ref={ref}
+                  className="bg-white text-black py-8 overflow-hidden"
+                  initial="hidden"
+                  animate={inView ? "visible" : "hidden"}
+                  variants={{
+                    visible: { opacity: 1, y: 0 },
+                    hidden: { opacity: 0, y: 50 },
+                  }}
+                  transition={{ duration: 1 }}
+                >
+                  <div className="text-center mb-8">
+                    <div className="mx-auto w-full  overflow-hidden">
+                      <Slider {...settings}>
+                        {AfroStyles.map((item) => (
+                          <div key={item.id} className="relative mx-0">
+                            <div className="flex justify-center relative">
+                              <img
+                                className="object-cover w-[250px] h-[250px] rounded-lg"
+                                src={item.src}
+                                alt={item.alt}
+                              />
+                              <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-70 text-white rounded-lg px-2 py-1 flex flex-col items-center max-w-[90%]">
+                                <h2 className="text-sm font-semibold">
+                                  {item.name}
+                                </h2>
+                                <p className="text-xs">{item.occupation}</p>
+                                <div className="mt-1 flex flex-wrap gap-1 justify-center">
+                                  {item.skills &&
+                                    Array.isArray(item.skills) &&
+                                    item.skills.map((skill, index) => (
+                                      <div
+                                        key={index}
+                                        className="bg-transparent border border-white rounded-full px-2 py-1 text-xs"
+                                      >
+                                        {skill}
+                                      </div>
+                                    ))}
+                                </div>
+                              </div>
                             </div>
-                          ))}
-                        </div>
-                      </div>
+                          </div>
+                        ))}
+                      </Slider>
                     </div>
                   </div>
-                ))}
-              </Slider>
-            </div>
-          </div>
-        </motion.section>
-      )}
-    </InView>
+                </motion.section>
+              )}
+            </InView>
 
-          <InView threshold={0.2}>
+            <InView threshold={0.2}>
               {({ inView, ref }) => (
                 <motion.section
                   ref={ref}
@@ -306,23 +326,25 @@ export default function Home() {
                     hidden: { opacity: 0, y: 50 },
                   }}
                   transition={{ duration: 1 }}
-               
                 >
                   <div className="text-center px-4">
                     <h2 className="text-3xl mb-4">
-                      Unlocking Potential, Building Dreams:<br />
+                      Unlocking Potential, Building Dreams:
+                      <br />
                       Transforming Lives of Freelancers
                     </h2>
                     <p className="text-lg mx-auto max-w-full">
-                      Join our vibrant community of African freelancers. Learn new skills and land high-paying projects.<br/> Together, we are building a brighter future for freelance work in Africa.
+                      Join our vibrant community of African freelancers. Learn
+                      new skills and land high-paying projects.
+                      <br /> Together, we are building a brighter future for
+                      freelance work in Africa.
                     </p>
                   </div>
                 </motion.section>
               )}
             </InView>
 
-
-          <InView threshold={0.2}>
+            <InView threshold={0.2}>
               {({ inView, ref }) => (
                 <motion.section
                   ref={ref}
@@ -339,19 +361,39 @@ export default function Home() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                       {/* Right Column - Text */}
                       <div className="flex justify-center">
-                        <img className="object-cover w-[400px] h-[400px] rounded-lg shadow-lg" src="https://images.unsplash.com/photo-1528991435120-e73e05a58897?auto=format&fit=crop&q=80&w=2787&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Community member" />
+                        <img
+                          className="object-cover w-[400px] h-[400px] rounded-lg shadow-lg"
+                          src="https://images.unsplash.com/photo-1528991435120-e73e05a58897?auto=format&fit=crop&q=80&w=2787&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                          alt="Community member"
+                        />
                       </div>
                       {/* Left Column - Image */}
                       <div>
-                        <h2 className="text-4xl  mb-6">Why Join Our Community?</h2>
+                        <h2 className="text-4xl  mb-6">
+                          Why Join Our Community?
+                        </h2>
                         <ul className="list-disc pl-5 space-y-4 text-lg">
-                          <li>Access a network of like-minded African freelancers.</li>
+                          <li>
+                            Access a network of like-minded African freelancers.
+                          </li>
                           <li>Learn new skills from industry experts.</li>
-                          <li>Land high-paying projects and grow your career.</li>
-                          <li>Collaborate on exciting projects with talented peers.</li>
-                          <li>Be part of a supportive and vibrant community.</li>
-                          <li>Showcase your portfolio and attract potential clients.</li>
-                          <li>Expand your professional network and opportunities.</li>
+                          <li>
+                            Land high-paying projects and grow your career.
+                          </li>
+                          <li>
+                            Collaborate on exciting projects with talented
+                            peers.
+                          </li>
+                          <li>
+                            Be part of a supportive and vibrant community.
+                          </li>
+                          <li>
+                            Showcase your portfolio and attract potential
+                            clients.
+                          </li>
+                          <li>
+                            Expand your professional network and opportunities.
+                          </li>
                         </ul>
                       </div>
                     </div>
@@ -360,233 +402,266 @@ export default function Home() {
               )}
             </InView>
 
-            
-              
-    <InView threshold={0.2}>
-    {({ inView, ref }) => (
-      <motion.section
-        ref={ref}
-        className="bg-white text-black py-12"
-        initial="hidden"
-        animate={inView ? "visible" : "hidden"}
-        variants={{
-          visible: { opacity: 1, y: 0 },
-          hidden: { opacity: 0, y: 50 },
-        }}
-        transition={{ duration: 1 }}
-      >
-<div className="container mx-auto px-4 md:pl-30 flex flex-col items-center"> {/* Increased left padding */}
-  <div className="flex flex-col md:flex-row items-center text-center md:text-left md:justify-start"> {/* Adjusted alignment */}
-    <FaUserFriends className="text-6xl text-gray-700 mr-4" />
-    <div>
-      <h2 className="text-3xl  mb-4">
-        Bridging the Gap, Building Teams:
-      </h2>
-      <p className="text-lg mb-4">
-        Skill Afrika helps you upskill, network, and land high-paying freelance projects <br/> from anywhere in the world.
-      </p>
-      <a href="#learn-more" className="text-orange-500 font-semibold inline-flex items-center">
-        Learn more
-        <FaArrowRight className="ml-2" />
-      </a>
-    </div>
-  </div>
-</div>
+            <InView threshold={0.2}>
+              {({ inView, ref }) => (
+                <motion.section
+                  ref={ref}
+                  className="bg-white text-black py-12"
+                  initial="hidden"
+                  animate={inView ? "visible" : "hidden"}
+                  variants={{
+                    visible: { opacity: 1, y: 0 },
+                    hidden: { opacity: 0, y: 50 },
+                  }}
+                  transition={{ duration: 1 }}
+                >
+                  <div className="container mx-auto px-4 md:pl-30 flex flex-col items-center">
+                    {" "}
+                    {/* Increased left padding */}
+                    <div className="flex flex-col md:flex-row items-center text-center md:text-left md:justify-start">
+                      {" "}
+                      {/* Adjusted alignment */}
+                      <FaUserFriends className="text-6xl text-gray-700 mr-4" />
+                      <div>
+                        <h2 className="text-3xl  mb-4">
+                          Bridging the Gap, Building Teams:
+                        </h2>
+                        <p className="text-lg mb-4">
+                          Skill Afrika helps you upskill, network, and land
+                          high-paying freelance projects <br /> from anywhere in
+                          the world.
+                        </p>
+                        <a
+                          href="#learn-more"
+                          className="text-orange-500 font-semibold inline-flex items-center"
+                        >
+                          Learn more
+                          <FaArrowRight className="ml-2" />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </motion.section>
+              )}
+            </InView>
 
-      </motion.section>
-    )}
-  </InView>
+            <InView threshold={0.2}>
+              {({ inView, ref }) => (
+                <motion.section
+                  ref={ref}
+                  id="services"
+                  className="py-16 bg-white text-black"
+                  initial="hidden"
+                  animate={inView ? "visible" : "hidden"}
+                  variants={{
+                    visible: { opacity: 1, y: 0 },
+                    hidden: { opacity: 0, y: 50 },
+                  }}
+                  transition={{ duration: 1 }}
+                >
+                  <div className="container mx-auto px-4 flex flex-col md:flex-row items-center">
+                    {/* New content on the left */}
+                    <div className="flex flex-col md:w-1/3 items-center md:items-start mb-8 md:mb-0 md:pr-8">
+                      <div className="flex items-center mb-4">
+                        {/* Icon */}
 
+                        <div>
+                          {/* Title */}
+                          <h2 className="text-2xl font-bold mb-2">
+                            We Provide a Range of <br />
+                            Services
+                          </h2>
 
-      <InView threshold={0.2}>
-      {({ inView, ref }) => (
-        <motion.section
-          ref={ref}
-          id="services"
-          className="py-16 bg-white text-black"
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          variants={{
-            visible: { opacity: 1, y: 0 },
-            hidden: { opacity: 0, y: 50 },
-          }}
-          transition={{ duration: 1 }}
-        >
-<div className="container mx-auto px-4 flex flex-col md:flex-row items-center">
-        {/* New content on the left */}
-        <div className="flex flex-col md:w-1/3 items-center md:items-start mb-8 md:mb-0 md:pr-8">
-          <div className="flex items-center mb-4">
-            {/* Icon */}
-            
-            <div>
-              {/* Title */}
-              <h2 className="text-2xl font-bold mb-2">We Provide a Range of <br/>Services</h2>
-            
-              {/* Button */}
-              <a href="#join-community" className="text-white bg-black inline-flex items-center px-4 py-2 rounded-full">
-                Join Our Community
-              </a>
-            </div>
-          </div>
-        </div>
-        
-            
-            {/* Services grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:w-2/3">
-              <motion.div
-                className="bg-gray-200 p-10 rounded-lg shadow transition-all duration-300 hover:shadow-lg flex flex-col items-start"
-                whileHover={{ scale: 1.05 }}
-              >
-                <FaChalkboardTeacher className="text-3xl text-black mb-4" />
-                <h3 className="text-2xl font-bold mb-4">
-                  Skill Training
-                </h3>
-                <p className="flex-grow mb-4">
-                  We offer comprehensive training programs in various fields to equip young Africans with the necessary skills to succeed.
-                  <FaArrowRight className="ml-2" />
-                </p>
-              </motion.div>
-              <motion.div
-                className="bg-gray-200 p-10 rounded shadow transition-all duration-300 hover:shadow-lg flex flex-col items-start"
-                whileHover={{ scale: 1.05 }}
-              >
-                <FaUserTie className="text-3xl text-black mb-4" />
-                <h3 className="text-2xl font-bold mb-4">Mentorship</h3>
-                <p className="flex-grow mb-4">
-                  Our mentorship programs connect young individuals with experienced professionals for guidance and support.
-                  <FaArrowRight className="ml-2" />
-                </p>
-              </motion.div>
-              <motion.div
-                className="bg-gray-200 p-10 rounded shadow transition-all duration-300 hover:shadow-lg flex flex-col items-start"
-                whileHover={{ scale: 1.05 }}
-              >
-                <FaBriefcase className="text-3xl text-black mb-4" />
-                <h3 className="text-2xl font-bold mb-4">
-                  Job Placement
-                </h3>
-                <p className="flex-grow mb-4">
-                  We assist our trainees in finding job opportunities that match their skills and aspirations.
-                  <FaArrowRight className="ml-2" />
-                </p>
-              </motion.div>
-              <motion.div
-                className="bg-gray-200 p-10 rounded shadow transition-all duration-300 hover:shadow-lg flex flex-col items-start"
-                whileHover={{ scale: 1.05 }}
-              >
-                <FaTools className="text-3xl text-black mb-4" />
-                <h3 className="text-2xl font-bold mb-4">
-                  Premium Resources
-                </h3>
-                <p className="flex-grow mb-4">
-                  Gain access to premium resources and tools that can help you excel in your freelance career.
-                  <FaArrowRight className="ml-2" />
-                </p>
-              </motion.div>
-            </div>
-          </div>
-        </motion.section>
-      )}
-    </InView>
+                          {/* Button */}
+                          <a
+                            href="#join-community"
+                            className="text-white bg-black inline-flex items-center px-4 py-2 rounded-full"
+                          >
+                            Join Our Community
+                          </a>
+                        </div>
+                      </div>
+                    </div>
 
+                    {/* Services grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:w-2/3">
+                      <motion.div
+                        className="bg-gray-200 p-10 rounded-lg shadow transition-all duration-300 hover:shadow-lg flex flex-col items-start"
+                        whileHover={{ scale: 1.05 }}
+                      >
+                        <FaChalkboardTeacher className="text-3xl text-black mb-4" />
+                        <h3 className="text-2xl font-bold mb-4">
+                          Skill Training
+                        </h3>
+                        <p className="flex-grow mb-4">
+                          We offer comprehensive training programs in various
+                          fields to equip young Africans with the necessary
+                          skills to succeed.
+                          <FaArrowRight className="ml-2" />
+                        </p>
+                      </motion.div>
+                      <motion.div
+                        className="bg-gray-200 p-10 rounded shadow transition-all duration-300 hover:shadow-lg flex flex-col items-start"
+                        whileHover={{ scale: 1.05 }}
+                      >
+                        <FaUserTie className="text-3xl text-black mb-4" />
+                        <h3 className="text-2xl font-bold mb-4">Mentorship</h3>
+                        <p className="flex-grow mb-4">
+                          Our mentorship programs connect young individuals with
+                          experienced professionals for guidance and support.
+                          <FaArrowRight className="ml-2" />
+                        </p>
+                      </motion.div>
+                      <motion.div
+                        className="bg-gray-200 p-10 rounded shadow transition-all duration-300 hover:shadow-lg flex flex-col items-start"
+                        whileHover={{ scale: 1.05 }}
+                      >
+                        <FaBriefcase className="text-3xl text-black mb-4" />
+                        <h3 className="text-2xl font-bold mb-4">
+                          Job Placement
+                        </h3>
+                        <p className="flex-grow mb-4">
+                          We assist our trainees in finding job opportunities
+                          that match their skills and aspirations.
+                          <FaArrowRight className="ml-2" />
+                        </p>
+                      </motion.div>
+                      <motion.div
+                        className="bg-gray-200 p-10 rounded shadow transition-all duration-300 hover:shadow-lg flex flex-col items-start"
+                        whileHover={{ scale: 1.05 }}
+                      >
+                        <FaTools className="text-3xl text-black mb-4" />
+                        <h3 className="text-2xl font-bold mb-4">
+                          Premium Resources
+                        </h3>
+                        <p className="flex-grow mb-4">
+                          Gain access to premium resources and tools that can
+                          help you excel in your freelance career.
+                          <FaArrowRight className="ml-2" />
+                        </p>
+                      </motion.div>
+                    </div>
+                  </div>
+                </motion.section>
+              )}
+            </InView>
 
-    <InView threshold={0.2}>
-  {({ inView, ref }) => (
-    <motion.section
-      ref={ref}
-      className="py-16 bg-white text-black overflow-hidden"
-      initial="hidden"
-      animate={inView ? "visible" : "hidden"}
-      variants={{
-        visible: { opacity: 1, y: 0 },
-        hidden: { opacity: 0, y: 50 },
-      }}
-      transition={{ duration: 1 }}
-    >
-      <div className="container mx-auto px-4 overflow-hidden">
-        <h2 className="text-3xl font-bold text-center mb-8">Testimonials</h2>
-        <Slider {...settings}>
-          {testimonials.map((testimonial, index) => (
-            <div key={index} className="p-4">
-              <div className="bg-gray-100 p-6 rounded-lg shadow-lg text-center">
-                <FaUserCircle className="text-6xl text-gray-700 mx-auto mb-4" />
-                {testimonial.image && (
-                  <img
-                    className="w-16 h-16 rounded-full mx-auto mb-4"
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                  />
-                )}
-                <h3 className="text-xl font-bold mb-2">{testimonial.name}</h3>
-                <p className="text-sm text-gray-600 mb-4">{testimonial.role}</p>
-                <p className="text-md">{testimonial.testimonial}</p>
-              </div>
-            </div>
-          ))}
-        </Slider>
-      </div>
-    </motion.section>
-  )}
-</InView>
+            <InView threshold={0.2}>
+              {({ inView, ref }) => (
+                <motion.section
+                  ref={ref}
+                  className="py-16 bg-white text-black overflow-hidden"
+                  initial="hidden"
+                  animate={inView ? "visible" : "hidden"}
+                  variants={{
+                    visible: { opacity: 1, y: 0 },
+                    hidden: { opacity: 0, y: 50 },
+                  }}
+                  transition={{ duration: 1 }}
+                >
+                  <div className="container mx-auto px-4 overflow-hidden">
+                    <h2 className="text-3xl font-bold text-center mb-8">
+                      Testimonials
+                    </h2>
+                    <Slider {...settings}>
+                      {testimonials.map((testimonial, index) => (
+                        <div key={index} className="p-4">
+                          <div className="bg-gray-100 p-6 rounded-lg shadow-lg text-center">
+                            <FaUserCircle className="text-6xl text-gray-700 mx-auto mb-4" />
+                            {testimonial.image && (
+                              <img
+                                className="w-16 h-16 rounded-full mx-auto mb-4"
+                                src={testimonial.image}
+                                alt={testimonial.name}
+                              />
+                            )}
+                            <h3 className="text-xl font-bold mb-2">
+                              {testimonial.name}
+                            </h3>
+                            <p className="text-sm text-gray-600 mb-4">
+                              {testimonial.role}
+                            </p>
+                            <p className="text-md">{testimonial.testimonial}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </Slider>
+                  </div>
+                </motion.section>
+              )}
+            </InView>
 
-    <InView threshold={0.2}>
-      {({ inView, ref }) => (
-        <motion.section
-          ref={ref}
-          className="bg-white text-black py-16"
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          variants={{
-            visible: { opacity: 1, y: 0 },
-            hidden: { opacity: 0, y: 50 },
-          }}
-          transition={{ duration: 1 }}
-        >
-          <div className="container mx-auto px-4">
-            <div className="shadow-lg rounded-lg bg-orange-500 p-8 flex flex-col justify-center items-center" style={{ height: '400px' }}>
-              <h2 className="text-3xl font-bold mb-6 text-white">Connect with Freelancers Just Like You</h2>
-              <a href="#join-community" className="bg-black text-white font-semibold py-3 px-6 rounded-full inline-block">
-                Join Our Community
-              </a>
-            </div>
-          </div>
-        </motion.section>
-      )}
-    </InView>
-            
-    <InView threshold={0.2}>
-  {({ inView, ref }) => (
-    <motion.section
-      ref={ref}
-      className="bg-white text-black py-16"
-      initial="hidden"
-      animate={inView ? "visible" : "hidden"}
-      variants={{
-        visible: { opacity: 1, y: 0 },
-        hidden: { opacity: 0, y: 50 },
-      }}
-      transition={{ duration: 1 }}
-    >
-      <div className="container mx-auto px-4 flex justify-center">
-        <div className="shadow-lg rounded-lg bg-orange-500 p-12 flex flex-col justify-center items-center" style={{ maxWidth: "1000px", width: "90%" }}>
-          <h2 className="text-2xl md:text-3xl font-bold mb-6 text-white text-center">Subscribe to Our Newsletter</h2>
-          <div className="w-full md:w-auto flex flex-col md:flex-row items-center bg-white rounded-full overflow-hidden">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="bg-transparent py-3 md:py-4 px-6 md:px-8 text-black outline-none w-full md:w-auto mb-4 md:mb-0"
-            />
-            <button className="bg-black text-white font-semibold py-3 md:py-4 px-6 md:px-8 rounded-full md:ml-2">
-              Subscribe Now
-            </button>
-          </div>
-        </div>
-      </div>
-    </motion.section>
-  )}
-</InView>
+            <InView threshold={0.2}>
+              {({ inView, ref }) => (
+                <motion.section
+                  ref={ref}
+                  className="bg-white text-black py-16"
+                  initial="hidden"
+                  animate={inView ? "visible" : "hidden"}
+                  variants={{
+                    visible: { opacity: 1, y: 0 },
+                    hidden: { opacity: 0, y: 50 },
+                  }}
+                  transition={{ duration: 1 }}
+                >
+                  <div className="container mx-auto px-4">
+                    <div
+                      className="shadow-lg rounded-lg bg-orange-500 p-8 flex flex-col justify-center items-center"
+                      style={{ height: "400px" }}
+                    >
+                      <h2 className="text-3xl font-bold mb-6 text-white">
+                        Connect with Freelancers Just Like You
+                      </h2>
+                      <a
+                        href="#join-community"
+                        className="bg-black text-white font-semibold py-3 px-6 rounded-full inline-block"
+                      >
+                        Join Our Community
+                      </a>
+                    </div>
+                  </div>
+                </motion.section>
+              )}
+            </InView>
 
-            <footer  className="bg-gradient-to-r from-black to-orange-500 text-white py-6">
+            <InView threshold={0.2}>
+              {({ inView, ref }) => (
+                <motion.section
+                  ref={ref}
+                  className="bg-white text-black py-16"
+                  initial="hidden"
+                  animate={inView ? "visible" : "hidden"}
+                  variants={{
+                    visible: { opacity: 1, y: 0 },
+                    hidden: { opacity: 0, y: 50 },
+                  }}
+                  transition={{ duration: 1 }}
+                >
+                  <div className="container mx-auto px-4 flex justify-center">
+                    <div
+                      className="shadow-lg rounded-lg bg-orange-500 p-12 flex flex-col justify-center items-center"
+                      style={{ maxWidth: "1000px", width: "90%" }}
+                    >
+                      <h2 className="text-2xl md:text-3xl font-bold mb-6 text-white text-center">
+                        Subscribe to Our Newsletter
+                      </h2>
+                      <div className="w-full md:w-auto flex flex-col md:flex-row items-center bg-white rounded-full overflow-hidden">
+                        <input
+                          type="email"
+                          placeholder="Enter your email"
+                          className="bg-transparent py-3 md:py-4 px-6 md:px-8 text-black outline-none w-full md:w-auto mb-4 md:mb-0"
+                        />
+                        <button className="bg-black text-white font-semibold py-3 md:py-4 px-6 md:px-8 rounded-full md:ml-2">
+                          Subscribe Now
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </motion.section>
+              )}
+            </InView>
+
+            <footer className="bg-gradient-to-r from-black to-orange-500 text-white py-6">
               <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left">
                 {/* About Section */}
                 <div>

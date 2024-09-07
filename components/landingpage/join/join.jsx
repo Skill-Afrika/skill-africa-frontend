@@ -13,14 +13,14 @@ const Join = () => {
   return (
     <div className="px-16 py-16" data-aos="fade-up" data-aos-duration="2000">
       <h1
-        className="text-center md:text-4xl text-base font-semibold md:font-medium mb-4"
+        className="text-center md:text-left md:text-4xl text-base font-semibold md:font-medium"
         data-aos="fade-up"
         data-aos-duration="2000"
       >
         Unlocking potential, building dreams: transforming lives of freelancers.
       </h1>
       <h2
-        className="text-xs md:text-2xl font-normal text-center"
+        className="text-xs md:text-2xl font-normal text-center md:text-center mt-4"
         data-aos="fade-up"
         data-aos-duration="2000"
       >
