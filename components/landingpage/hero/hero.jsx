@@ -25,6 +25,8 @@ const Hero = () => {
       focus: "center",
       gap: "1rem",
       perPage: 3,
+      arrows: false,
+      pagination: false,
       autoScroll: {
         speed: 0.5,
         pauseOnHover: true,

@@ -14,7 +14,7 @@ const Service = () => {
 
   return (
     <div
-      className="flex flex-col justify-between md:px-16 px-8 md:items-start items-center"
+      className="flex flex-col justify-between md:px-16 px-8 md:items-start items-center pt-12"
       data-aos="zoom-in-up"
       data-aos-duration="2000"
     >
