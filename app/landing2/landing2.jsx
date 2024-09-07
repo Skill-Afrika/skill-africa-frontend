@@ -12,7 +12,7 @@ const Landing = () => {
     <>
       <Header />
       <Hero />
-      <Join />
+      {/* <Join /> */}
       <Service />
       <Freelance />
       <Connect />

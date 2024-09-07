@@ -11,7 +11,11 @@ const Join = () => {
     AOS.init();
   }, []);
   return (
-    <div className="px-16 py-16" data-aos="fade-up" data-aos-duration="2000">
+    <div
+      className="md:px-16 py-16 px-8"
+      data-aos="fade-up"
+      data-aos-duration="2000"
+    >
       <h1
         className="text-center md:text-left md:text-4xl text-base font-semibold md:font-medium"
         data-aos="fade-up"
@@ -20,7 +24,7 @@ const Join = () => {
         Unlocking potential, building dreams: transforming lives of freelancers.
       </h1>
       <h2
-        className="text-xs md:text-2xl font-normal text-center md:text-center mt-4"
+        className="text-xs md:text-2xl font-normal text-center md:text-left mt-4"
         data-aos="fade-up"
         data-aos-duration="2000"
       >
@@ -28,7 +32,7 @@ const Join = () => {
         land high-paying projects. Together, we&apos;re building a brighter
         future for freelance work in Africa.
       </h2>
-      <div className="flex justify-between w-full md:flex-row flex-col md:pt-12 pt-6">
+      <div className="flex justify-between w-full md:flex-row flex-col md:pt-12 pt-6 md:items-start items-center">
         <ol
           className="md:w-2/4 w-full flex flex-col gap-4 mb-8"
           data-aos="zoom-in-right"

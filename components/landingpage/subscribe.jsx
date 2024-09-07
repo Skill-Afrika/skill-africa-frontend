@@ -10,7 +10,7 @@ const Subscribe = () => {
   }, []);
   return (
     <div
-      className="w-full flex flex-col pb-16 items-center px-16"
+      className="w-full flex flex-col pb-16 items-center md:px-16 px-8"
       data-aos="zoom-in-left"
       data-aos-duration="2000"
     >

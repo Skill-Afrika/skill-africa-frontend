@@ -9,7 +9,7 @@ const Connect = () => {
   }, []);
   return (
     <div
-      className="w-full md:px-16 px-10 flex flex-col items-center justify-center pb-16"
+      className="w-full md:px-16 px-8 flex flex-col items-center justify-center pb-16"
       data-aos="zoom-in-left"
       data-aos-duration="2000"
     >
