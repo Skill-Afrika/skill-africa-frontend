@@ -30,15 +30,15 @@ const Hero = () => {
         freelancers in our community
       </h1>
 
-      <h1 className='md:w-1/2 w-5/6 leading-9 md:font-medium md:text-5xl text-4xl font-bold text-center'>
+      <h1 className='md:w-1/2 md:font-medium md:text-4xl text-4xl font-bold text-center'>
         Empowering the future of Africans
       </h1>
-      <p className='md:text-lg font-normal text-center md:w-7/12 w-5/6 text-slate-600'>
+      <p className='md:text-lg font-normal text-center md:w-7/12 text-slate-600'>
         Providing valuable skills and opportunities to young Africas, empowering
         them to contribute positively to their communities and the continents
         future.
       </p>
-      <button className='md:text-sm bg-orange-500 hover:bg-orange-600 rounded-full text-xs font-medium md:px-8 md:py-3 px-5 py-2 text-white'>
+      <button className='md:text-sm bg-orange-500 hover:bg-orange-600 rounded-full font-medium md:px-8 md:py-3 px-5 py-2 text-white'>
         <Link href='/register'>Get started</Link>
       </button>
       <div className='md:flex gap-2 overflow-hidden hidden md:py-10 py-8 w-full'>
