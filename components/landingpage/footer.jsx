@@ -10,7 +10,7 @@ const Footer = () => {
   }, []);
   return (
     <div
-      className="px-16 py-12 text-lg font-normal flex flex-col gap-10 md:gap-12"
+      className="md:px-16 px-8 py-12 text-lg font-normal flex flex-col gap-10 md:gap-12"
       data-aos="zoom-in-up"
       data-aos-duration="2000"
     >
