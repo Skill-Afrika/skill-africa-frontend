@@ -66,17 +66,15 @@ const Hero = () => {
       </button>
 
       {/* Splide Carousel */}
-      <div className="splide md:flex overflow-hidden hidden md:py-12 py-8">
+      <div className="splide flex overflow-hidden md:py-12 py-8">
         <div className="splide__track">
           <ul className="splide__list">
             <li className="splide__slide">
               <Image
                 src={img1}
                 alt="img1"
-                className="carousel-image"
+                className="carousel-image w-full md:h-96 h-60"
                 style={{
-                  width: "100%",
-                  height: "25rem",
                   borderRadius: "1.5rem",
                   display: "block",
                   objectFit: "cover",
@@ -87,10 +85,8 @@ const Hero = () => {
               <Image
                 src={img2}
                 alt="img2"
-                className="carousel-image"
+                className="carousel-image w-full md:h-96 h-60"
                 style={{
-                  width: "100%",
-                  height: "25rem",
                   borderRadius: "1.5rem",
                   display: "block",
                   objectFit: "cover",
@@ -101,10 +97,8 @@ const Hero = () => {
               <Image
                 src={img3}
                 alt="img3"
-                className="carousel-image"
+                className="carousel-image w-full md:h-96 h-60"
                 style={{
-                  width: "100%",
-                  height: "25rem",
                   borderRadius: "1.5rem",
                   display: "block",
                   objectFit: "cover",
@@ -115,10 +109,8 @@ const Hero = () => {
               <Image
                 src={img4}
                 alt="img4"
-                className="carousel-image"
+                className="carousel-image w-full md:h-96 h-60"
                 style={{
-                  width: "100%",
-                  height: "25rem",
                   borderRadius: "1.5rem",
                   display: "block",
                   objectFit: "cover",
@@ -129,10 +121,8 @@ const Hero = () => {
               <Image
                 src={img5}
                 alt="img5"
-                className="carousel-image"
+                className="carousel-image w-full md:h-96 h-60"
                 style={{
-                  width: "100%",
-                  height: "25rem",
                   borderRadius: "1.5rem",
                   display: "block",
                   objectFit: "cover",
@@ -143,7 +133,7 @@ const Hero = () => {
         </div>
       </div>
 
-      <Image src={img6} alt="img6" className="md:hidden flex" />
+      {/* <Image src={img6} alt="img6" className="md:hidden flex" /> */}
     </div>
   );
 };
