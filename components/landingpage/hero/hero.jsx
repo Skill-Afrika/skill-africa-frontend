@@ -12,6 +12,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
 import NumberTicker from "@/components/magicui/number-ticker";
+import Marquee from "@/components/magicui/marquee";
 
 const Hero = () => {
   useEffect(() => {
@@ -19,9 +20,9 @@ const Hero = () => {
   }, []);
   return (
     <div
-      data-aos='zoom-in-up'
-      data-aos-duration='1000'
-      className='md:px-16 px-8 pt-10 flex flex-col justify-between items-center gap-6 pb-16 md:pb-4'>
+      // data-aos='zoom-in-up'
+      // data-aos-duration='1000'
+      className='px-0 pt-10 flex flex-col justify-between items-center gap-6 pb-10'>
       <h1 className='bg-orange-500 text-white px-4 py-3 md:px-6 md:py-3 rounded-3xl md:text-base md:font-medium font-bold text-sm'>
         Over{" "}
         <span>
@@ -41,14 +42,17 @@ const Hero = () => {
       <button className='md:text-sm bg-orange-500 hover:bg-orange-600 rounded-full font-medium md:px-8 md:py-3 px-5 py-2 text-white'>
         <Link href='/register'>Get started</Link>
       </button>
-      <div className='md:flex gap-2 overflow-hidden hidden md:py-10 py-8 w-full'>
-        <Image src={img1} alt='img1' />
-        <Image src={img2} alt='img1' />
-        <Image src={img3} alt='img1' />
-        <Image src={img4} alt='img1' />
-        <Image src={img5} alt='img1' />
+      <div className='md:flex gap-2 overflow-hidden hidden w-full'>
+        <Marquee pauseOnHover className='[--duration:15s]'>
+          <Image src={img2} alt='img1' />
+          <Image src={img3} alt='img1' />
+          <Image src={img4} alt='img1' />
+          <Image src={img5} alt='img1' />
+        </Marquee>
       </div>
-      <Image src={img6} alt='img1' className='md:hidden flex w-full mt-2' />
+      <Marquee pauseOnHover className='[--duration:15s]'>
+        <Image src={img6} alt='img1' className='md:hidden flex w-full mt-2' />
+      </Marquee>
     </div>
   );
 };
