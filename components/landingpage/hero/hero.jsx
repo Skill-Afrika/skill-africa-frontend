@@ -11,6 +11,8 @@ import Link from "next/link";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
+import NumberTicker from "@/components/magicui/number-ticker";
+import Marquee from "@/components/magicui/marquee";
 
 const Hero = () => {
   useEffect(() => {
@@ -18,39 +20,39 @@ const Hero = () => {
   }, []);
   return (
     <div
-      data-aos="zoom-in-up"
-      data-aos-duration="1500"
-      className="md:pt-24 md:px-16 px-8 pt-12 flex flex-col justify-between items-center gap-6 pb-16 md:pb-4"
-      style={{ fontFamily: "Bricolage Grotesque, sans-serif" }}
-    >
-      <h1
-        className="px-3 py-2 md:px-6 md:py-4 rounded-3xl md:text-base md:font-medium font-bold text-xs"
-        style={{ backgroundColor: "rgba(165, 71, 0, 0.1)" }}
-      >
-        Over 5000 freelancers in our community
+      // data-aos='zoom-in-up'
+      // data-aos-duration='1000'
+      className='px-0 pt-10 flex flex-col justify-between items-center gap-6 pb-10'>
+      <h1 className='bg-orange-500 text-white px-4 py-3 md:px-6 md:py-3 rounded-3xl md:text-base md:font-medium font-bold text-sm'>
+        Over{" "}
+        <span>
+          <NumberTicker value={5000} className='text-white' />
+        </span>{" "}
+        freelancers in our community
       </h1>
-      <h1 className="md:font-medium md:text-5xl text-2xl font-bold text-center">
-        Empowering the future of Africas
+
+      <h1 className='md:w-1/2 md:font-medium md:text-4xl text-4xl font-bold text-center'>
+        Empowering the future of Africans
       </h1>
-      <p className="md:text-base font-normal text-xs text-center">
+      <p className='md:text-lg font-normal text-center md:w-7/12 text-slate-600'>
         Providing valuable skills and opportunities to young Africas, empowering
         them to contribute positively to their communities and the continents
         future.
       </p>
-      <button
-        className="md:text-sm text-xs font-medium md:px-8 md:py-3 px-5 py-2 text-white"
-        style={{ backgroundColor: "rgba(220, 95, 0, 1)", borderRadius: "32px" }}
-      >
-        <Link href={"/register"}>Get started</Link>
+      <button className='md:text-sm bg-orange-500 hover:bg-orange-600 rounded-full font-medium md:px-8 md:py-3 px-5 py-2 text-white'>
+        <Link href='/register'>Get started</Link>
       </button>
-      <div className="md:flex gap-2 overflow-hidden hidden md:py-12 py-8">
-        <Image src={img1} alt="img1" />
-        <Image src={img2} alt="img1" />
-        <Image src={img3} alt="img1" />
-        <Image src={img4} alt="img1" />
-        <Image src={img5} alt="img1" />
+      <div className='md:flex gap-2 overflow-hidden hidden w-full'>
+        <Marquee pauseOnHover className='[--duration:15s]'>
+          <Image src={img2} alt='img1' />
+          <Image src={img3} alt='img1' />
+          <Image src={img4} alt='img1' />
+          <Image src={img5} alt='img1' />
+        </Marquee>
       </div>
-      <Image src={img6} alt="img1" className="md:hidden flex" />
+      <Marquee pauseOnHover className='[--duration:15s]'>
+        <Image src={img6} alt='img1' className='md:hidden flex w-full mt-2' />
+      </Marquee>
     </div>
   );
 };
