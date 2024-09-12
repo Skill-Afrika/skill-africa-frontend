@@ -57,9 +57,12 @@ const Service = () => {
       </h1>
 
       <div className='flex md:flex-row flex-col flex-wrap justify-center md:gap-10 gap-5'>
-        {services.map((card) => {
+        {services.map((card, index) => {
           return (
-            <div className='bg-orange-50 md:w-5/12 flex flex-col justify-between gap-2 rounded-3xl px-5 py-4'>
+            <div
+              key={index} // Add a unique key prop here
+              className='bg-orange-50 md:w-5/12 flex flex-col justify-between gap-2 rounded-3xl px-5 py-4'
+            >
               <Image src={card.icon} alt='img' />
               <h1 className='font-semibold text-lg'>{card.textHead}</h1>
               <p className=''>{card.textBody}</p>
@@ -67,6 +70,7 @@ const Service = () => {
           );
         })}
       </div>
+
     </div>
   );
 };
