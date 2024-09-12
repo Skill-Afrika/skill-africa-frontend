@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import img1 from "./Knowledge Transfer.svg";
 import img2 from "./Learning.svg";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -48,7 +47,7 @@ const Service = () => {
         <h1 className='text-3xl font-semibold mb-3'>
           Bridging the gap, building dreams.
         </h1>
-        <h2 className='text-slate-500 text-lg'>
+        <h2 className='text-slate-500 md:text-lg'>
           Skill Africa helps you upskill, network, and land high-paying
           freelance projects from anywhere in the world.
         </h2>
@@ -71,4 +70,5 @@ const Service = () => {
     </div>
   );
 };
+
 export default Service;
