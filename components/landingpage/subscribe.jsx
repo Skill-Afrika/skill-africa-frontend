@@ -9,9 +9,9 @@ const Subscribe = () => {
     AOS.init();
   }, []);
   return (
-    <div className='w-11/12 mx-auto flex flex-col pb-16 items-center'>
-      <div className='bg-orange-100 h-40 w-9/12 flex md:flex-row flex-col gap-4 md:gap-8 items-center justify-center md:px-8 px-4 rounded-3xl'>
-        <h1 className='md:text-2xl text-sm font-semibold md:w-1/2 w-full'>
+    <div className='w-11/12 mx-auto'>
+      <div className='bg-orange-100 md:w-9/12 py-10 flex md:flex-row flex-col gap-4 md:gap-8 items-center justify-center md:px-8 px-4 rounded-3xl'>
+        <h1 className='md:text-3xl text-lg font-semibold md:w-1/2 w-full'>
           Subscribe to our newsletter
         </h1>
         <div className='md:w-1/2 w-full flex'>
