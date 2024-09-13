@@ -72,23 +72,27 @@ const Freelancer = () => {
       </h2>
 
       <Marquee className='[--duration:70s]'>
-        <div className='flex items-center gap-5'>
-          {freelancers.map((card) => {
-            return (
-              <div className='w-96 bg-white md:px-6 px-3 py-3 md:py-6 rounded-2xl border border-solid border-red-200 cursor-pointer'>
-                <div className='flex items-center mb-3'>
-                  <Image src={card.img} alt='img' className='mr-4' />
-                  <div className='flex flex-col'>
-                    <h1 className='text-sm font-semibold'>{card.name}</h1>
-                    <h2 className='text-xs'>{card.title}</h2>
-                  </div>
+      <div className='flex items-center gap-5'>
+        {freelancers.map((card, index) => {
+          return (
+            <div
+              key={index} // Add a unique key prop here
+              className='w-96 bg-white md:px-6 px-3 py-3 md:py-6 rounded-2xl border border-solid border-red-200 cursor-pointer'
+            >
+              <div className='flex items-center mb-3'>
+                <Image src={card.img} alt='img' className='mr-4' />
+                <div className='flex flex-col'>
+                  <h1 className='text-sm font-semibold'>{card.name}</h1>
+                  <h2 className='text-xs'>{card.title}</h2>
                 </div>
-                <div>{card.bio}</div>
               </div>
-            );
-          })}
-        </div>
-      </Marquee>
+              <div>{card.bio}</div>
+            </div>
+          );
+        })}
+      </div>
+    </Marquee>
+
       <div className='pointer-events-none absolute inset-y-0 left-0 md:w-1/3 w-1/6 bg-gradient-to-r from-white'></div>
       <div className='pointer-events-none absolute inset-y-0 right-0 md:w-1/3 w-1/6 bg-gradient-to-l from-white'></div>
     </div>

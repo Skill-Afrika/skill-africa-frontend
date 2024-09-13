@@ -26,6 +26,8 @@ const testimonials = [
       testimonial: "Supporting Skill Afrika has been a rewarding experience. The positive changes it brings to the freelance community are remarkable."
     },
   ];
+
+  // added checks 
   
   export default testimonials;
   
