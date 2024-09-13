@@ -5,6 +5,8 @@ import Image from "next/image";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
+import { motion } from "framer-motion";
+import WordPullUp from "@/components/magicui/word-pull-up";
 
 const Join = () => {
   useEffect(() => {
@@ -12,11 +14,11 @@ const Join = () => {
   }, []);
   return (
     <div className='w-11/12 mx-auto md:flex justify-center items-center gap-20 my-5'>
-      <div className="md:w-2/5">
-        <h1 className='text-center text-4xl font-bold md:font-medium mb-4'>
+      <div className='md:w-2/5'>
+        <div className='text-center text-4xl font-bold md:font-medium mb-4'>
           {/* Unlocking potential, building dreams:  */}
-          Transforming lives of freelancers
-        </h1>
+          <WordPullUp words='Transforming lives of freelancers' />
+        </div>
         <h2 className='md:text-lg text-slate-600 font-normal text-center'>
           Join our vibrant community of African freelancers, learn new skills,
           and land high-paying projects. Together, we&apos;re building a

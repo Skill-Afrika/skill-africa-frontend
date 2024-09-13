@@ -17,7 +17,7 @@ const Landing = () => {
       <Freelance />
       <Connect />
       <Subscribe />
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 };
