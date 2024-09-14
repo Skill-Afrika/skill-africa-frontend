@@ -9,17 +9,17 @@ const Subscribe = () => {
     AOS.init();
   }, []);
   return (
-    <div className='w-11/12 mx-auto'>
-      <div className='bg-orange-100 md:w-9/12 py-10 flex md:flex-row flex-col gap-4 md:gap-8 items-center justify-center md:px-8 px-4 rounded-3xl'>
-        <h1 className='md:text-3xl text-lg font-semibold md:w-1/2 w-full'>
+    <div className='w-11/12 mx-auto mb-10'>
+      <div className='bg-orange-100 md:w-9/12 mx-auto py-10 flex md:flex-row flex-col gap-4 md:gap-8 items-center justify-center md:px-8 px-4 rounded-xl'>
+        <h1 className='md:text-2xl text-center md:text-start text-lg font-semibold md:w-1/2 w-full'>
           Subscribe to our newsletter
         </h1>
-        <div className='md:w-1/2 w-full flex'>
+        <div className='md:w-1/2 w-full flex justify-center md:justify-start'>
           <input
             placeholder='Enter your email'
-            className='md:w-4/5 w-3/5 md:h-16 h-8 bg-white rounded-3xl pl-4'
+            className='md:w-4/5 w-3/4 bg-white rounded-xl pl-4'
           />
-          <button className='md:px-6 md:py-4 px-3 py-2 text-white bg-gray-700 rounded-3xl text-xs md:text-lg -ml-8'>
+          <button className='px-6 py-3 text-white bg-gray-700 rounded-xl text-sm md:text-lg -ml-8'>
             Subscribe
           </button>
         </div>
