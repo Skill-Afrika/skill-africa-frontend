@@ -77,7 +77,7 @@ const Freelancer = () => {
           return (
             <div
               key={index} // Add a unique key prop here
-              className='w-96 bg-white md:px-6 px-3 py-3 md:py-6 rounded-2xl border border-solid border-red-200 cursor-pointer'
+              className='md:w-96 w-56 bg-white md:px-6 px-3 py-3 md:py-6 rounded-2xl border border-solid border-red-200 cursor-pointer'
             >
               <div className='flex items-center mb-3'>
                 <Image src={card.img} alt='img' className='mr-4' />
