@@ -3,14 +3,15 @@
 import Image from "next/image";
 import img1 from "./image 3 (1).svg";
 import img3 from "./image 5 (2).svg";
-import img4 from "./image 3 (2).svg";
-import img5 from "./image 5 (3).svg";
-import img6 from "./image 3 (3).svg";
-import img7 from "./image 5 (4).svg";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
 import Marquee from "@/components/magicui/marquee";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 const freelancers = [
   {
@@ -70,31 +71,72 @@ const Freelancer = () => {
       <h2 className='text-center md:text-lg text-slate-500 mb-8'>
         Hear what they have to say about us and be convinced,
       </h2>
-
-      <Marquee className='[--duration:70s]'>
-      <div className='flex items-center gap-5'>
-        {freelancers.map((card, index) => {
-          return (
-            <div
-              key={index} // Add a unique key prop here
-              className='md:w-96 w-56 bg-white md:px-6 px-3 py-3 md:py-6 rounded-2xl border border-solid border-red-200 cursor-pointer'
-            >
-              <div className='flex items-center mb-3'>
-                <Image src={card.img} alt='img' className='mr-4' />
-                <div className='flex flex-col'>
-                  <h1 className='text-sm font-semibold'>{card.name}</h1>
-                  <h2 className='text-xs'>{card.title}</h2>
+      <div className='relative'>
+        <Swiper
+          spaceBetween={30}
+          slidesPerView={1}
+          centeredSlides={true}
+          autoplay={{
+            delay: 4000,
+            disableOnInteraction: false,
+          }}
+          pagination={{
+            clickable: true,
+            dynamicBullets: true,
+          }}
+          breakpoints={{
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            768: {
+              slidesPerView: 3,
+              spaceBetween: 30,
+            },
+          }}
+          modules={[Autoplay, Pagination]}
+          className='flex items-center'>
+          {freelancers.map((card, index) => {
+            return (
+              <SwiperSlide
+                key={index} // Add a unique key prop here
+                className='md:w-10 w-10 bg-white md:px-6 px-3 py-3 md:py-6 rounded-2xl border border-solid border-red-200 cursor-pointer'>
+                <div className='flex items-center mb-3'>
+                  <Image src={card.img} alt='img' className='mr-4' />
+                  <div className='flex flex-col'>
+                    <h1 className='text-sm font-semibold'>{card.name}</h1>
+                    <h2 className='text-xs'>{card.title}</h2>
+                  </div>
                 </div>
-              </div>
-              <div>{card.bio}</div>
-            </div>
-          );
-        })}
+                <div>{card.bio}</div>
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+        <div className='md:z-10 pointer-events-none absolute inset-y-0 left-0 md:w-1/3 w-1/6 bg-gradient-to-r from-white'></div>
+        <div className='md:z-10 pointer-events-none absolute inset-y-0 right-0 md:w-1/3 w-1/6 bg-gradient-to-l from-white'></div>
       </div>
-    </Marquee>
 
-      <div className='pointer-events-none absolute inset-y-0 left-0 md:w-1/3 w-1/6 bg-gradient-to-r from-white'></div>
-      <div className='pointer-events-none absolute inset-y-0 right-0 md:w-1/3 w-1/6 bg-gradient-to-l from-white'></div>
+      {/* <Marquee className='[--duration:70s]'>
+        <div className='flex items-center gap-5'>
+          {freelancers.map((card, index) => {
+            return (
+              <div
+                key={index} // Add a unique key prop here
+                className='md:w-96 w-56 bg-white md:px-6 px-3 py-3 md:py-6 rounded-2xl border border-solid border-red-200 cursor-pointer'>
+                <div className='flex items-center mb-3'>
+                  <Image src={card.img} alt='img' className='mr-4' />
+                  <div className='flex flex-col'>
+                    <h1 className='text-sm font-semibold'>{card.name}</h1>
+                    <h2 className='text-xs'>{card.title}</h2>
+                  </div>
+                </div>
+                <div>{card.bio}</div>
+              </div>
+            );
+          })}
+        </div>
+      </Marquee> */}
     </div>
   );
 };
