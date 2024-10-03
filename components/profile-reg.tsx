@@ -7,7 +7,7 @@ import {
   CldUploadWidget,
   CloudinaryUploadWidgetInfo,
 } from "next-cloudinary";
-import { useUpdateProfile } from "@/app/api/get-profile";
+import { useGetProfile, useUpdateProfile } from "@/app/api/get-profile";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { enqueueSnackbar, SnackbarProvider } from "notistack";
@@ -26,7 +26,9 @@ export const ProfileUpdate = () => {
 
   const { fname, lname, bio } = formData;
 
-  const { mutate, data, error: updateError } = useUpdateProfile();
+  const { mutate } = useUpdateProfile();
+  const { data: profileData, isLoading } = useGetProfile(user?.uuid);
+
   const router = useRouter();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -55,7 +57,10 @@ export const ProfileUpdate = () => {
       router.replace("/profile");
     }
   };
-  console.log(data, updateError);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <SnackbarProvider maxSnack={3}>
@@ -78,9 +83,9 @@ export const ProfileUpdate = () => {
           }}
         </CldUploadWidget>
 
-        {result && (
+        {(result || profileData?.profile_pic) && (
           <img
-            src={result.url}
+            src={result?.url || profileData?.profile_pic}
             alt='uploaded image'
             className='w-40 h-40 rounded-full mt-5'
           />
@@ -91,7 +96,7 @@ export const ProfileUpdate = () => {
             id='fname'
             type='text'
             name='fname'
-            value={fname}
+            value={fname || profileData?.first_name}
             placeholder='First Name'
             errorText={
               error && fname.length === 0 && "Please enter your first name"
@@ -104,7 +109,7 @@ export const ProfileUpdate = () => {
             id='lname'
             type='text'
             name='lname'
-            value={lname}
+            value={lname || profileData?.last_name}
             placeholder='Last Name'
             errorText={
               error && lname.length === 0 && "Please enter your last name"
@@ -117,7 +122,7 @@ export const ProfileUpdate = () => {
             id='bio'
             type='text'
             name='bio'
-            value={bio}
+            value={bio || profileData?.bio}
             placeholder='Bio'
             errorText={error && bio.length === 0 && "Please enter your bio"}
             error={error && bio.length === 0}
