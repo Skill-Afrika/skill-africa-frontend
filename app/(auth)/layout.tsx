@@ -12,7 +12,6 @@ interface AuthLayoutProps {
 export default function AuthLayout({ children }: AuthLayoutProps) {
   const { data } = useSession();
   const session = data?.user;
-  // console.log(session);
 
   useEffect(() => {
     if (session) {
@@ -29,7 +28,7 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
             <Link
               href='/profile/prof-reg'
               className='bg-orange-500 py-2 px-4 rounded-md text-white'>
-              Complete Registration
+              Update profile
             </Link>
             <button
               className='bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-md'
