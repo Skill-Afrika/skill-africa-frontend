@@ -8,7 +8,7 @@ const ROUTES = {
   passwordReset: "",
   passwordResetConfirm: "",
   registration: "",
-  authUser: "auth/user/",
+  // authUser: "freelancer/profiles",
   registrationResendEmail: "",
   registrationVerifyEmail: "",
   tokenRefresh: "",
