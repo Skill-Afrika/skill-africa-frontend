@@ -15,11 +15,12 @@ import { enqueueSnackbar, SnackbarProvider } from "notistack";
 export const ProfileUpdate = () => {
   const { data: session } = useSession();
   const user = session?.user?.user;
+  const { data: profileData, isLoading } = useGetProfile(user?.uuid);
 
   const [formData, setFormData] = useState({
-    fname: "",
-    lname: "",
-    bio: "",
+    fname: profileData?.first_name || "",
+    lname: profileData?.last_name || "",
+    bio: profileData?.bio || "",
   });
   const [result, setResult] = useState<CloudinaryUploadWidgetInfo>();
   const [error, setError] = useState(false);
@@ -27,7 +28,6 @@ export const ProfileUpdate = () => {
   const { fname, lname, bio } = formData;
 
   const { mutate } = useUpdateProfile();
-  const { data: profileData, isLoading } = useGetProfile(user?.uuid);
 
   const router = useRouter();
 
@@ -96,7 +96,7 @@ export const ProfileUpdate = () => {
             id='fname'
             type='text'
             name='fname'
-            value={fname || profileData?.first_name}
+            value={fname}
             placeholder='First Name'
             errorText={
               error && fname.length === 0 && "Please enter your first name"
@@ -109,7 +109,7 @@ export const ProfileUpdate = () => {
             id='lname'
             type='text'
             name='lname'
-            value={lname || profileData?.last_name}
+            value={lname}
             placeholder='Last Name'
             errorText={
               error && lname.length === 0 && "Please enter your last name"
@@ -122,7 +122,7 @@ export const ProfileUpdate = () => {
             id='bio'
             type='text'
             name='bio'
-            value={bio || profileData?.bio}
+            value={bio}
             placeholder='Bio'
             errorText={error && bio.length === 0 && "Please enter your bio"}
             error={error && bio.length === 0}
