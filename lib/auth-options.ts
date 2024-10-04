@@ -1,17 +1,9 @@
-import {
-  apiLogin,
-  // apiAuthorize,
-  fetchApiUser,
-  apiSignOut,
-  fetchRefreshAccessToken,
-  apiRegister,
-} from "./services/api/auth-api";
+import { apiLogin, apiRegister } from "./services/api/auth-api";
 import { jwt } from "@/lib/utils";
 import type { NextAuthOptions, Session } from "next-auth";
 import type { DefaultJWT, JWT } from "next-auth/jwt";
 import { z } from "zod";
 import CredentialsProvider from "next-auth/providers/credentials";
-import axios from "axios";
 
 export const authOptions: NextAuthOptions = {
   providers: [

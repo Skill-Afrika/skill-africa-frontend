@@ -3,7 +3,7 @@ import { ProfileDetails } from "@/types/types";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { profile } from "console";
 
-export function useGetProfile(id: string | undefined) {
+export function useGetProfile(id?: string) {
   return useQuery({
     queryKey: ["profile"],
     queryFn: async () => {
@@ -20,7 +20,7 @@ export function useUpdateProfile() {
       id,
       details,
     }: {
-      id: string | undefined;
+      id?: string;
       details: ProfileDetails;
     }) => {
       const res = await client.put(`freelancer/profiles/${id}`, details);

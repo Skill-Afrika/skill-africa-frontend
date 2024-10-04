@@ -22,14 +22,12 @@ function CustomizedTextField({
   hidden = false,
   handleChange,
   multiline,
-  rows
+  rows,
 }: FormTypes) {
   return (
     <ThemeProvider theme={theme}>
-      <FormControl error={error} hidden={hidden}>
-        <InputLabel htmlFor={id} size='small'>
-          {placeholder}
-        </InputLabel>
+      <FormControl error={error} hidden={hidden} size='small'>
+        <InputLabel htmlFor={id}>{placeholder}</InputLabel>
         <OutlinedInput
           sx={{
             color: "orange",
@@ -45,7 +43,7 @@ function CustomizedTextField({
           value={value}
           label={placeholder}
           onChange={handleChange}
-          size='small'
+          // size='small'
           multiline={multiline}
           rows={rows}
         />
