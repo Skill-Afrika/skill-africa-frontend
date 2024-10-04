@@ -13,7 +13,6 @@ declare module "next-auth" {
       user: {
         username: string;
         email: string;
-        uuid: string;
       };
     } & DefaultSession["user"];
   }
