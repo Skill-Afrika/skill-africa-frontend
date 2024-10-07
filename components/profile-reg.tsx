@@ -1,6 +1,6 @@
 import ButtonClick from "@/components/form/button";
 import CustomizedTextField from "@/components/form/text-field";
-import { Button } from "@mui/material";
+import { Button, SelectChangeEvent } from "@mui/material";
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import {
   CldImage,
@@ -11,17 +11,23 @@ import { useGetProfile, useUpdateProfile } from "@/app/api/get-profile";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { enqueueSnackbar, SnackbarProvider } from "notistack";
+import CustomizedSelectField from "./form/select-field";
 
 export const ProfileUpdate = () => {
   const { data: session } = useSession();
   const user = session?.user?.user;
   const { data: profileData, isLoading } = useGetProfile(user?.uuid);
 
+  console.log(profileData);
+
   const [formData, setFormData] = useState({
     fname: profileData?.first_name || "",
     lname: profileData?.last_name || "",
     bio: profileData?.bio || "",
   });
+
+  const [niche, setNiche] = useState("");
+
   const [result, setResult] = useState<CloudinaryUploadWidgetInfo>();
   const [error, setError] = useState(false);
 
@@ -35,6 +41,10 @@ export const ProfileUpdate = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const handleSelectChange = (e: SelectChangeEvent) => {
+    setNiche(e.target.value as string);
+  };
+
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -46,7 +56,7 @@ export const ProfileUpdate = () => {
         profile_pic: result?.url,
         first_name: fname,
         last_name: lname,
-        niche: 2,
+        niche: niche,
       };
 
       if (user?.uuid) {
@@ -61,6 +71,12 @@ export const ProfileUpdate = () => {
   if (isLoading) {
     return <div>Loading...</div>;
   }
+
+  const nicheItems = [
+    { id: 1, niche: "Tech" },
+    { id: 2, niche: "Web development" },
+    { id: 3, niche: "App development" },
+  ];
 
   return (
     <SnackbarProvider maxSnack={3}>
@@ -116,6 +132,14 @@ export const ProfileUpdate = () => {
             }
             error={error && lname.length === 0}
             handleChange={handleChange}
+          />
+
+          <CustomizedSelectField
+            id='niche'
+            value={niche}
+            placeholder='Niche'
+            handleSelectChange={handleSelectChange}
+            menuItems={nicheItems}
           />
 
           <CustomizedTextField

@@ -7,8 +7,6 @@ const ProfileInfo = () => {
 
   const { data, isLoading } = useGetProfile(user?.uuid);
 
-  console.log(data, isLoading);
-
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -31,7 +29,7 @@ const ProfileInfo = () => {
         </div>
       </div>
       {data?.bio && <div className='text-lg mt-5'>{data?.bio}</div>}
-      {data?.niche?.name !== '' && (
+      {data?.niche?.name !== "" && (
         <div className='text-orange-500 font-semibold'>
           Interest(s): {data?.niche?.name}
         </div>

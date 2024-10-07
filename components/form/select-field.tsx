@@ -1,3 +1,4 @@
+import { SelectTypes } from "@/types/types";
 import {
   FormControl,
   FormHelperText,
@@ -8,40 +9,38 @@ import {
   ThemeProvider,
   createTheme,
 } from "@mui/material";
+import { validateHeaderValue } from "http";
 import React from "react";
-import { FormTypes } from "../../types/types";
 
 const theme = createTheme({ palette: { primary: { main: "#F97316" } } });
 
 function CustomizedSelectField({
   id,
-  type,
-  name,
   value,
   placeholder,
-  error,
-  errorText,
-  hidden = false,
+  menuItems,
   handleSelectChange,
-  multiline,
-  rows,
-}: FormTypes) {
+}: SelectTypes) {
   return (
     <ThemeProvider theme={theme}>
-      <FormControl sx={{ m: 1, minWidth: 120 }} size='small'>
-        <InputLabel id='demo-select-small-label'>Age</InputLabel>
+      <FormControl size='small'>
+        <InputLabel id={id}>{placeholder}</InputLabel>
         <Select
-          labelId='demo-select-small-label'
-          id='demo-select-small'
-          value=''
-          label='Age'
+          labelId={id}
+          id={id}
+          value={value}
+          label={placeholder}
           onChange={handleSelectChange}>
           <MenuItem value=''>
             <em>None</em>
           </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          {menuItems.map((item, index) => {
+            return (
+              <MenuItem key={index} value={item.id}>
+                {item.niche}
+              </MenuItem>
+            );
+          })}
         </Select>
       </FormControl>
     </ThemeProvider>

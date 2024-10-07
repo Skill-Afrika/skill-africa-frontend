@@ -11,9 +11,21 @@ export interface FormTypes {
   hidden?: boolean;
   errorText: string | boolean;
   handleChange?: (e: ChangeEvent<HTMLInputElement>) => void;
-  handleSelectChange?: (e: SelectChangeEvent) => void;
   multiline?: boolean;
   rows?: number;
+}
+
+interface MenuItems {
+  id: number;
+  niche: string;
+}
+
+export interface SelectTypes {
+  id: string;
+  value: string;
+  placeholder: string;
+  menuItems: MenuItems[];
+  handleSelectChange?: (e: SelectChangeEvent) => void;
 }
 
 export interface ProfileDetails {
@@ -21,5 +33,5 @@ export interface ProfileDetails {
   last_name: string;
   bio: string;
   profile_pic?: string;
-  niche: number;
+  niche: string;
 }
