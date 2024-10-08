@@ -8,7 +8,7 @@ const queryClient = new QueryClient();
 function ProfileReg() {
   return (
     <QueryClientProvider client={queryClient}>
-      <ProfileUpdate />;
+      <ProfileUpdate />
     </QueryClientProvider>
   );
 }

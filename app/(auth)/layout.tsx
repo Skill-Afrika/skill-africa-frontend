@@ -11,7 +11,9 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
   return (
     <main>
       <header className='container flex justify-between items-center bg-orange-100 py-5'>
-        <div className='text-xl font-semibold'>SkillAfrika</div>
+        <Link href='/profile' className='text-xl font-semibold'>
+          SkillAfrika
+        </Link>
 
         <Link
           href='/profile/prof-reg'

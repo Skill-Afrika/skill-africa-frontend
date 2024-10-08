@@ -1,15 +1,12 @@
 import { SelectTypes } from "@/types/types";
 import {
   FormControl,
-  FormHelperText,
   InputLabel,
   MenuItem,
-  OutlinedInput,
   Select,
   ThemeProvider,
   createTheme,
 } from "@mui/material";
-import { validateHeaderValue } from "http";
 import React from "react";
 
 const theme = createTheme({ palette: { primary: { main: "#F97316" } } });
@@ -26,6 +23,7 @@ function CustomizedSelectField({
       <FormControl size='small'>
         <InputLabel id={id}>{placeholder}</InputLabel>
         <Select
+          sx={{ color: "orange" }}
           labelId={id}
           id={id}
           value={value}

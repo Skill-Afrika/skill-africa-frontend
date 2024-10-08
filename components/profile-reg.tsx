@@ -1,9 +1,9 @@
 import ButtonClick from "@/components/form/button";
 import CustomizedTextField from "@/components/form/text-field";
 import { Button, SelectChangeEvent } from "@mui/material";
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import {
-  CldImage,
+  // CldImage,
   CldUploadWidget,
   CloudinaryUploadWidgetInfo,
 } from "next-cloudinary";
@@ -18,24 +18,51 @@ export const ProfileUpdate = () => {
   const user = session?.user?.user;
   const { data: profileData, isLoading } = useGetProfile(user?.uuid);
 
-  console.log(profileData);
-
   const [formData, setFormData] = useState({
-    fname: profileData?.first_name || "",
-    lname: profileData?.last_name || "",
-    bio: profileData?.bio || "",
+    fname: "",
+    lname: "",
+    bio: "",
   });
 
   const [niche, setNiche] = useState("");
+
+  useEffect(() => {
+    if (profileData) {
+      setFormData({
+        ...formData,
+        fname: profileData.first_name,
+        lname: profileData.last_name,
+        bio: profileData.bio,
+      });
+      setNiche(profileData.niche.id);
+    }
+  }, [profileData]);
 
   const [result, setResult] = useState<CloudinaryUploadWidgetInfo>();
   const [error, setError] = useState(false);
 
   const { fname, lname, bio } = formData;
 
-  const { mutate } = useUpdateProfile();
+  const {
+    mutate,
+    data: updateSuccess,
+    error: updateError,
+  } = useUpdateProfile();
 
   const router = useRouter();
+
+  useEffect(() => {
+    if (updateError) {
+      enqueueSnackbar("Error updating details", { variant: "error" });
+    }
+  }, [updateError]);
+
+  useEffect(() => {
+    if (updateSuccess) {
+      enqueueSnackbar("Profile Updated", { variant: "success" });
+      router.replace('/profile')
+    }
+  }, [updateSuccess]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -59,12 +86,7 @@ export const ProfileUpdate = () => {
         niche: niche,
       };
 
-      if (user?.uuid) {
-        mutate({ id: user?.uuid, details });
-        enqueueSnackbar("Profile Updated", { variant: "success" });
-      }
-
-      router.replace("/profile");
+      mutate({ id: user?.uuid, details });
     }
   };
 
@@ -73,8 +95,8 @@ export const ProfileUpdate = () => {
   }
 
   const nicheItems = [
-    { id: 1, niche: "Tech" },
-    { id: 2, niche: "Web development" },
+    { id: 1, niche: "freelancer" },
+    { id: 2, niche: "tech" },
     { id: 3, niche: "App development" },
   ];
 

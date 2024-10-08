@@ -1,12 +1,13 @@
+import { ProfileUpdate } from "@/components/profile-reg";
 import client from "@/lib/services/api/client";
 import { ProfileDetails } from "@/types/types";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { profile } from "console";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export function useGetProfile(id?: string) {
   return useQuery({
-    queryKey: ["profile"],
+    queryKey: ["profile", id],
     queryFn: async () => {
+      if (!id) throw new Error("Profile ID is required");
       const res = await client.get(`freelancer/profiles/${id}`);
       return res.data;
     },
@@ -14,7 +15,10 @@ export function useGetProfile(id?: string) {
   });
 }
 
+// Update profile mutation
 export function useUpdateProfile() {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: async ({
       id,
@@ -25,6 +29,10 @@ export function useUpdateProfile() {
     }) => {
       const res = await client.put(`freelancer/profiles/${id}`, details);
       return res.data;
+    },
+
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["profile"] });
     },
   });
 }
