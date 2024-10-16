@@ -12,6 +12,8 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { enqueueSnackbar, SnackbarProvider } from "notistack";
 import CustomizedSelectField from "./form/select-field";
+import CustomStepper from "./form-steps";
+import Image from "next/image";
 
 export const ProfileUpdate = () => {
   const { data: session } = useSession();
@@ -60,7 +62,7 @@ export const ProfileUpdate = () => {
   useEffect(() => {
     if (updateSuccess) {
       enqueueSnackbar("Profile Updated", { variant: "success" });
-      router.replace('/profile')
+      router.replace("/profile");
     }
   }, [updateSuccess]);
 
@@ -90,9 +92,9 @@ export const ProfileUpdate = () => {
     }
   };
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  // if (isLoading) {
+  //   return <div>Loading...</div>;
+  // }
 
   const nicheItems = [
     { id: 1, niche: "freelancer" },
@@ -102,83 +104,112 @@ export const ProfileUpdate = () => {
 
   return (
     <SnackbarProvider maxSnack={3}>
-      <div className='container text-slate-800 flex flex-col items-center justify-center'>
-        <CldUploadWidget
-          signatureEndpoint='/api/sign-image'
-          onSuccess={(result) => {
-            if (typeof result.info === "string") return;
-            setResult(result.info);
-            console.log(result);
-          }}>
-          {({ open }) => {
-            return (
-              <button
-                onClick={() => open()}
-                className='bg-orange-500 px-5 py-3 mt-10 text-white rounded-lg'>
-                Choose profile picture
-              </button>
-            );
-          }}
-        </CldUploadWidget>
+      <div className='flex justify-between items-center text-slate-800'>
+        <div className='w-1/2'>
+          <div className='w-3/4 mx-auto'>
+            <div className='font-semibold text-4xl'>Complete Profile</div>
+            <div className='my-3'>
+              Hey champ, we’re almost done, just a few more steps to go.
+            </div>
+            {/* <CldUploadWidget
+              signatureEndpoint='/api/sign-image'
+              onSuccess={(result) => {
+                if (typeof result.info === "string") return;
+                setResult(result.info);
+                console.log(result);
+              }}>
+              {({ open }) => {
+                return (
+                  <button
+                    onClick={() => open()}
+                    className='bg-orange-500 px-5 py-3 mt-10 text-white rounded-lg'>
+                    Choose profile picture
+                  </button>
+                );
+              }}
+            </CldUploadWidget>
 
-        {(result || profileData?.profile_pic) && (
-          <img
-            src={result?.url || profileData?.profile_pic}
-            alt='uploaded image'
-            className='w-40 h-40 rounded-full mt-5'
+            {(result || profileData?.profile_pic) && (
+              <img
+                src={result?.url || profileData?.profile_pic}
+                alt='uploaded image'
+                className='w-40 h-40 rounded-full mt-5'
+              />
+            )} */}
+
+            <form
+              className='flex flex-col gap-4 my-5'
+              onSubmit={handleSubmit}>
+              {/* <CustomizedTextField
+                id='fname'
+                type='text'
+                name='fname'
+                value={fname}
+                placeholder='First Name'
+                errorText={
+                  error && fname.length === 0 && "Please enter your first name"
+                }
+                error={error && fname.length === 0}
+                handleChange={handleChange}
+              /> */}
+
+              {/* <CustomizedTextField
+                id='lname'
+                type='text'
+                name='lname'
+                value={lname}
+                placeholder='Last Name'
+                errorText={
+                  error && lname.length === 0 && "Please enter your last name"
+                }
+                error={error && lname.length === 0}
+                handleChange={handleChange}
+              /> */}
+
+              {/* <CustomizedSelectField
+                id='niche'
+                value={niche}
+                placeholder='Niche'
+                handleSelectChange={handleSelectChange}
+                menuItems={nicheItems}
+              /> */}
+
+              {/* <CustomizedTextField
+                id='bio'
+                type='text'
+                name='bio'
+                value={bio}
+                placeholder='Bio'
+                errorText={error && bio.length === 0 && "Please enter your bio"}
+                error={error && bio.length === 0}
+                handleChange={handleChange}
+                multiline={true}
+                rows={4}
+              /> */}
+
+              <CustomStepper
+                fname={fname}
+                lname={lname}
+                niche={niche}
+                bio={bio}
+                error={error}
+                nicheItems={nicheItems}
+                handleChange={handleChange}
+                handleSelectChange={handleSelectChange}
+              />
+              <ButtonClick>Proceed</ButtonClick>
+            </form>
+          </div>
+        </div>
+        <div className='w-1/2'>
+          <Image
+            src='/images/cover.png'
+            alt='skillafrika'
+            width={100}
+            height={100}
+            className='w-10/12 h-screen float-end'
           />
-        )}
-
-        <form className='flex flex-col gap-4 my-5' onSubmit={handleSubmit}>
-          <CustomizedTextField
-            id='fname'
-            type='text'
-            name='fname'
-            value={fname}
-            placeholder='First Name'
-            errorText={
-              error && fname.length === 0 && "Please enter your first name"
-            }
-            error={error && fname.length === 0}
-            handleChange={handleChange}
-          />
-
-          <CustomizedTextField
-            id='lname'
-            type='text'
-            name='lname'
-            value={lname}
-            placeholder='Last Name'
-            errorText={
-              error && lname.length === 0 && "Please enter your last name"
-            }
-            error={error && lname.length === 0}
-            handleChange={handleChange}
-          />
-
-          <CustomizedSelectField
-            id='niche'
-            value={niche}
-            placeholder='Niche'
-            handleSelectChange={handleSelectChange}
-            menuItems={nicheItems}
-          />
-
-          <CustomizedTextField
-            id='bio'
-            type='text'
-            name='bio'
-            value={bio}
-            placeholder='Bio'
-            errorText={error && bio.length === 0 && "Please enter your bio"}
-            error={error && bio.length === 0}
-            handleChange={handleChange}
-            multiline={true}
-            rows={4}
-          />
-
-          <ButtonClick>Submit</ButtonClick>
-        </form>
+        </div>
       </div>
     </SnackbarProvider>
   );

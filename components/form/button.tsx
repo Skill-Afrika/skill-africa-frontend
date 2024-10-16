@@ -1,4 +1,3 @@
-import { Button } from "@mui/material";
 import { useFormStatus } from "react-dom";
 
 function ButtonClick({
@@ -9,12 +8,12 @@ function ButtonClick({
   const { pending } = useFormStatus();
   return (
     <>
-      <Button
+      <button
         aria-disabled={pending}
         type='submit'
-        className='bg-orange-500 w-full rounded-lg text-white font-bold cursor-pointer px-6 py-3'>
+        className='bg-orange-500 w-fit rounded-full text-white cursor-pointer px-6 py-3'>
         {children}
-      </Button>
+      </button>
     </>
   );
 }

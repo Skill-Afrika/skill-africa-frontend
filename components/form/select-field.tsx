@@ -20,10 +20,16 @@ function CustomizedSelectField({
 }: SelectTypes) {
   return (
     <ThemeProvider theme={theme}>
-      <FormControl size='small'>
+      <FormControl size='small' sx={{ width: "100%" }}>
         <InputLabel id={id}>{placeholder}</InputLabel>
         <Select
-          sx={{ color: "orange" }}
+          sx={{
+            color: "orange",
+            borderRadius: "5px",
+            "&.Mui-focused": {
+              border: "none",
+            },
+          }}
           labelId={id}
           id={id}
           value={value}

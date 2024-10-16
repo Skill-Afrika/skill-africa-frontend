@@ -26,7 +26,11 @@ function CustomizedTextField({
 }: FormTypes) {
   return (
     <ThemeProvider theme={theme}>
-      <FormControl error={error} hidden={hidden} size='small'>
+      <FormControl
+        error={error}
+        hidden={hidden}
+        size='small'
+        sx={{ width: "100%", mb: '1rem' }}>
         <InputLabel htmlFor={id}>{placeholder}</InputLabel>
         <OutlinedInput
           sx={{
@@ -35,7 +39,6 @@ function CustomizedTextField({
             "&.Mui-focused": {
               border: "none",
             },
-            width: "25rem",
           }}
           id={id}
           type={type}
