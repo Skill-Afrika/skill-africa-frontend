@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
@@ -6,8 +6,19 @@ import CustomizedTextField from "./form/text-field";
 import CustomizedSelectField from "./form/select-field";
 import { FormTypes, MenuItems } from "@/types/types";
 import { SelectChangeEvent } from "@mui/material";
+import {
+  // CldImage,
+  CldUploadWidget,
+  CloudinaryUploadWidgetInfo,
+  CloudinaryUploadWidgetResults,
+} from "next-cloudinary";
 
-const steps = ["Profile Details", "Select your Niche", "Enter your bio"];
+const steps = [
+  "Profile Details",
+  "Select your Niche",
+  "Enter your bio",
+  "Upload your image",
+];
 
 interface StepperFormTypes extends FormTypes {
   fname: string;
@@ -16,9 +27,12 @@ interface StepperFormTypes extends FormTypes {
   handleSelectChange: (e: SelectChangeEvent) => void;
   niche: string;
   nicheItems: MenuItems[];
+  result?: CloudinaryUploadWidgetInfo;
+  profileData?: any;
+  setResult: (e: CloudinaryUploadWidgetInfo) => void;
 }
 
-export default function CustomStepper({
+export default function StepperForm({
   fname,
   lname,
   error,
@@ -27,6 +41,9 @@ export default function CustomStepper({
   niche,
   nicheItems,
   bio,
+  result,
+  profileData,
+  setResult,
 }: StepperFormTypes) {
   const [activeStep, setActiveStep] = useState(0);
 
@@ -113,6 +130,37 @@ export default function CustomStepper({
               multiline={true}
               rows={4}
             />
+          )}
+
+          {activeStep === 3 && (
+            <>
+              <CldUploadWidget
+                signatureEndpoint='/api/sign-image'
+                onSuccess={(result) => {
+                  if (typeof result.info === "string") return;
+                  const image = result?.info;
+                  image && setResult(image);
+                  console.log(result);
+                }}>
+                {({ open }) => {
+                  return (
+                    <button
+                      onClick={() => open()}
+                      className='bg-orange-500 px-5 py-3 mt-10 text-white rounded-lg'>
+                      Choose profile picture
+                    </button>
+                  );
+                }}
+              </CldUploadWidget>
+
+              {(result || profileData) && (
+                <img
+                  src={result?.url || profileData?.profile_pic}
+                  alt='uploaded image'
+                  className='w-40 h-40 rounded-full mt-5'
+                />
+              )}
+            </>
           )}
 
           <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>

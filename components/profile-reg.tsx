@@ -4,16 +4,14 @@ import { Button, SelectChangeEvent } from "@mui/material";
 import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import {
   // CldImage,
-  CldUploadWidget,
   CloudinaryUploadWidgetInfo,
 } from "next-cloudinary";
 import { useGetProfile, useUpdateProfile } from "@/app/api/get-profile";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { enqueueSnackbar, SnackbarProvider } from "notistack";
-import CustomizedSelectField from "./form/select-field";
-import CustomStepper from "./form-steps";
 import Image from "next/image";
+import StepperForm from "./form-steps";
 
 export const ProfileUpdate = () => {
   const { data: session } = useSession();
@@ -87,6 +85,7 @@ export const ProfileUpdate = () => {
         last_name: lname,
         niche: niche,
       };
+      console.log(details);
 
       mutate({ id: user?.uuid, details });
     }
@@ -111,89 +110,18 @@ export const ProfileUpdate = () => {
             <div className='my-3'>
               Hey champ, we’re almost done, just a few more steps to go.
             </div>
-            {/* <CldUploadWidget
-              signatureEndpoint='/api/sign-image'
-              onSuccess={(result) => {
-                if (typeof result.info === "string") return;
-                setResult(result.info);
-                console.log(result);
-              }}>
-              {({ open }) => {
-                return (
-                  <button
-                    onClick={() => open()}
-                    className='bg-orange-500 px-5 py-3 mt-10 text-white rounded-lg'>
-                    Choose profile picture
-                  </button>
-                );
-              }}
-            </CldUploadWidget>
 
-            {(result || profileData?.profile_pic) && (
-              <img
-                src={result?.url || profileData?.profile_pic}
-                alt='uploaded image'
-                className='w-40 h-40 rounded-full mt-5'
-              />
-            )} */}
-
-            <form
-              className='flex flex-col gap-4 my-5'
-              onSubmit={handleSubmit}>
-              {/* <CustomizedTextField
-                id='fname'
-                type='text'
-                name='fname'
-                value={fname}
-                placeholder='First Name'
-                errorText={
-                  error && fname.length === 0 && "Please enter your first name"
-                }
-                error={error && fname.length === 0}
-                handleChange={handleChange}
-              /> */}
-
-              {/* <CustomizedTextField
-                id='lname'
-                type='text'
-                name='lname'
-                value={lname}
-                placeholder='Last Name'
-                errorText={
-                  error && lname.length === 0 && "Please enter your last name"
-                }
-                error={error && lname.length === 0}
-                handleChange={handleChange}
-              /> */}
-
-              {/* <CustomizedSelectField
-                id='niche'
-                value={niche}
-                placeholder='Niche'
-                handleSelectChange={handleSelectChange}
-                menuItems={nicheItems}
-              /> */}
-
-              {/* <CustomizedTextField
-                id='bio'
-                type='text'
-                name='bio'
-                value={bio}
-                placeholder='Bio'
-                errorText={error && bio.length === 0 && "Please enter your bio"}
-                error={error && bio.length === 0}
-                handleChange={handleChange}
-                multiline={true}
-                rows={4}
-              /> */}
-
-              <CustomStepper
+            <form className='flex flex-col gap-4 my-5' onSubmit={handleSubmit}>
+              <StepperForm
                 fname={fname}
                 lname={lname}
                 niche={niche}
                 bio={bio}
                 error={error}
                 nicheItems={nicheItems}
+                profileData={profileData}
+                result={result}
+                setResult={setResult}
                 handleChange={handleChange}
                 handleSelectChange={handleSelectChange}
               />
