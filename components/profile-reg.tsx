@@ -89,7 +89,7 @@ export const ProfileUpdate = () => {
         niche: niche,
       };
       console.log(details);
-
+      router.replace("/profile");
       mutate({ id: user?.uuid, details });
     }
   };
