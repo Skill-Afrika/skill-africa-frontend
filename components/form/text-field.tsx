@@ -30,7 +30,7 @@ function CustomizedTextField({
         error={error}
         hidden={hidden}
         size='small'
-        sx={{ width: "100%", mb: '1rem' }}>
+        sx={{ width: "100%", mb: "1rem" }}>
         <InputLabel htmlFor={id}>{placeholder}</InputLabel>
         <OutlinedInput
           sx={{
@@ -46,7 +46,6 @@ function CustomizedTextField({
           value={value}
           label={placeholder}
           onChange={handleChange}
-          // size='small'
           multiline={multiline}
           rows={rows}
         />

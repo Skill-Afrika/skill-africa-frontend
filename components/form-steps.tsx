@@ -12,12 +12,14 @@ import {
   CloudinaryUploadWidgetInfo,
   CloudinaryUploadWidgetResults,
 } from "next-cloudinary";
+import ButtonClick from "./form/button";
+import { enqueueSnackbar } from "notistack";
 
 const steps = [
   "Profile Details",
   "Select your Niche",
   "Enter your bio",
-  "Upload your image",
+  "Upload a profile photo",
 ];
 
 interface StepperFormTypes extends FormTypes {
@@ -27,9 +29,9 @@ interface StepperFormTypes extends FormTypes {
   handleSelectChange: (e: SelectChangeEvent) => void;
   niche: string;
   nicheItems: MenuItems[];
-  result?: CloudinaryUploadWidgetInfo;
+  uploadedPhoto?: CloudinaryUploadWidgetInfo;
   profileData?: any;
-  setResult: (e: CloudinaryUploadWidgetInfo) => void;
+  setUploadedPhoto: (e: CloudinaryUploadWidgetInfo) => void;
 }
 
 export default function StepperForm({
@@ -41,28 +43,42 @@ export default function StepperForm({
   niche,
   nicheItems,
   bio,
-  result,
+  uploadedPhoto,
   profileData,
-  setResult,
+  setUploadedPhoto,
 }: StepperFormTypes) {
   const [activeStep, setActiveStep] = useState(0);
 
-  const handleNext = () => {
+  const nextSlide = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  };
+
+  const handleError = (message: string) => {
+    enqueueSnackbar(message, { variant: "error" });
+  };
+
+  const handleNext = () => {
+    if (activeStep === 0) {
+      !fname || !lname ? handleError("Please fill in the fields") : nextSlide();
+    }
+
+    if (activeStep === 1) {
+      !niche ? handleError("Please select a niche") : nextSlide();
+    }
+
+    if (activeStep === 2) {
+      !bio ? handleError("Please enter a bio") : nextSlide();
+    }
   };
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const handleReset = () => {
-    setActiveStep(0);
-  };
-
   return (
     <div className='w-5/6'>
-      <div className='mb-1'>
-        Step {activeStep + 1} of {steps.length}
+      <div className='mb-2 font-semibold text-orange-500'>
+        Step {activeStep + 1} of {steps.length + 1}
       </div>
       <div className='mb-5 font-semibold text-xl'>{steps[activeStep]}</div>
 
@@ -72,8 +88,9 @@ export default function StepperForm({
             All steps completed - you&apos;re finished
           </Typography>
           <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
+            <ButtonClick onClick={handleBack}>Back</ButtonClick>
             <Box sx={{ flex: "1 1 auto" }} />
-            <Button onClick={handleReset}>Reset</Button>
+            <ButtonClick type='submit'>Update</ButtonClick>
           </Box>
         </>
       ) : (
@@ -134,48 +151,63 @@ export default function StepperForm({
 
           {activeStep === 3 && (
             <>
+              {uploadedPhoto || profileData ? (
+                <img
+                  src={uploadedPhoto?.url || profileData?.profile_pic}
+                  alt='uploaded image'
+                  className='w-40 h-40 rounded-full my-5'
+                />
+              ) : (
+                <img
+                  src='/images/blank.png'
+                  alt='blank image'
+                  className='w w-52'
+                />
+              )}
+
               <CldUploadWidget
                 signatureEndpoint='/api/sign-image'
-                onSuccess={(result) => {
-                  if (typeof result.info === "string") return;
-                  const image = result?.info;
-                  image && setResult(image);
-                  console.log(result);
+                onSuccess={(uploadedPhoto) => {
+                  if (typeof uploadedPhoto.info === "string") return;
+                  const image = uploadedPhoto?.info;
+
+                  image && setUploadedPhoto(image);
+                  console.log(uploadedPhoto);
                 }}>
                 {({ open }) => {
                   return (
-                    <button
-                      onClick={() => open()}
-                      className='bg-orange-500 px-5 py-3 mt-10 text-white rounded-lg'>
-                      Choose profile picture
-                    </button>
+                    <>
+                      <div className='text-slate-500 my-3'>
+                        Upload a a maximum of 5mb file size in{" "}
+                        <span className='font-semibold text-black'>
+                          PNG, JPG, or GIF{" "}
+                        </span>
+                        format
+                      </div>
+                      <ButtonClick
+                        className='mb-5 bg-slate-800'
+                        onClick={() => open()}>
+                        <span className='float-left mr-2'>
+                          <img src='/images/cam.svg' />
+                        </span>
+                        {uploadedPhoto ? "Change photo" : "Upload a photo"}
+                      </ButtonClick>
+                    </>
                   );
                 }}
               </CldUploadWidget>
-
-              {(result || profileData) && (
-                <img
-                  src={result?.url || profileData?.profile_pic}
-                  alt='uploaded image'
-                  className='w-40 h-40 rounded-full mt-5'
-                />
-              )}
             </>
           )}
 
-          <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-            <Button
-              color='inherit'
-              disabled={activeStep === 0}
-              onClick={handleBack}
-              sx={{ mr: 1 }}>
-              Back
-            </Button>
+          <Box sx={{ display: "flex", flexDirection: "row" }}>
+            {activeStep !== 0 && (
+              <ButtonClick onClick={handleBack}>Back</ButtonClick>
+            )}
             <Box sx={{ flex: "1 1 auto" }} />
 
-            <Button onClick={handleNext}>
-              {activeStep === steps.length - 1 ? "Finish" : "Next"}
-            </Button>
+            <ButtonClick onClick={handleNext}>
+              {activeStep === steps.length - 1 ? "Finish" : "Proceed"}
+            </ButtonClick>
           </Box>
         </>
       )}

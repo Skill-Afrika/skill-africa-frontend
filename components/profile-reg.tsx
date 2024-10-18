@@ -38,7 +38,8 @@ export const ProfileUpdate = () => {
     }
   }, [profileData]);
 
-  const [result, setResult] = useState<CloudinaryUploadWidgetInfo>();
+  const [uploadedPhoto, setUploadedPhoto] =
+    useState<CloudinaryUploadWidgetInfo>();
   const [error, setError] = useState(false);
 
   const { fname, lname, bio } = formData;
@@ -80,7 +81,9 @@ export const ProfileUpdate = () => {
     } else {
       const details = {
         bio: bio,
-        profile_pic: result?.url,
+        profile_pic:
+          uploadedPhoto?.url ||
+          "https://res.cloudinary.com/dbez0fyq6/image/upload/v1729271237/ngzlkwvpxawd8w4lxsoo.png",
         first_name: fname,
         last_name: lname,
         niche: niche,
@@ -120,12 +123,12 @@ export const ProfileUpdate = () => {
                 error={error}
                 nicheItems={nicheItems}
                 profileData={profileData}
-                result={result}
-                setResult={setResult}
+                uploadedPhoto={uploadedPhoto}
+                setUploadedPhoto={setUploadedPhoto}
                 handleChange={handleChange}
                 handleSelectChange={handleSelectChange}
               />
-              <ButtonClick>Proceed</ButtonClick>
+              {/* <ButtonClick>Proceed</ButtonClick> */}
             </form>
           </div>
         </div>
