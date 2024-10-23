@@ -23,7 +23,6 @@ function CustomizedSelectField({
       <FormControl size='small' sx={{ width: "100%", mb: "1rem" }}>
         <InputLabel id={id}>{placeholder}</InputLabel>
         <Select
-          multiple
           sx={{
             color: "orange",
             borderRadius: "5px",

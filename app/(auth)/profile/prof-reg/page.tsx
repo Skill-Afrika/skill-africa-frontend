@@ -1,16 +1,12 @@
-"use client";
-
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 import { ProfileUpdate } from "@/components/profile-reg";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { authOptions } from "@/lib/auth-options";
 
-const queryClient = new QueryClient();
-
-function ProfileReg() {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <ProfileUpdate />
-    </QueryClientProvider>
-  );
+async function ProfileReg() {
+  const session = await getServerSession(authOptions);
+  if (!session?.user) redirect("/login");
+  return <ProfileUpdate />;
 }
 
 export default ProfileReg;

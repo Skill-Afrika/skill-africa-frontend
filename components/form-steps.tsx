@@ -1,6 +1,5 @@
 import { ChangeEvent, useState } from "react";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import CustomizedTextField from "./form/text-field";
 import CustomizedSelectField from "./form/select-field";
@@ -10,10 +9,10 @@ import {
   // CldImage,
   CldUploadWidget,
   CloudinaryUploadWidgetInfo,
-  CloudinaryUploadWidgetResults,
 } from "next-cloudinary";
 import ButtonClick from "./form/button";
 import { enqueueSnackbar } from "notistack";
+import { ThreeDots } from "react-loader-spinner";
 
 const steps = [
   "Profile Details",
@@ -32,6 +31,7 @@ interface StepperFormTypes extends FormTypes {
   uploadedPhoto?: CloudinaryUploadWidgetInfo;
   profileData?: any;
   setUploadedPhoto: (e: CloudinaryUploadWidgetInfo) => void;
+  isPending: boolean;
 }
 
 export default function StepperForm({
@@ -46,6 +46,7 @@ export default function StepperForm({
   uploadedPhoto,
   profileData,
   setUploadedPhoto,
+  isPending,
 }: StepperFormTypes) {
   const [activeStep, setActiveStep] = useState(0);
 
@@ -96,7 +97,22 @@ export default function StepperForm({
           <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
             <ButtonClick onClick={handleBack}>Back</ButtonClick>
             <Box sx={{ flex: "1 1 auto" }} />
-            <ButtonClick type='submit'>Update</ButtonClick>
+            <ButtonClick type='submit'>
+              {isPending ? (
+                <ThreeDots
+                  visible={true}
+                  height='20'
+                  width='20'
+                  color='#ffffff'
+                  radius='9'
+                  ariaLabel='three-dots-loading'
+                  wrapperStyle={{}}
+                  wrapperClass=''
+                />
+              ) : (
+                "Update"
+              )}
+            </ButtonClick>
           </Box>
         </>
       ) : (

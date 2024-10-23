@@ -1,6 +1,6 @@
-import ButtonClick from "@/components/form/button";
-import CustomizedTextField from "@/components/form/text-field";
-import { Button, SelectChangeEvent } from "@mui/material";
+"use client";
+
+import { SelectChangeEvent } from "@mui/material";
 import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import {
   // CldImage,
@@ -46,6 +46,7 @@ export const ProfileUpdate = () => {
 
   const {
     mutate,
+    isPending,
     data: updateSuccess,
     error: updateError,
   } = useUpdateProfile();
@@ -75,8 +76,6 @@ export const ProfileUpdate = () => {
     setNiche(e.target.value as string);
   };
 
-  console.log(uploadedPhoto);
-
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -93,7 +92,7 @@ export const ProfileUpdate = () => {
         last_name: lname,
         niche: niche,
       };
-      console.log(details);
+      // console.log(details);
       mutate({ id: user?.uuid, details });
     }
   };
@@ -130,6 +129,7 @@ export const ProfileUpdate = () => {
                 setUploadedPhoto={setUploadedPhoto}
                 handleChange={handleChange}
                 handleSelectChange={handleSelectChange}
+                isPending={isPending}
               />
             </form>
           </div>
