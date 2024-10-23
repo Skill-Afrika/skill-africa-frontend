@@ -1,7 +1,11 @@
-import { useGetProfile } from "@/app/api/get-profile";
+import { User } from "next-auth";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+
+// interface ProfileInfoProps {
+//   user: User;
+// }
 
 const ProfileInfo = () => {
   const { data: session } = useSession();
@@ -20,6 +24,8 @@ const ProfileInfo = () => {
 
   return (
     <div className='bg-white shadow-md rounded-lg p-6'>
+      <div className='flex items-center mb-4'>
+        {/* <img src={user.username} alt="Profile" className="w-16 h-16 rounded-full mr-4" /> */}
       <div className='flex items-center justify-center gap-10'>
         <img
           src={
@@ -31,6 +37,8 @@ const ProfileInfo = () => {
         />
 
         <div>
+          <h2 className='text-xl font-bold'>{user?.username}</h2>
+          <p className='text-gray-600'>{user?.email}</p>
           <h2 className='text-3xl font-bold'>
             {data?.first_name} {data?.last_name || user?.username}
           </h2>
@@ -63,6 +71,9 @@ const ProfileInfo = () => {
           </Link>
         </div>
       </div>
+
+      {/* Add more profile information as needed */}
+      {/* Example: <p>Phone: {user.phone}</p> */}
       {data?.bio && <div className='text-lg mt-5'>{data?.bio}</div>}
       {data?.niche?.name && (
         <div className='text-orange-500 font-semibold'>
