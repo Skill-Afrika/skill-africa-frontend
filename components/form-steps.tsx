@@ -67,7 +67,13 @@ export default function StepperForm({
     }
 
     if (activeStep === 2) {
-      !bio ? handleError("Please enter a bio") : nextSlide();
+      !bio ? handleError("Please enter your bio") : nextSlide();
+    }
+
+    if (activeStep === 3) {
+      !uploadedPhoto && !profileData?.profile_pic
+        ? handleError("Please upload a photo")
+        : nextSlide();
     }
   };
 
@@ -85,7 +91,7 @@ export default function StepperForm({
       {activeStep === steps.length ? (
         <>
           <Typography sx={{ mt: 2, mb: 1 }}>
-            All steps completed - you&apos;re finished
+            All steps completed - you&apos;re done.
           </Typography>
           <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
             <ButtonClick onClick={handleBack}>Back</ButtonClick>
@@ -161,7 +167,7 @@ export default function StepperForm({
                 <img
                   src='/images/blank.png'
                   alt='blank image'
-                  className='w w-52'
+                  className='w-52'
                 />
               )}
 
@@ -169,10 +175,9 @@ export default function StepperForm({
                 signatureEndpoint='/api/sign-image'
                 onSuccess={(uploadedPhoto) => {
                   if (typeof uploadedPhoto.info === "string") return;
-                  const image = uploadedPhoto?.info;
 
+                  const image = uploadedPhoto?.info;
                   image && setUploadedPhoto(image);
-                  console.log(uploadedPhoto);
                 }}>
                 {({ open }) => {
                   return (
@@ -190,7 +195,9 @@ export default function StepperForm({
                         <span className='float-left mr-2'>
                           <img src='/images/cam.svg' />
                         </span>
-                        {uploadedPhoto ? "Change photo" : "Upload a photo"}
+                        {uploadedPhoto || profileData?.profile_pic
+                          ? "Change photo"
+                          : "Upload a photo"}
                       </ButtonClick>
                     </>
                   );

@@ -25,6 +25,8 @@ export const ProfileUpdate = () => {
   });
 
   const [niche, setNiche] = useState("");
+  const [uploadedPhoto, setUploadedPhoto] =
+    useState<CloudinaryUploadWidgetInfo>();
 
   useEffect(() => {
     if (profileData) {
@@ -38,8 +40,6 @@ export const ProfileUpdate = () => {
     }
   }, [profileData]);
 
-  const [uploadedPhoto, setUploadedPhoto] =
-    useState<CloudinaryUploadWidgetInfo>();
   const [error, setError] = useState(false);
 
   const { fname, lname, bio } = formData;
@@ -61,7 +61,9 @@ export const ProfileUpdate = () => {
   useEffect(() => {
     if (updateSuccess) {
       enqueueSnackbar("Profile Updated", { variant: "success" });
-      router.replace("/profile");
+      setTimeout(() => {
+        router.replace("/profile");
+      }, 2000);
     }
   }, [updateSuccess]);
 
@@ -73,6 +75,8 @@ export const ProfileUpdate = () => {
     setNiche(e.target.value as string);
   };
 
+  console.log(uploadedPhoto);
+
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -83,25 +87,24 @@ export const ProfileUpdate = () => {
         bio: bio,
         profile_pic:
           uploadedPhoto?.url ||
+          profileData?.profile_pic ||
           "https://res.cloudinary.com/dbez0fyq6/image/upload/v1729271237/ngzlkwvpxawd8w4lxsoo.png",
         first_name: fname,
         last_name: lname,
         niche: niche,
       };
       console.log(details);
-      router.replace("/profile");
       mutate({ id: user?.uuid, details });
     }
   };
 
-  // if (isLoading) {
-  //   return <div>Loading...</div>;
-  // }
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   const nicheItems = [
-    { id: 1, niche: "freelancer" },
-    { id: 2, niche: "tech" },
-    { id: 3, niche: "App development" },
+    { id: 1, niche: "Freelancer" },
+    { id: 2, niche: "Tech" },
   ];
 
   return (
@@ -128,7 +131,6 @@ export const ProfileUpdate = () => {
                 handleChange={handleChange}
                 handleSelectChange={handleSelectChange}
               />
-              {/* <ButtonClick>Proceed</ButtonClick> */}
             </form>
           </div>
         </div>
