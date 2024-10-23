@@ -58,11 +58,11 @@ export default function LoginForm() {
 
       if (res?.ok) {
         enqueueSnackbar("Login Successful", { variant: "success" });
-        router.replace("/profile");
+        setTimeout(() => {
+          router.replace("/profile");
+        }, 2000);
         setLoading(false);
       }
-
-      console.log(res);
 
       if (res?.error) {
         enqueueSnackbar(res.error, { variant: "error" });

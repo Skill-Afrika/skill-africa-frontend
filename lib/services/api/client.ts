@@ -7,6 +7,8 @@ interface fetchClientProps {
   body?: string;
   token?: string;
 }
+import axios from "axios";
+import { getSession } from "next-auth/react";
 
 const client = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -37,6 +39,19 @@ client.interceptors.response.use(
     if (error.response && error.response.status === 401) {
       signOut({ callbackUrl: "/users/login/" }); // Redirect to login page after sign out
     }
+    return Promise.reject(error);
+  }
+);
+
+client.interceptors.request.use(
+  async (config) => {
+    const session = await getSession();
+    if (session && session.user) {
+      config.headers.Authorization = `Bearer ${session.user.access}`; // Attach token
+    }
+    return config;
+  },
+  (error) => {
     return Promise.reject(error);
   }
 );

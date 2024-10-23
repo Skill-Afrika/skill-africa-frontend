@@ -69,11 +69,12 @@ export default function RegisterForm() {
 
         if (res?.ok) {
           enqueueSnackbar("Registration Successful", { variant: "success" });
-          router.replace("/profile");
+          setTimeout(() => {
+            router.replace("/profile");
+          }, 2000);
           setLoading(false);
         }
 
-        // console.log(res);
 
         if (res?.error) {
           const err = JSON.parse(res.error);
