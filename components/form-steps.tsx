@@ -173,7 +173,7 @@ export default function StepperForm({
 
           {activeStep === 3 && (
             <>
-              {uploadedPhoto || profileData ? (
+              {uploadedPhoto || profileData?.profile_pic ? (
                 <img
                   src={uploadedPhoto?.url || profileData?.profile_pic}
                   alt='uploaded image'
