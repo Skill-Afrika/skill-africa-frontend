@@ -43,7 +43,7 @@ const ProfileInfo = () => {
             {data?.first_name} {data?.last_name || user?.username}
           </h2>
           <p className='text-xl font-semibold my-2'>
-            Creative Frontend developer | community manager
+            Creative Frontend developer | Community manager
           </p>
           <div className='flex gap-5'>
             <div className='text-gray-600 flex items-center gap-1'>
