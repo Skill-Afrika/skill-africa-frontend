@@ -14,8 +14,6 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
 
   const { data: profileData } = useGetProfile(id);
 
-  console.log(profileData);
-
   return (
     <main>
       <header className='container flex justify-between items-center bg-orange-100 py-5'>
@@ -27,7 +25,7 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
             <Link
               href='/profile/prof-reg'
               className='bg-orange-500 py-2 px-4 rounded-md text-white'>
-              {profileData ? "Edit Profile" : "Update profile"}
+              {profileData?.first_name ? "Edit Profile" : "Update profile"}
             </Link>
             <button
               className='bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-md'

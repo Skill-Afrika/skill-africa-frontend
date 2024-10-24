@@ -2,25 +2,31 @@ import { useGetProfile } from "@/app/api/get-profile";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { enqueueSnackbar } from "notistack";
+import { useEffect } from "react";
 
 const ProfileInfo = () => {
   const { data: session } = useSession();
   const user = session?.user?.user;
   const router = useRouter();
 
-  const { data, isLoading } = useGetProfile(user?.uuid);
+  const { data, isLoading, isFetched } = useGetProfile(user?.uuid);
+
+  console.log(data, isFetched);
+
+  useEffect(() => {
+    if (isFetched && !data?.first_name) {
+      router.replace("profile/prof-reg");
+    }
+  }, [isFetched, data]);
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
-  if (!data?.first_name) {
-    router.replace("/profile/prof-reg");
-  }
-
   return (
     <div className='bg-white shadow-md rounded-lg p-6'>
-      <div className='flex items-center justify-center gap-10'>
+      <div className='flex items-center  gap-10'>
         <img
           src={
             data?.profile_pic ||
