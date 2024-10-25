@@ -12,7 +12,7 @@ const ProfileInfo = () => {
 
   const { data, isLoading, isFetched } = useGetProfile(user?.uuid);
 
-  console.log(data, isFetched);
+  console.log(data, isFetched, user);
 
   useEffect(() => {
     if (isFetched && !data?.first_name) {
