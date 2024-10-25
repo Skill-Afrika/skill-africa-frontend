@@ -223,11 +223,11 @@ export default function RegisterForm() {
         </div>
         <div className='w-1/2'>
           <Image
-            src='/images/cover.png'
+            src='/images/cover.svg'
             alt='skillafrika'
             width={100}
             height={100}
-            className='w-10/12 h-screen float-end'
+            className='w-full h-screen float-end'
           />
         </div>
       </div>
