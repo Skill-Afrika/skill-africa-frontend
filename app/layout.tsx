@@ -1,18 +1,16 @@
 import type { Metadata } from "next";
 // import { Inter } from "next/font/google";
 import "./globals.css";
-import { SessionProvider } from "next-auth/react"
-import AuthProvider from '@/app/context/authprovider';
-
+import AuthProvider from "@/app/context/authprovider";
+import ReactQueryProvider from "@/components/query/react-query-provider";
 // const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Skill Afrika",
   description: "Empowering young Africans with skills and opportunities",
   icons: {
-    icon: '/vercel.svg'
-  }
-    
+    icon: "/vercel.svg",
+  },
 };
 
 export default function RootLayout({
@@ -21,12 +19,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang='en'>
       <body>
-      <AuthProvider>
-        {children}
-      </AuthProvider>
-        </body>
+        <AuthProvider>
+          <ReactQueryProvider> {children}</ReactQueryProvider>
+        </AuthProvider>
+      </body>
     </html>
   );
 }
