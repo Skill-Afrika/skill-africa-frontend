@@ -108,8 +108,8 @@ export const ProfileUpdate = () => {
 
   return (
     <SnackbarProvider maxSnack={3}>
-      <div className='flex justify-between items-center text-slate-800'>
-        <div className='w-1/2'>
+      <div className='md:flex justify-between items-center text-slate-800'>
+        <div className='md:w-1/2 mt-10 md:mt-0'>
           <div className='w-3/4 mx-auto'>
             <div className='font-semibold text-4xl'>Complete Profile</div>
             <div className='my-3'>
@@ -134,13 +134,13 @@ export const ProfileUpdate = () => {
             </form>
           </div>
         </div>
-        <div className='w-1/2'>
+        <div className='w-1/2 hidden md:block'>
           <Image
-            src='/images/cover.png'
+            src='/images/cover.svg'
             alt='skillafrika'
             width={100}
             height={100}
-            className='w-10/12 h-screen float-end'
+            className='w-full h-screen float-end'
           />
         </div>
       </div>

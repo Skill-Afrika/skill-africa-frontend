@@ -212,6 +212,10 @@ export default function RegisterForm() {
                 </Button>
               </form>
               <div className='text-slate-500 mt-3'>
+                By creating an account, you agree to our terms of services and
+                privacy policy
+              </div>
+              <div className='text-slate-500 my-3'>
                 Already have an account?{" "}
                 <Link href='/login'>
                   {" "}
@@ -223,11 +227,11 @@ export default function RegisterForm() {
         </div>
         <div className='w-1/2'>
           <Image
-            src='/images/cover.png'
+            src='/images/cover.svg'
             alt='skillafrika'
             width={100}
             height={100}
-            className='w-10/12 h-screen float-end'
+            className='w-full h-screen float-end'
           />
         </div>
       </div>

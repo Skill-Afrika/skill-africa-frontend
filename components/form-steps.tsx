@@ -83,7 +83,7 @@ export default function StepperForm({
   };
 
   return (
-    <div className='w-5/6'>
+    <div className='md:w-5/6'>
       <div className='mb-2 font-semibold text-orange-500'>
         Step {activeStep + 1} of {steps.length + 1}
       </div>

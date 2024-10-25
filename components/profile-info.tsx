@@ -26,7 +26,7 @@ const ProfileInfo = () => {
 
   return (
     <div className='bg-white shadow-md rounded-lg p-6'>
-      <div className='flex items-center  gap-10'>
+      <div className='md:flex items-center gap-10'>
         <img
           src={
             data?.profile_pic ||
@@ -37,13 +37,13 @@ const ProfileInfo = () => {
         />
 
         <div>
-          <h2 className='text-3xl font-bold'>
+          <h2 className='text-3xl font-bold mt-5 md:mt-0'>
             {data?.first_name} {data?.last_name || user?.username}
           </h2>
           <p className='text-xl font-semibold my-2'>
             Creative Frontend developer | Community manager
           </p>
-          <div className='flex gap-5'>
+          <div className='flex flex-wrap md:gap-5 gap-2'>
             <div className='text-gray-600 flex items-center gap-1'>
               <img src='/images/map.svg' alt='/' />
               <p>Lagos, Nigeria</p>
@@ -53,7 +53,7 @@ const ProfileInfo = () => {
               <p className='text-gray-600'>{user?.email}</p>
             </div>
           </div>
-          <div className='flex gap-3 my-3'>
+          <div className='flex flex-wrap gap-3 my-3'>
             <p className='rounded-full px-3.5 py-1 border border-gray-600'>
               Frontend Developer
             </p>
