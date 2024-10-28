@@ -24,11 +24,11 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
           <>
             <Link
               href='/profile/prof-reg'
-              className='bg-orange-500 py-2 px-4 rounded-md text-white'>
+              className='bg-orange-500 py-2 md:px-4 px-1 rounded-md text-white'>
               {profileData?.first_name ? "Edit Profile" : "Update profile"}
             </Link>
             <button
-              className='bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-md'
+              className='bg-red-500 hover:bg-red-600 text-white py-2 md:px-4 px-1 rounded-md'
               onClick={() => signOut()}>
               Log out
             </button>
