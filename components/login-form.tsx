@@ -84,7 +84,7 @@ export default function LoginForm() {
   return (
     <SnackbarProvider maxSnack={3}>
       <div className='flex justify-center items-center'>
-        <div className='md:w-1/2 w-ful'>
+        <div className='md:w-1/2 w-5/6'>
           <div className='md:w-3/5 mx-auto mt-10 md:mt-0'>
             <h1 className='text-3xl font-bold mb-5 text-gray-800'>
               Login an account

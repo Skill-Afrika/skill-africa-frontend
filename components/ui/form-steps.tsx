@@ -1,8 +1,8 @@
 import { ChangeEvent, useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import CustomizedTextField from "./form/text-field";
-import CustomizedSelectField from "./form/select-field";
+import CustomizedTextField from "../form/text-field";
+import CustomizedSelectField from "../form/select-field";
 import { FormTypes, MenuItems } from "@/types/types";
 import { SelectChangeEvent } from "@mui/material";
 import {
@@ -10,7 +10,7 @@ import {
   CldUploadWidget,
   CloudinaryUploadWidgetInfo,
 } from "next-cloudinary";
-import ButtonClick from "./form/button";
+import ButtonClick from "../form/button";
 import { enqueueSnackbar } from "notistack";
 import { ThreeDots } from "react-loader-spinner";
 
