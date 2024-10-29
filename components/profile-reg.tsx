@@ -11,7 +11,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { enqueueSnackbar, SnackbarProvider } from "notistack";
 import Image from "next/image";
-import StepperForm from "./form-steps";
+import StepperForm from "./ui/form-steps";
 
 export const ProfileUpdate = () => {
   const { data: session } = useSession();

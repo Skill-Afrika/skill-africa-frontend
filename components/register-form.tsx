@@ -109,9 +109,9 @@ export default function RegisterForm() {
 
   return (
     <SnackbarProvider maxSnack={3}>
-      <div className='flex justify-center items-center h-screen'>
-        <div className='w-1/2'>
-          <div className='w-3/5 mx-auto'>
+      <div className='flex justify-center items-center'>
+        <div className='md:w-1/2 w-5/6'>
+          <div className='md:w-3/5 mx-auto mt-10 md:mt-0'>
             <h1 className='text-3xl font-bold mb-5 text-gray-800'>
               Create an account
             </h1>
@@ -225,13 +225,13 @@ export default function RegisterForm() {
             </Form>
           </div>
         </div>
-        <div className='w-1/2'>
+        <div className='w-1/2 hidden md:block'>
           <Image
             src='/images/cover.svg'
             alt='skillafrika'
             width={100}
             height={100}
-            className='w-full h-screen float-end'
+            className='w-full h-[50rem] float-end'
           />
         </div>
       </div>
