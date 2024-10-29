@@ -15,6 +15,7 @@ const ProfilePage = () => {
   const router = useRouter();
 
   const { data, isLoading, isFetched } = useGetProfile(user?.uuid);
+  console.log("Profile Data:", data); // Check if this logs correctly in production
 
   console.log(data, isFetched);
 
