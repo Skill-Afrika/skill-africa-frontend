@@ -5,6 +5,8 @@ import img2 from "./Learning.svg";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
+import Link from "next/link";
+import PulsatingButton from "@/components/magicui/pulsating-button";
 // import img3 from "./Profiles.svg";
 // import img4 from "./Profiles (1).svg";
 // import img5 from "./VIP.svg";
@@ -36,6 +38,27 @@ const services = [
   },
 ];
 
+const reasons = [
+  {
+    icon: img2,
+    textHead: "Empowering the Next Generation",
+    textBody:
+      "Skill Afrika provides critical training and development programs to empower young Africans to thrive in the global digital economy.",
+  },
+  {
+    icon: img2,
+    textHead: "Bridging the gap ",
+    textBody:
+      "Africa's potential for digital growth is vast. However, a significant gap exists in tech skills and leadership amongst the youth.",
+  },
+  {
+    icon: img2,
+    textHead: "Building a Community ",
+    textBody:
+      "By nurturing a vibrant community of tech-savvy leaders, Skill Afrika aims to create a self-sustaining cycle of innovation and growth.",
+  },
+];
+
 const Service = () => {
   useEffect(() => {
     AOS.init();
@@ -43,7 +66,7 @@ const Service = () => {
 
   return (
     <div className='w-11/12 mx-auto flex flex-col justify-between'>
-      <div className='md:w-1/2 mx-auto text-center my-5'>
+      <div className='md:w-1/2 mx-auto text-center my-10'>
         <h1 className='text-3xl font-semibold mb-3'>
           Bridging the gap, building dreams.
         </h1>
@@ -52,17 +75,44 @@ const Service = () => {
           freelance projects from anywhere in the world.
         </h2>
       </div>
+
+      <div className='md:flex justify-center items-center'>
+        <p className='md:w-1/3 md:text-8xl text-3xl font-semibold text-center mb-5 md:mb-0'>Why Skill Afrika?</p>
+        <div className='md:w-2/3 flex flex-wrap justify-center gap-x-10 gap-y-5 md:gap-y-0'>
+          {reasons.map((reason, index) => {
+            return (
+              <div
+                key={index}
+                className='w-80 h-80 bg-orange-50 text-center rounded-full flex flex-col justify-center'>
+                <div className='p-10 flex flex-col gap-2'>
+                  <Image src={reason.icon} className='mx-auto' alt='img' />
+                  <h1 className='font-semibold text-xl'>{reason.textHead}</h1>
+                  <p className='text-sm'>{reason.textBody}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <Link href='/community'>
+        <PulsatingButton
+          pulseColor='#fed7aa'
+          className='mx-auto mt-10 px-4 py-2 bg-orange-500 md:text-xl'>
+          Join the community
+        </PulsatingButton>
+      </Link>
+
       <h1 className='text-3xl font-semibold my-10 text-center'>
-        We provides the range of services.
+        We provide the range of services.
       </h1>
 
       <div className='flex md:flex-row flex-col flex-wrap justify-center md:gap-10 gap-5'>
         {services.map((card, index) => {
           return (
             <div
-              key={index} // Add a unique key prop here
-              className='bg-orange-50 md:w-5/12 flex flex-col justify-between gap-2 rounded-3xl px-5 py-4'
-            >
+              key={index}
+              className='bg-orange-50 md:w-5/12 flex flex-col justify-between gap-2 rounded-3xl px-5 py-4'>
               <Image src={card.icon} alt='img' />
               <h1 className='font-semibold text-lg'>{card.textHead}</h1>
               <p className=''>{card.textBody}</p>
@@ -70,7 +120,6 @@ const Service = () => {
           );
         })}
       </div>
-
     </div>
   );
 };
