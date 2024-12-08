@@ -13,6 +13,7 @@ import {
 import ButtonClick from "../form/button";
 import { enqueueSnackbar } from "notistack";
 import { ThreeDots } from "react-loader-spinner";
+import MultipleTextField from "../form/multiple-field";
 
 const steps = [
   "Profile Details",
@@ -25,8 +26,11 @@ interface StepperFormTypes extends FormTypes {
   fname: string;
   lname: string;
   bio: string;
-  handleSelectChange: (e: SelectChangeEvent) => void;
-  niche: string;
+  handleSelectChange: (
+    event: ChangeEvent<{}>,
+    newValue: Array<{ id: number }>
+  ) => void;
+  niche: number[];
   nicheItems: MenuItems[];
   uploadedPhoto?: CloudinaryUploadWidgetInfo;
   profileData?: any;
@@ -147,12 +151,12 @@ export default function StepperForm({
           )}
 
           {activeStep === 1 && (
-            <CustomizedSelectField
+            <MultipleTextField
               id='niche'
               value={niche}
-              placeholder='Niche'
               handleSelectChange={handleSelectChange}
               menuItems={nicheItems}
+              placeholder='Niche'
             />
           )}
 

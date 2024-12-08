@@ -24,7 +24,8 @@ export const ProfileUpdate = () => {
     bio: "",
   });
 
-  const [niche, setNiche] = useState("");
+  const [nicheID, setNicheID] = useState<number[]>([]);
+
   const [uploadedPhoto, setUploadedPhoto] =
     useState<CloudinaryUploadWidgetInfo>();
 
@@ -36,7 +37,7 @@ export const ProfileUpdate = () => {
         lname: profileData.last_name,
         bio: profileData.bio,
       });
-      setNiche(profileData.niche.id);
+      setNicheID(profileData?.niche?.id);
     }
   }, [profileData]);
 
@@ -72,8 +73,11 @@ export const ProfileUpdate = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSelectChange = (e: SelectChangeEvent) => {
-    setNiche(e.target.value as string);
+  const handleSelectChange = (
+    event: ChangeEvent<{}>,
+    newValue: Array<{ id: number }>
+  ) => {
+    setNicheID(newValue.map((option) => option.id));
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -90,10 +94,10 @@ export const ProfileUpdate = () => {
           "https://res.cloudinary.com/dbez0fyq6/image/upload/v1729271237/ngzlkwvpxawd8w4lxsoo.png",
         first_name: fname,
         last_name: lname,
-        niche: niche,
+        niche: nicheID,
       };
-      // console.log(details);
-      mutate({ id: user?.uuid, details });
+      console.log(details);
+      // mutate({ id: user?.uuid, details });
     }
   };
 
@@ -102,8 +106,10 @@ export const ProfileUpdate = () => {
   }
 
   const nicheItems = [
-    { id: 1, niche: "Freelancer" },
-    { id: 2, niche: "Tech" },
+    { niche: "Frontend Developer", id: 1 },
+    { niche: "Backend Developer", id: 2 },
+    { niche: "Product Manager", id: 3 },
+    { niche: "Product Designer", id: 4 },
   ];
 
   return (
@@ -120,7 +126,7 @@ export const ProfileUpdate = () => {
               <StepperForm
                 fname={fname}
                 lname={lname}
-                niche={niche}
+                niche={nicheID}
                 bio={bio}
                 error={error}
                 nicheItems={nicheItems}
@@ -141,6 +147,7 @@ export const ProfileUpdate = () => {
             width={100}
             height={100}
             className='w-full h-screen float-end'
+            priority
           />
         </div>
       </div>
