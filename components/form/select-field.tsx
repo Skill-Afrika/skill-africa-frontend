@@ -34,7 +34,8 @@ function CustomizedSelectField({
           id={id}
           value={value}
           label={placeholder}
-          onChange={handleSelectChange}>
+          // onChange={handleSelectChange}
+        >
           <MenuItem value=''>
             <em>None</em>
           </MenuItem>

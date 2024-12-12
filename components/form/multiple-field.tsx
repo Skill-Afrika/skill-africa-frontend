@@ -26,7 +26,7 @@ export default function MultipleTextField({
           id={id}
           options={menuItems}
           getOptionLabel={(option) => option.niche}
-          value={menuItems.filter((niche) => value.includes(niche.id))}
+          value={menuItems.filter((niche) => value?.includes(niche.id))}
           onChange={handleSelectChange}
           renderTags={(
             value: Array<{ id: number; niche: string }>,

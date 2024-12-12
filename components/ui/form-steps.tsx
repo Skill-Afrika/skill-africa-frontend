@@ -68,7 +68,7 @@ export default function StepperForm({
     }
 
     if (activeStep === 1) {
-      !niche ? handleError("Please select a niche") : nextSlide();
+      niche.length === 0 ? handleError("Please select a niche") : nextSlide();
     }
 
     if (activeStep === 2) {
@@ -156,7 +156,7 @@ export default function StepperForm({
               value={niche}
               handleSelectChange={handleSelectChange}
               menuItems={nicheItems}
-              placeholder='Niche'
+              placeholder='Select Niche'
             />
           )}
 
