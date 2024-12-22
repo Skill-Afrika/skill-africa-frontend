@@ -42,7 +42,7 @@ function CustomizedSelectField({
           {menuItems.map((item, index) => {
             return (
               <MenuItem key={index} value={item.id}>
-                {item.niche}
+                {item.value}
               </MenuItem>
             );
           })}

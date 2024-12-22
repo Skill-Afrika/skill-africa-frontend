@@ -5,9 +5,9 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import ButtonClick from "./form/button";
+import ButtonClick from "../form/button";
 import { ProfileInfo } from "./profile-info";
-import { OutlinedButton } from "./ui/outlined-button";
+import { OutlinedButton } from "../ui/outlined-button";
 
 const ProfilePage = () => {
   const { data: session } = useSession();
@@ -46,7 +46,8 @@ const ProfilePage = () => {
               {data?.first_name} {data?.last_name || user?.username}
             </h2>
             <p className='text-xl font-semibold my-2'>
-              Creative Frontend developer | Community manager
+              {data?.niches[0] ||
+                "Creative Frontend developer | Community manager"}
             </p>
             <div className='flex flex-wrap md:gap-5 gap-2'>
               <div className='text-gray-600 flex items-center gap-1'>
@@ -59,8 +60,9 @@ const ProfilePage = () => {
               </div>
             </div>
             <div className='flex flex-wrap gap-3 my-3'>
-              <OutlinedButton>Frontend Developer</OutlinedButton>
-              <OutlinedButton>UX Researcher</OutlinedButton>
+              {data?.niches?.map((niche: string, index: number) => {
+                return <OutlinedButton key={index}>{niche}</OutlinedButton>;
+              })}
             </div>
             <Link
               href='/profile/prof-reg'

@@ -17,12 +17,13 @@ export interface FormTypes {
 
 export interface MenuItems {
   id: number;
-  niche: string;
+  value: string;
 }
 
 export interface SelectTypes {
   id: string;
   value: number[];
+  label: string;
   placeholder: string;
   menuItems: MenuItems[];
   handleSelectChange?: (
@@ -36,5 +37,7 @@ export interface ProfileDetails {
   last_name: string;
   bio: string;
   profile_pic?: string;
-  niche: number[];
+  niches: number[];
+  skills: number[];
+  languages: number[];
 }

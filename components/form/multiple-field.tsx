@@ -9,6 +9,7 @@ const theme = createTheme({ palette: { primary: { main: "#F97316" } } });
 export default function MultipleTextField({
   id,
   handleSelectChange,
+  label,
   value,
   placeholder,
   menuItems,
@@ -25,11 +26,11 @@ export default function MultipleTextField({
           limitTags={3}
           id={id}
           options={menuItems}
-          getOptionLabel={(option) => option.niche}
-          value={menuItems.filter((niche) => value?.includes(niche.id))}
+          getOptionLabel={(option) => option.value}
+          value={menuItems.filter((values) => value?.includes(values.id))}
           onChange={handleSelectChange}
           renderTags={(
-            value: Array<{ id: number; niche: string }>,
+            value: Array<{ id: number; value: string }>,
             getTagProps
           ) =>
             value.map((option, index) => {
@@ -38,7 +39,7 @@ export default function MultipleTextField({
                 <Chip
                   variant='outlined'
                   color='primary'
-                  label={option.niche}
+                  label={option.value}
                   key={key}
                   {...tagProps}
                 />
@@ -46,7 +47,7 @@ export default function MultipleTextField({
             })
           }
           renderInput={(params) => (
-            <TextField {...params} label='Niche' placeholder={placeholder} />
+            <TextField {...params} label={label} placeholder={placeholder} />
           )}
           sx={{
             color: "orange",

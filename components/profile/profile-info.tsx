@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { OutlinedButton } from "./ui/outlined-button";
+import Overview from "./ui/profile-overview";
+import WorksExp from "./ui/works-exp";
 
 const profileNavs = [
   { id: "overview", nav: "Profile Overview" },
@@ -9,6 +10,18 @@ const profileNavs = [
 
 export const ProfileInfo = ({ data }: any) => {
   const [active, setActive] = useState("overview");
+
+  const renderTabContent = () => {
+    switch (active) {
+      case "overview":
+        return <Overview data={data} />;
+      case "works":
+        return <WorksExp data={data} />;
+
+      default:
+        return null;
+    }
+  };
 
   return (
     <>
@@ -28,19 +41,7 @@ export const ProfileInfo = ({ data }: any) => {
           );
         })}
       </div>
-
-      <div className='flex flex-col gap-5 my-5'>
-        <div className=''>
-          <h2 className='font-semibold text-xl mb-1'>About me</h2>
-          {data?.bio && <div className='text-lg'>{data?.bio}</div>}
-        </div>
-        <div className=''>
-          <h2 className='font-semibold text-xl mb-2'>Skills</h2>
-          {data?.niche?.name && (
-            <OutlinedButton>{data?.niche?.name}</OutlinedButton>
-          )}
-        </div>
-      </div>
+      {renderTabContent()}
     </>
   );
 };

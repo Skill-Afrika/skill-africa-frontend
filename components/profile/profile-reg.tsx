@@ -1,7 +1,14 @@
 "use client";
 
 import { SelectChangeEvent } from "@mui/material";
-import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import React, {
+  ChangeEvent,
+  Dispatch,
+  FormEvent,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import {
   // CldImage,
   CloudinaryUploadWidgetInfo,
@@ -11,7 +18,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { enqueueSnackbar, SnackbarProvider } from "notistack";
 import Image from "next/image";
-import StepperForm from "./ui/form-steps";
+import StepperForm from "../ui/form-steps";
 
 export const ProfileUpdate = () => {
   const { data: session } = useSession();
@@ -25,6 +32,8 @@ export const ProfileUpdate = () => {
   });
 
   const [nicheID, setNicheID] = useState<number[]>([]);
+  const [stackID, setStackID] = useState<number[]>([]);
+  const [languages, setLanguages] = useState<number[]>([]);
 
   const [uploadedPhoto, setUploadedPhoto] =
     useState<CloudinaryUploadWidgetInfo>();
@@ -37,7 +46,9 @@ export const ProfileUpdate = () => {
         lname: profileData.last_name,
         bio: profileData.bio,
       });
-      setNicheID(profileData?.niche?.id);
+      setNicheID(profileData?.niches);
+      setStackID(profileData?.skills);
+      setLanguages(profileData?.languages);
     }
   }, [profileData]);
 
@@ -73,12 +84,11 @@ export const ProfileUpdate = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSelectChange = (
-    event: ChangeEvent<{}>,
-    newValue: Array<{ id: number }>
-  ) => {
-    setNicheID(newValue.map((option) => option.id));
-  };
+  const handleSelectChange =
+    (setter: Dispatch<SetStateAction<number[]>>) =>
+    (event: ChangeEvent<{}>, newValue: Array<{ id: number }>) => {
+      setter(newValue.map((option) => option.id));
+    };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -94,10 +104,12 @@ export const ProfileUpdate = () => {
           "https://res.cloudinary.com/dbez0fyq6/image/upload/v1729271237/ngzlkwvpxawd8w4lxsoo.png",
         first_name: fname,
         last_name: lname,
-        niche: nicheID,
+        niches: nicheID,
+        skills: stackID,
+        languages: languages,
       };
       console.log(details);
-      // mutate({ id: user?.uuid, details });
+      mutate({ id: user?.uuid, details });
     }
   };
 
@@ -106,10 +118,23 @@ export const ProfileUpdate = () => {
   }
 
   const nicheItems = [
-    { niche: "Frontend Developer", id: 1 },
-    { niche: "Backend Developer", id: 2 },
-    { niche: "Product Manager", id: 3 },
-    { niche: "Product Designer", id: 4 },
+    { value: "Frontend Developer", id: 4 },
+    { value: "Backend Developer", id: 5 },
+    { value: "Product Manager", id: 6 },
+    { value: "Product Designer", id: 7 },
+  ];
+
+  const stackItems = [
+    { value: "HTML", id: 1 },
+    { value: "CSS", id: 2 },
+    { value: "JavaScript", id: 3 },
+  ];
+
+  const languageItems = [
+    { value: "English", id: 1 },
+    { value: "Yoruba", id: 2 },
+    { value: "Igbo", id: 3 },
+    { value: "Hausa", id: 4 },
   ];
 
   return (
@@ -127,14 +152,20 @@ export const ProfileUpdate = () => {
                 fname={fname}
                 lname={lname}
                 niche={nicheID}
+                stack={stackID}
+                languages={languages}
+                languageItems={languageItems}
                 bio={bio}
                 error={error}
                 nicheItems={nicheItems}
+                stackItems={stackItems}
                 profileData={profileData}
                 uploadedPhoto={uploadedPhoto}
                 setUploadedPhoto={setUploadedPhoto}
                 handleChange={handleChange}
-                handleSelectChange={handleSelectChange}
+                handleSelectNiche={handleSelectChange(setNicheID)}
+                handleSelectStack={handleSelectChange(setStackID)}
+                handleSelectLanguage={handleSelectChange(setLanguages)}
                 isPending={isPending}
               />
             </form>
