@@ -13,20 +13,23 @@ export interface FormTypes {
   handleChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   multiline?: boolean;
   rows?: number;
-  
 }
 
 export interface MenuItems {
   id: number;
-  niche: string;
+  value: string;
 }
 
 export interface SelectTypes {
   id: string;
-  value: string;
+  value: number[];
+  label: string;
   placeholder: string;
   menuItems: MenuItems[];
-  handleSelectChange?: (e: SelectChangeEvent) => void;
+  handleSelectChange?: (
+    event: ChangeEvent<{}>,
+    newValue: Array<{ id: number }>
+  ) => void;
 }
 
 export interface ProfileDetails {
@@ -34,5 +37,7 @@ export interface ProfileDetails {
   last_name: string;
   bio: string;
   profile_pic?: string;
-  niche: string;
+  niches: number[];
+  skills: number[];
+  languages: number[];
 }

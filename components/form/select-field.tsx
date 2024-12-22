@@ -34,14 +34,15 @@ function CustomizedSelectField({
           id={id}
           value={value}
           label={placeholder}
-          onChange={handleSelectChange}>
+          // onChange={handleSelectChange}
+        >
           <MenuItem value=''>
             <em>None</em>
           </MenuItem>
           {menuItems.map((item, index) => {
             return (
               <MenuItem key={index} value={item.id}>
-                {item.niche}
+                {item.value}
               </MenuItem>
             );
           })}

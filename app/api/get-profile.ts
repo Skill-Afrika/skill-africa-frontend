@@ -1,4 +1,4 @@
-import { ProfileUpdate } from "@/components/profile-reg";
+import { ProfileUpdate } from "@/components/profile/profile-reg";
 import client from "@/lib/services/api/client";
 import { ProfileDetails } from "@/types/types";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
