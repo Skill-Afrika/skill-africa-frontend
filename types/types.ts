@@ -41,3 +41,19 @@ export interface ProfileDetails {
   skills: number[];
   languages: number[];
 }
+
+export interface NicheSkillLang {
+  id: number;
+  niche?: string;
+  skill?: string;
+  language?: string;
+}
+
+export interface ProjectDetails {
+  id?: number;
+  name: string;
+  url: string;
+  skills: string;
+  tools: string;
+  description: string;
+}

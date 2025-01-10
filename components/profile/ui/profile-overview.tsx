@@ -1,4 +1,5 @@
 import { OutlinedButton } from "@/components/ui/outlined-button";
+import { NicheSkillLang } from "@/types/types";
 
 export default function Overview({ data }: { data: any }) {
   return (
@@ -13,8 +14,8 @@ export default function Overview({ data }: { data: any }) {
       <div className=''>
         <h2 className='font-semibold text-xl mb-2'>Skills</h2>
         <div className='flex flex-wrap gap-3 my-3'>
-          {data?.skills?.map((skill: string, index: number) => {
-            return <OutlinedButton key={index}>{skill}</OutlinedButton>;
+          {data?.skills?.map((skill: NicheSkillLang) => {
+            return <OutlinedButton key={skill.id}>{skill.skill}</OutlinedButton>;
           })}
           <OutlinedButton className='font-semibold text-orange-500'>
             + Add Skill
@@ -26,8 +27,8 @@ export default function Overview({ data }: { data: any }) {
       <div className=''>
         <h2 className='font-semibold text-xl mb-2'>Language(s)</h2>
         <div className='flex flex-wrap gap-3 my-3'>
-          {data?.languages?.map((language: string, index: number) => {
-            return <OutlinedButton key={index}>{language}</OutlinedButton>;
+          {data?.languages?.map((language: NicheSkillLang) => {
+            return <OutlinedButton key={language.id}>{language.language}</OutlinedButton>;
           })}
           <OutlinedButton className='font-semibold text-orange-500'>
             + Add Language

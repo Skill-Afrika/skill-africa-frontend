@@ -16,7 +16,7 @@ export const ProfileInfo = ({ data }: any) => {
       case "overview":
         return <Overview data={data} />;
       case "works":
-        return <WorksExp data={data} />;
+        return <WorksExp />;
 
       default:
         return null;
