@@ -27,7 +27,7 @@ export default function WorksPro() {
   const projectsData = data?.results;
 
   if (isLoading) {
-    return <Loader className="h-40" />;
+    return <Loader className='h-40' />;
   }
 
   if (!projectsData?.length) {
@@ -47,7 +47,7 @@ export default function WorksPro() {
       ))}
     </div>
   );
-} 
+}
 
 // Dialog Item UI used above
 export function DialogItem({ className }: { className?: string }) {
