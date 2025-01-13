@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Overview from "./ui/profile-overview";
-import WorksExp from "./ui/works-exp";
+import { SnackbarProvider } from "notistack";
+import WorksPro from "./ui/works-projects";
+import Experience from "./ui/experience";
 
 const profileNavs = [
   { id: "overview", nav: "Profile Overview" },
@@ -16,15 +18,16 @@ export const ProfileInfo = ({ data }: any) => {
       case "overview":
         return <Overview data={data} />;
       case "works":
-        return <WorksExp />;
-
+        return <WorksPro />;
+      case "experience":
+        return <Experience />;
       default:
         return null;
     }
   };
 
   return (
-    <>
+    <SnackbarProvider maxSnack={3}>
       <div className='flex flex-wrap items-center gap-3 mt-10'>
         {profileNavs.map((profile, index) => {
           return (
@@ -42,6 +45,6 @@ export const ProfileInfo = ({ data }: any) => {
         })}
       </div>
       {renderTabContent()}
-    </>
+    </SnackbarProvider>
   );
 };

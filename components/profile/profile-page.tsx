@@ -9,8 +9,7 @@ import ButtonClick from "../form/button";
 import { ProfileInfo } from "./profile-info";
 import { OutlinedButton } from "../ui/outlined-button";
 import { NicheSkillLang } from "@/types/types";
-import { Input } from "../ui/input";
-import client from "@/lib/services/api/client";
+import Loader from "../ui/loader";
 
 const ProfilePage = () => {
   const { data: session } = useSession();
@@ -28,7 +27,7 @@ const ProfilePage = () => {
   }, [isFetched, data]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   return (

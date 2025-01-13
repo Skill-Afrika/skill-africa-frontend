@@ -1,6 +1,6 @@
 import { ProfileUpdate } from "@/components/profile/profile-reg";
 import client from "@/lib/services/api/client";
-import { ProfileDetails, ProjectDetails } from "@/types/types";
+import { experienceDetails, ProfileDetails, ProjectDetails } from "@/types/types";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export function useGetProfile(id?: string) {
@@ -64,6 +64,45 @@ export function useAddProjects() {
       const res = await client.post(
         `freelancer/profiles/${id}/project`,
         projectDetails
+      );
+      return res.data;
+    },
+
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["project"] });
+    },
+  });
+}
+
+export function useGetExperiences(id?: string) {
+  return useQuery({
+    queryKey: ["project", id],
+    queryFn: async () => {
+      if (!id) throw new Error("Profile ID is required");
+      const res = await client.get(
+        `freelancer/profiles/${id}/work-experiences`
+      );
+      return res.data;
+    },
+    enabled: !!id,
+  });
+}
+
+// Add experience mutation
+export function useAddExperience() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async ({
+      id,
+      experienceDetails,
+    }: {
+      id?: string;
+      experienceDetails: experienceDetails;
+    }) => {
+      const res = await client.post(
+        `freelancer/profiles/${id}/work-experience`,
+        experienceDetails
       );
       return res.data;
     },

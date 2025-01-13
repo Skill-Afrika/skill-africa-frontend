@@ -57,3 +57,14 @@ export interface ProjectDetails {
   tools: string;
   description: string;
 }
+
+export interface experienceDetails {
+  id?: number;
+  job_title: string;
+  company: string;
+  company_url: string;
+  start_date: string;
+  end_date: string;
+  description: string;
+  current_role: boolean;
+}

@@ -1,6 +1,5 @@
 "use client";
 
-import { SelectChangeEvent } from "@mui/material";
 import React, {
   ChangeEvent,
   Dispatch,
@@ -20,6 +19,8 @@ import { enqueueSnackbar, SnackbarProvider } from "notistack";
 import Image from "next/image";
 import StepperForm from "../ui/form-steps";
 import { NicheSkillLang } from "@/types/types";
+import Loading from "@/app/(auth)/profile/loading";
+import Loader from "../ui/loader";
 
 export const ProfileUpdate = () => {
   const { data: session } = useSession();
@@ -117,7 +118,7 @@ export const ProfileUpdate = () => {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   const nicheItems = [
