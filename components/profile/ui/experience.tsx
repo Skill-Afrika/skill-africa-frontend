@@ -173,8 +173,8 @@ export function DialogItem({ className }: { className?: string }) {
                   placeholder='e.g. Cowrywise'
                 />
                 {error && !company && (
-                  <div className='text-xs text-red-500 col-span-4'>
-                    Please enter the company's name
+                  <div className= 'text-xs text-red-500 col-span-4'>
+                    Please enter the company&apos;s name
                   </div>
                 )}
               </div>
@@ -190,7 +190,7 @@ export function DialogItem({ className }: { className?: string }) {
                 />
                 {error && !location && (
                   <div className='text-xs text-red-500 col-span-4'>
-                    Please enter the company's location
+                    Please enter the company&apos;s location
                   </div>
                 )}
               </div>
@@ -251,7 +251,7 @@ export function DialogItem({ className }: { className?: string }) {
             </div>
 
             <div className='grid grid-cols-4 items-center gap-2'>
-              <Label htmlFor='url'> Company Website</Label>
+              <Label htmlFor='url'> Company&apos;s Website</Label>
               <Input
                 id='url'
                 name='url'
@@ -262,7 +262,7 @@ export function DialogItem({ className }: { className?: string }) {
               />
               {error && !url && (
                 <div className='text-xs text-red-500 col-span-4'>
-                  Please enter the company's URL
+                  Please enter the company&apos;s URL
                 </div>
               )}
             </div>
