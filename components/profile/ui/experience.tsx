@@ -15,7 +15,6 @@ import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useAddExperience, useGetExperiences } from "@/app/api/get-profile";
 import { experienceDetails } from "@/types/types";
-import WorksProjects from "@/components/ui/works-projects";
 import Loader from "@/components/ui/loader";
 import { ThreeDots } from "react-loader-spinner";
 import { enqueueSnackbar } from "notistack";

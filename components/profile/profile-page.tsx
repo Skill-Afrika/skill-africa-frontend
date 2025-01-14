@@ -4,7 +4,7 @@ import { useGetProfile } from "@/app/api/get-profile";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ChangeEvent, useEffect, useState } from "react";
+import { useEffect } from "react";
 import ButtonClick from "../form/button";
 import { ProfileInfo } from "./profile-info";
 import { OutlinedButton } from "../ui/outlined-button";

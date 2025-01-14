@@ -21,12 +21,12 @@ export default function WorksExperience({
 
   return (
     <div className='mb-5'>
-      <div className='text-xl font-semibold'>{project.job_title}</div>
-      <div className='mt-1'>
+      <div className='text-2xl font-semibold'>{project.job_title}</div>
+      <div className='mt-1 font-medium'>
         at {project.company} | {project.location || "Lagos, Nigeria"} |{" "}
         {getDate(project.start_date)} - {getEndDate(project.end_date)}
       </div>
-      <ul className='list-disc list-inside font-thin my-2 text-slate-700 text-sm'>
+      <ul className='list-disc list-inside my-2'>
         {description.map((desc) => (
           <li>{desc}</li>
         ))}
