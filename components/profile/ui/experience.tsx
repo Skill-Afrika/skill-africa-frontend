@@ -14,18 +14,21 @@ import { Label } from "@/components/ui/label";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useAddExperience, useGetExperiences } from "@/app/api/get-profile";
-import { ProjectDetails } from "@/types/types";
+import { experienceDetails } from "@/types/types";
 import WorksProjects from "@/components/ui/works-projects";
 import Loader from "@/components/ui/loader";
 import { ThreeDots } from "react-loader-spinner";
 import { enqueueSnackbar } from "notistack";
 import { Checkbox, FormControlLabel } from "@mui/material";
+import WorksExperience from "@/components/ui/works-experience";
 
 export default function Experience() {
   const { data: session } = useSession();
   const user = session?.user?.user;
   const { data, isLoading } = useGetExperiences(user?.uuid);
   const workExperiences = data?.results;
+
+  console.log(workExperiences);
 
   if (isLoading) {
     return <Loader className='h-40' />;
@@ -43,17 +46,17 @@ export default function Experience() {
   }
 
   return (
-    <div className='flex flex-wrap gap-[2%] gap-y-5 my-5'>
-      <DialogItem className='md:w-[32%] w-[49%] h-32' />
-      {workExperiences.map((project: ProjectDetails) => (
-        <WorksProjects key={project.id} project={project} />
+    <div className='my-5'>
+      <DialogItem size={16} className='w-fit px-3 py-1 mb-4 rounded-full bg-white border border-orange-500 font-light text-sm' />
+      {workExperiences.map((project: experienceDetails) => (
+        <WorksExperience key={project.id} project={project} />
       ))}
     </div>
   );
 }
 
 // Dialog Item UI used above
-export function DialogItem({ className }: { className?: string }) {
+export function DialogItem({ className, size }: { className?: string, size?: number }) {
   const { data: session } = useSession();
   const user = session?.user?.user;
   const { mutate, isPending, isSuccess } = useAddExperience();
@@ -108,34 +111,29 @@ export function DialogItem({ className }: { className?: string }) {
 
     console.log(experienceDetails);
 
-    enqueueSnackbar("Experience Added", { variant: "success" });
+    mutate({ id: user?.uuid, experienceDetails });
 
-    // mutate({ id: user?.uuid, experienceDetails });
-  };
-
-  useEffect(() => {
     if (isSuccess) {
-      enqueueSnackbar("Profile Added", { variant: "success" });
+      enqueueSnackbar("Experience Added", { variant: "success" });
       setFormData({
+        ...formData,
         title: "",
         url: "",
-        location: "",
-        startDate: "",
-        endDate: "",
-        desc: "",
         company: "",
-        currentRole,
+        location: "",
+        desc: "",
       });
+
       setError(false);
     }
-  }, [isSuccess]);
+  };
 
   return (
     <Dialog>
       <DialogTrigger asChild>
         <div
           className={`${className} flex flex-col md:flex-row items-center justify-center font-semibold bg-orange-500 text-orange-500 bg-opacity-10 gap-2 cursor-pointer`}>
-          <CirclePlus />
+          <CirclePlus size={size} />
           Add Experience
         </div>
       </DialogTrigger>
@@ -173,7 +171,7 @@ export function DialogItem({ className }: { className?: string }) {
                   placeholder='e.g. Cowrywise'
                 />
                 {error && !company && (
-                  <div className= 'text-xs text-red-500 col-span-4'>
+                  <div className='text-xs text-red-500 col-span-4'>
                     Please enter the company&apos;s name
                   </div>
                 )}

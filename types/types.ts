@@ -67,4 +67,5 @@ export interface experienceDetails {
   end_date: string;
   description: string;
   current_role: boolean;
+  location: string;
 }

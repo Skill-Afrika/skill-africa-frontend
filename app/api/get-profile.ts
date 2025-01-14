@@ -1,6 +1,10 @@
 import { ProfileUpdate } from "@/components/profile/profile-reg";
 import client from "@/lib/services/api/client";
-import { experienceDetails, ProfileDetails, ProjectDetails } from "@/types/types";
+import {
+  experienceDetails,
+  ProfileDetails,
+  ProjectDetails,
+} from "@/types/types";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export function useGetProfile(id?: string) {
@@ -76,7 +80,7 @@ export function useAddProjects() {
 
 export function useGetExperiences(id?: string) {
   return useQuery({
-    queryKey: ["project", id],
+    queryKey: ["experience", id],
     queryFn: async () => {
       if (!id) throw new Error("Profile ID is required");
       const res = await client.get(
@@ -108,7 +112,7 @@ export function useAddExperience() {
     },
 
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["project"] });
+      queryClient.invalidateQueries({ queryKey: ["experience"] });
     },
   });
 }

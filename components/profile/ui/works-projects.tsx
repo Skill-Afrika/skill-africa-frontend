@@ -89,15 +89,13 @@ export function DialogItem({ className }: { className?: string }) {
     };
 
     mutate({ id: user?.uuid, projectDetails });
-  };
 
-  useEffect(() => {
     if (isSuccess) {
       enqueueSnackbar("Profile Added", { variant: "success" });
       setFormData({ title: "", url: "", skills: "", tools: "", desc: "" });
       setError(false);
     }
-  }, [isSuccess]);
+  };
 
   return (
     <Dialog>
