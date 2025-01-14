@@ -27,8 +27,8 @@ export default function WorksExperience({
         {getDate(project.start_date)} - {getEndDate(project.end_date)}
       </div>
       <ul className='list-disc list-inside my-2'>
-        {description.map((desc) => (
-          <li>{desc}</li>
+        {description.map((desc, index) => (
+          <li key={index}>{desc}</li>
         ))}
       </ul>
     </div>
