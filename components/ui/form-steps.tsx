@@ -13,10 +13,13 @@ import {
 import ButtonClick from "../form/button";
 import { enqueueSnackbar } from "notistack";
 import { ThreeDots } from "react-loader-spinner";
+import MultipleTextField from "../form/multiple-field";
 
 const steps = [
   "Profile Details",
   "Select your Niche",
+  "Select your skills",
+  "Select your Languages",
   "Enter your bio",
   "Upload a profile photo",
 ];
@@ -25,9 +28,24 @@ interface StepperFormTypes extends FormTypes {
   fname: string;
   lname: string;
   bio: string;
-  handleSelectChange: (e: SelectChangeEvent) => void;
-  niche: string;
+  handleSelectNiche: (
+    event: ChangeEvent<{}>,
+    newValue: Array<{ id: number }>
+  ) => void;
+  handleSelectStack: (
+    event: ChangeEvent<{}>,
+    newValue: Array<{ id: number }>
+  ) => void;
+  handleSelectLanguage: (
+    event: ChangeEvent<{}>,
+    newValue: Array<{ id: number }>
+  ) => void;
+  niche: number[];
+  stack: number[];
+  languages: number[];
   nicheItems: MenuItems[];
+  stackItems: MenuItems[];
+  languageItems: MenuItems[];
   uploadedPhoto?: CloudinaryUploadWidgetInfo;
   profileData?: any;
   setUploadedPhoto: (e: CloudinaryUploadWidgetInfo) => void;
@@ -39,9 +57,15 @@ export default function StepperForm({
   lname,
   error,
   handleChange,
-  handleSelectChange,
+  handleSelectNiche,
+  handleSelectStack,
+  handleSelectLanguage,
   niche,
+  stack,
+  languages,
+  stackItems,
   nicheItems,
+  languageItems,
   bio,
   uploadedPhoto,
   profileData,
@@ -64,14 +88,22 @@ export default function StepperForm({
     }
 
     if (activeStep === 1) {
-      !niche ? handleError("Please select a niche") : nextSlide();
+      niche.length === 0 ? handleError("Please select a niche") : nextSlide();
     }
 
     if (activeStep === 2) {
-      !bio ? handleError("Please enter your bio") : nextSlide();
+      stack.length === 0 ? handleError("Please select a skill") : nextSlide();
     }
 
     if (activeStep === 3) {
+      languages.length === 0 ? handleError("Please select a Language") : nextSlide();
+    }
+
+    if (activeStep === 4) {
+      !bio ? handleError("Please enter your bio") : nextSlide();
+    }
+
+    if (activeStep === 5) {
       !uploadedPhoto && !profileData?.profile_pic
         ? handleError("Please upload a photo")
         : nextSlide();
@@ -147,16 +179,39 @@ export default function StepperForm({
           )}
 
           {activeStep === 1 && (
-            <CustomizedSelectField
+            <MultipleTextField
               id='niche'
               value={niche}
-              placeholder='Niche'
-              handleSelectChange={handleSelectChange}
+              handleSelectChange={handleSelectNiche}
               menuItems={nicheItems}
+              label='Niche'
+              placeholder='Select Niche'
             />
           )}
 
           {activeStep === 2 && (
+            <MultipleTextField
+              id='stack'
+              value={stack}
+              handleSelectChange={handleSelectStack}
+              menuItems={stackItems}
+              label='Skills'
+              placeholder='Select your stacks'
+            />
+          )}
+
+          {activeStep === 3 && (
+            <MultipleTextField
+              id='language'
+              value={languages}
+              handleSelectChange={handleSelectLanguage}
+              menuItems={languageItems}
+              label='Language'
+              placeholder='Select your Languages'
+            />
+          )}
+
+          {activeStep === 4 && (
             <CustomizedTextField
               id='bio'
               type='text'
@@ -171,7 +226,7 @@ export default function StepperForm({
             />
           )}
 
-          {activeStep === 3 && (
+          {activeStep === 5 && (
             <>
               {uploadedPhoto || profileData?.profile_pic ? (
                 <img

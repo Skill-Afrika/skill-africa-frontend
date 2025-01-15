@@ -1,7 +1,13 @@
 "use client";
 
-import { SelectChangeEvent } from "@mui/material";
-import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import React, {
+  ChangeEvent,
+  Dispatch,
+  FormEvent,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import {
   // CldImage,
   CloudinaryUploadWidgetInfo,
@@ -11,7 +17,10 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { enqueueSnackbar, SnackbarProvider } from "notistack";
 import Image from "next/image";
-import StepperForm from "./ui/form-steps";
+import StepperForm from "../ui/form-steps";
+import { NicheSkillLang } from "@/types/types";
+import Loading from "@/app/(auth)/profile/loading";
+import Loader from "../ui/loader";
 
 export const ProfileUpdate = () => {
   const { data: session } = useSession();
@@ -24,7 +33,10 @@ export const ProfileUpdate = () => {
     bio: "",
   });
 
-  const [niche, setNiche] = useState("");
+  const [nicheID, setNicheID] = useState<number[]>([]);
+  const [stackID, setStackID] = useState<number[]>([]);
+  const [languages, setLanguages] = useState<number[]>([]);
+
   const [uploadedPhoto, setUploadedPhoto] =
     useState<CloudinaryUploadWidgetInfo>();
 
@@ -36,7 +48,11 @@ export const ProfileUpdate = () => {
         lname: profileData.last_name,
         bio: profileData.bio,
       });
-      setNiche(profileData.niche.id);
+      setNicheID(profileData?.niches?.map((niche: NicheSkillLang) => niche.id));
+      setStackID(profileData?.skills?.map((skill: NicheSkillLang) => skill.id));
+      setLanguages(
+        profileData?.languages?.map((language: NicheSkillLang) => language.id)
+      );
     }
   }, [profileData]);
 
@@ -72,9 +88,11 @@ export const ProfileUpdate = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSelectChange = (e: SelectChangeEvent) => {
-    setNiche(e.target.value as string);
-  };
+  const handleSelectChange =
+    (setter: Dispatch<SetStateAction<number[]>>) =>
+    (event: ChangeEvent<{}>, newValue: Array<{ id: number }>) => {
+      setter(newValue.map((option) => option.id));
+    };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -90,20 +108,36 @@ export const ProfileUpdate = () => {
           "https://res.cloudinary.com/dbez0fyq6/image/upload/v1729271237/ngzlkwvpxawd8w4lxsoo.png",
         first_name: fname,
         last_name: lname,
-        niche: niche,
+        niches: nicheID,
+        skills: stackID,
+        languages: languages,
       };
-      // console.log(details);
+      console.log(details);
       mutate({ id: user?.uuid, details });
     }
   };
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   const nicheItems = [
-    { id: 1, niche: "Freelancer" },
-    { id: 2, niche: "Tech" },
+    { value: "Frontend Developer", id: 1 },
+    { value: "Backend Developer", id: 2 },
+    { value: "Product Manager", id: 3 },
+    { value: "Product Designer", id: 4 },
+  ];
+  const stackItems = [
+    { value: "HTML", id: 1 },
+    { value: "CSS", id: 2 },
+    { value: "JavaScript", id: 3 },
+  ];
+
+  const languageItems = [
+    { value: "English", id: 1 },
+    { value: "Yoruba", id: 2 },
+    { value: "Igbo", id: 3 },
+    { value: "Hausa", id: 4 },
   ];
 
   return (
@@ -120,15 +154,21 @@ export const ProfileUpdate = () => {
               <StepperForm
                 fname={fname}
                 lname={lname}
-                niche={niche}
+                niche={nicheID}
+                stack={stackID}
+                languages={languages}
+                languageItems={languageItems}
                 bio={bio}
                 error={error}
                 nicheItems={nicheItems}
+                stackItems={stackItems}
                 profileData={profileData}
                 uploadedPhoto={uploadedPhoto}
                 setUploadedPhoto={setUploadedPhoto}
                 handleChange={handleChange}
-                handleSelectChange={handleSelectChange}
+                handleSelectNiche={handleSelectChange(setNicheID)}
+                handleSelectStack={handleSelectChange(setStackID)}
+                handleSelectLanguage={handleSelectChange(setLanguages)}
                 isPending={isPending}
               />
             </form>
@@ -141,6 +181,7 @@ export const ProfileUpdate = () => {
             width={100}
             height={100}
             className='w-full h-screen float-end'
+            priority
           />
         </div>
       </div>
