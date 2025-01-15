@@ -4,7 +4,7 @@ export const OutlinedButton = ({
   children,
   className,
 }: {
-  children: string;
+  children: React.ReactNode;
   className?: string;
 }) => {
   return (

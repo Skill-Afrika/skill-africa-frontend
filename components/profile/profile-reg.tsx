@@ -1,6 +1,5 @@
 "use client";
 
-import { SelectChangeEvent } from "@mui/material";
 import React, {
   ChangeEvent,
   Dispatch,
@@ -19,6 +18,9 @@ import { useRouter } from "next/navigation";
 import { enqueueSnackbar, SnackbarProvider } from "notistack";
 import Image from "next/image";
 import StepperForm from "../ui/form-steps";
+import { NicheSkillLang } from "@/types/types";
+import Loading from "@/app/(auth)/profile/loading";
+import Loader from "../ui/loader";
 
 export const ProfileUpdate = () => {
   const { data: session } = useSession();
@@ -46,9 +48,11 @@ export const ProfileUpdate = () => {
         lname: profileData.last_name,
         bio: profileData.bio,
       });
-      setNicheID(profileData?.niches);
-      setStackID(profileData?.skills);
-      setLanguages(profileData?.languages);
+      setNicheID(profileData?.niches?.map((niche: NicheSkillLang) => niche.id));
+      setStackID(profileData?.skills?.map((skill: NicheSkillLang) => skill.id));
+      setLanguages(
+        profileData?.languages?.map((language: NicheSkillLang) => language.id)
+      );
     }
   }, [profileData]);
 
@@ -114,16 +118,15 @@ export const ProfileUpdate = () => {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   const nicheItems = [
-    { value: "Frontend Developer", id: 4 },
-    { value: "Backend Developer", id: 5 },
-    { value: "Product Manager", id: 6 },
-    { value: "Product Designer", id: 7 },
+    { value: "Frontend Developer", id: 1 },
+    { value: "Backend Developer", id: 2 },
+    { value: "Product Manager", id: 3 },
+    { value: "Product Designer", id: 4 },
   ];
-
   const stackItems = [
     { value: "HTML", id: 1 },
     { value: "CSS", id: 2 },

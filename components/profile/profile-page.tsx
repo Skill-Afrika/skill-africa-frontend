@@ -8,6 +8,8 @@ import { useEffect } from "react";
 import ButtonClick from "../form/button";
 import { ProfileInfo } from "./profile-info";
 import { OutlinedButton } from "../ui/outlined-button";
+import { NicheSkillLang } from "@/types/types";
+import Loader from "../ui/loader";
 
 const ProfilePage = () => {
   const { data: session } = useSession();
@@ -25,7 +27,7 @@ const ProfilePage = () => {
   }, [isFetched, data]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   return (
@@ -46,7 +48,7 @@ const ProfilePage = () => {
               {data?.first_name} {data?.last_name || user?.username}
             </h2>
             <p className='text-xl font-semibold my-2'>
-              {data?.niches[0] ||
+              {data?.niches[0].niche ||
                 "Creative Frontend developer | Community manager"}
             </p>
             <div className='flex flex-wrap md:gap-5 gap-2'>
@@ -60,8 +62,12 @@ const ProfilePage = () => {
               </div>
             </div>
             <div className='flex flex-wrap gap-3 my-3'>
-              {data?.niches?.map((niche: string, index: number) => {
-                return <OutlinedButton key={index}>{niche}</OutlinedButton>;
+              {data?.niches?.map((niche: NicheSkillLang) => {
+                return (
+                  <OutlinedButton key={niche?.id}>
+                    {niche?.niche}
+                  </OutlinedButton>
+                );
               })}
             </div>
             <Link
@@ -78,6 +84,7 @@ const ProfilePage = () => {
           <img src='/images/flist.svg' alt='file list icon' />
           <p>No resume uploaded</p>
         </div>
+
         <ButtonClick>
           <span className='text-xl font-semibold'> + </span>Upload resume
         </ButtonClick>
