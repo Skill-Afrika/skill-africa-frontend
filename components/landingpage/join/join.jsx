@@ -26,7 +26,7 @@ const Join = () => {
       </div>
       <div className='md:w-1/2 w-4/5 mx-auto mt-5 md:mt-0'>
         <Image
-          src='/images/10.jpg'
+          src='/images/10.JPG'
           alt='img1'
           width='1000'
           height='1000'
