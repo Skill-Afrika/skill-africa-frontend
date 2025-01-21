@@ -1,6 +1,5 @@
 "use client";
 
-import img6 from "./Component 2.svg";
 import Image from "next/image";
 import Link from "next/link";
 import AOS from "aos";
@@ -45,7 +44,7 @@ const Hero = () => {
           </BlurIn>
         </Link>
       </div>
-      <div className='md:flex gap-2 overflow-hidden hidden w-full'>
+      <div className='md:flex gap-2 overflow-hidden w-full'>
         <Marquee pauseOnHover className='[--duration:200s]'>
           {skillAfrikaImages.map((image, index) => (
             <Image
@@ -60,9 +59,6 @@ const Hero = () => {
           ))}
         </Marquee>
       </div>
-      <Marquee pauseOnHover className='[--duration:15s]'>
-        <Image src={img6} alt='img1' className='md:hidden flex w-full mt-2' />
-      </Marquee>
     </div>
   );
 };
