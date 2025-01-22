@@ -24,7 +24,7 @@ const Join = () => {
           brighter future for freelance work in Africa.
         </h2>
       </div>
-      <div className='md:w-1/2 w-4/5 mx-auto mt-5 md:mt-0'>
+      <div className='md:w-1/2 mx-auto mt-5 md:mt-0'>
         <Image
           src='/images/10.JPG'
           alt='img1'

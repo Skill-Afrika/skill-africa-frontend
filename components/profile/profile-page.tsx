@@ -22,7 +22,7 @@ const ProfilePage = () => {
 
   useEffect(() => {
     if (isFetched && !data?.first_name) {
-      router.replace("profile/prof-reg");
+      router.push("profile/prof-reg");
     }
   }, [isFetched, data]);
 

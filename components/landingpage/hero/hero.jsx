@@ -17,8 +17,8 @@ const Hero = () => {
   }, []);
   return (
     <div>
-      <div className='w-5/6 mx-auto pt-10 flex flex-col justify-between items-center gap-6 pb-5'>
-        <h1 className='bg-orange-500 text-white px-4 py-3 md:px-6 md:py-3 rounded-3xl md:text-base md:font-medium font-bold text-sm'>
+      <div className='w-11/12 mx-auto pt-7 flex flex-col justify-between items-center gap-6 pb-5'>
+        <h1 className='bg-orange-500 text-white text-center px-4 py-3 md:px-6 md:py-3 rounded-3xl md:text-base md:font-medium font-bold text-sm'>
           Over{" "}
           <span>
             <NumberTicker value={5000} className='text-white' />

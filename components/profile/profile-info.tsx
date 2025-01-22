@@ -36,8 +36,8 @@ export const ProfileInfo = ({ data }: any) => {
               onClick={() => setActive(profile.id)}
               className={
                 profile.id === active
-                  ? "font-medium text-orange-500 bg-orange-200 bg-opacity-50 rounded-full px-5 py-1 cursor-pointer"
-                  : "text-slate-600 cursor-pointer px-5 py-1 bg-zinc-100 rounded-full"
+                  ? "font-medium text-orange-500 bg-orange-200 bg-opacity-50 rounded-full md:px-5 px-3 py-1 cursor-pointer"
+                  : "text-slate-600 cursor-pointer md:px-5 px-3 py-1 bg-zinc-100 rounded-full"
               }>
               {profile.nav}
             </div>
