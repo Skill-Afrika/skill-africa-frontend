@@ -82,10 +82,10 @@ const Header = () => {
                 <Link href={"/about"}>About us</Link>
               </li>
               <li>
-                <Link href={"/login"}>Login</Link>
+                <Link href={"/login"}>Sign In</Link>
               </li>
               <li>
-                <Link href={"/sign in"}>Sign in</Link>
+                <Link href={"/register"}>Sign Up</Link>
               </li>
             </ul>
           </div>
