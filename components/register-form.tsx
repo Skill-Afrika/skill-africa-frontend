@@ -64,6 +64,7 @@ export default function RegisterForm() {
         setLoading(true);
         const res = await signIn("register", {
           redirect: false,
+          callbackUrl: "profile/prof-reg",
           username: values.username,
           email: values.email,
           password: values.password,

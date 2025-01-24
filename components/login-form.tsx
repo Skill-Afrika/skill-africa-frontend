@@ -54,15 +54,14 @@ export default function LoginForm() {
       setLoading(true);
       const res = await signIn("login", {
         redirect: false,
+        callbackUrl: '/profile',
         email: values.email,
         password: values.password,
       });
 
       if (res?.ok) {
         enqueueSnackbar("Login Successful", { variant: "success" });
-        setTimeout(() => {
-          router.push("/profile");
-        }, 2000);
+        router.push("/profile");
         setLoading(false);
       }
 
